@@ -106,42 +106,6 @@ function WhereItBuy() {
       initial="hidden"
     >
       <div className="w-full max-w-7xl mx-auto">
-        <div 
-          id="hero-title"
-          className={`text-center mb-12 md:mb-16 transition-all duration-1000 ${
-            isVisible["hero-title"]
-              ? "opacity-100 translate-x-0"
-              : "opacity-0 -translate-x-20"
-          }`}
-        >
-          <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
-            Where to Buy <span className="text-[#0047AB]">Avees</span> 
-          </h2>
-          <p className="text-black text-sm sm:text-base max-w-2xl mx-auto">
-            Closer than you think, shop online or in store.
-          </p>
-        </div>
-
-<div className="relative overflow-hidden">
-  <div className="flex animate-infinite-scroll space-x-6 md:space-x-12">
-    {/* Duplicate the retailers array for seamless looping */}
-    {[...retailers, ...retailers].map((retailer, index) => (
-      <a
-        key={index}
-        href={retailer.url}
-        className="flex-shrink-0 transition-all duration-300 hover:scale-105 focus:scale-105 focus:outline-none rounded-xl p-4 md:p-6 bg-white"
-        aria-label={`Buy from ${retailer.name}`}
-      >
-        <img
-          src={retailer.logo}
-          alt={`${retailer.name} logo`}
-          className="h-20 w-32 sm:h-16 sm:w-24 md:h-24 md:w-40 lg:h-32 lg:w-48 object-contain"
-        />
-      </a>
-    ))}
-  </div>
-</div>
-
 
         {/* Our Stores Section */}
         <div 
@@ -208,39 +172,6 @@ function WhereItBuy() {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes infinite-scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        
-        .animate-infinite-scroll {
-          display: flex;
-          animation: infinite-scroll 30s linear infinite;
-          width: max-content;
-        }
-        
-        .animate-infinite-scroll:hover {
-          animation-play-state: paused;
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 640px) {
-          .animate-infinite-scroll {
-            animation-duration: 20s;
-          }
-        }
-        
-        @media (max-width: 768px) {
-          .animate-infinite-scroll {
-            animation-duration: 25s;
-          }
-        }
-      `}</style>
     </div>
   );
 }
