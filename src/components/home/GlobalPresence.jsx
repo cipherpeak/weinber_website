@@ -88,10 +88,10 @@ function GlobalPresence() {
 
   // Only the four countries mentioned by the client
   const exportDestinations = [
-    { name: "UK", flag: 'https://flagcdn.com/w160/gb.png' },
-    { name: "Ireland", flag: 'https://flagcdn.com/w160/ie.png' },
-    { name: "Australia", flag: "https://flagcdn.com/w160/au.png" },
-    { name: "Kuwait", flag: "https://flagcdn.com/w160/kw.png" },
+    { name: "USA", flag: 'https://flagcdn.com/w160/us.png' },
+    { name: "UAE", flag: 'https://flagcdn.com/w160/ae.png' },
+    { name: "UK", flag: "https://flagcdn.com/w160/gb.png" },
+    { name: "India", flag: "https://flagcdn.com/w160/in.png" },
     { name: "And More", icon: Globe },
   ];
 
@@ -103,10 +103,10 @@ function GlobalPresence() {
 
   // Corrected dot positions for the map (responsive)
   const mapDots = [
-    { left: "38%", top: "23%", country: "UK" },
-    { left: "30%", top: "74%", country: "Ireland" },
-    { left: "82%", top: "58%", country: "Australia" },
-    { left: "58%", top: "35%", country: "Kuwait" },
+    { left: "21%", top: "38%", country: "USA" },
+    { left: "62%", top: "44%", country: "UAE" },
+    { left: "49%", top: "26%", country: "UK" },
+    { left: "69%", top: "46%", country: "India" },
   ];
 
   return (

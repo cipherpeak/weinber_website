@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
+import loaderGif from "../../assets/logo/loader.gif";
 
 function Loading() {
   const [loading, setLoading] = useState(true);
@@ -29,15 +30,15 @@ function Loading() {
 
   return (
     <motion.div
-      className="fixed bg-[#FFF] top-0 left-0 w-full h-full flex justify-center items-center z-10"
+      className="fixed bg-[#FFF] top-0 left-0 w-full h-full flex justify-center items-center z-50"
       animate={controls}
     >
       <div className="p-6 rounded-md max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
         <div className="flex flex-col items-center justify-center">
           <motion.img
-            src="/logo.png"
+            src={loaderGif}
             alt="Weinber Inc Loader"
-            className="w-64 h-auto md:w-80 lg:w-96 object-contain"
+            className="w-12 h-auto md:w-16 lg:w-20 object-contain"
             animate={{
               scale: [0.8, 1.2, 1],
               opacity: [0, 1],

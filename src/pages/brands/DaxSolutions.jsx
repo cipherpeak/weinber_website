@@ -164,11 +164,11 @@ const DaxSolutions = () => {
                         </div>
 
                         {/* Product 4 */}
-                        <div className="bg-white rounded-xl shadow-lg border-l-8 border-red-500 overflow-hidden hover:shadow-2xl transition-all p-8">
+                        <div className="bg-white rounded-xl shadow-lg border-l-8 border-[#0047AB] overflow-hidden hover:shadow-2xl transition-all p-8">
                             <div className="flex justify-between items-start mb-6">
                                 <div>
                                     <h3 className="text-2xl font-bold mb-1">Engine Flush</h3>
-                                    <span className="text-red-500 font-bold text-sm tracking-wider uppercase">Pre-Change Service</span>
+                                    <span className="text-[#0047AB] font-bold text-sm tracking-wider uppercase">Pre-Change Service</span>
                                 </div>
                                 <TriangleAlert className="text-gray-300 w-10 h-10" />
                             </div>
@@ -183,7 +183,7 @@ const DaxSolutions = () => {
                                     <span className="font-bold">Do Not Drive</span>
                                 </div>
                             </div>
-                            <button className="w-full bg-gray-900 text-white py-3 rounded-lg font-bold hover:bg-red-500 transition-colors">View Details</button>
+                            <button className="w-full bg-gray-900 text-white py-3 rounded-lg font-bold hover:bg-[#0047AB] transition-colors">View Details</button>
                         </div>
                     </div>
                 </div>

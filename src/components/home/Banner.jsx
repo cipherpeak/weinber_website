@@ -2,29 +2,49 @@ import { useEffect, useState, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import hero from "../../assets/banner/hero_car_detail.png"
+
+// Import Banner Images
+import banner1 from "../../assets/banner/hero_ppf.png"
+import banner2 from "../../assets/banner/hero_coatings.png"
+import banner3 from "../../assets/banner/hero_interior.png"
+import banner4 from "../../assets/banner/hero_exterior.png"
+import banner5 from "../../assets/banner/hero_solutions.png"
 
 const BANNER_SLIDES = [
   {
     id: 1,
-    image: hero,
-    title1: "Superior Protection.",
-    title2: "Showroom Shine.",
-    description: "Premium American-made nano-ceramic coatings and detailing supplies. Trusted by professionals since 1999."
+    image: banner1,
+    title1: "PPF Coating",
+    title2: "Color, Clear, Print",
+    description: "Ultimate protection for your vehicle's paint with our advanced Paint Protection Films."
   },
   {
     id: 2,
-    image: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295127/retail3_gdeiqi.webp",
-    title1: "Advanced Technology.",
-    title2: "Lasting Beauty.",
-    description: "Experience the next generation of car care with our scientifically formulated products details."
+    image: banner2,
+    title1: "Coatings",
+    title2: "Ceramic, Graphene, Borophine",
+    description: "Next-level surface protection technology for unmatched durability and shine."
   },
   {
     id: 3,
-    image: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295127/retail1_qqtlr4.webp",
-    title1: "Professional Grade.",
-    title2: "Easy Application.",
-    description: "Achieve professional results right in your own garage with our easy-to-use solutions."
+    image: banner3,
+    title1: "Interior Detailing",
+    title2: "Revitalize Your Cabin",
+    description: "Deep cleaning and conditioning to keep your car's interior looking and feeling brand new."
+  },
+  {
+    id: 4,
+    image: banner4,
+    title1: "Exterior Detailing",
+    title2: "Restore the Glow",
+    description: "Professional exterior treatments to enhance gloss and remove imperfections."
+  },
+  {
+    id: 5,
+    image: banner5,
+    title1: "Solutions",
+    title2: "Lubricants",
+    description: "High-performance lubricants and solutions for optimal automotive maintenance."
   }
 ]
 
@@ -64,7 +84,7 @@ export default function Banner() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.7 }}
           >
-           {/* Image */}
+            {/* Image */}
             <img
               src={BANNER_SLIDES[currentSlide].image}
               alt={BANNER_SLIDES[currentSlide].title1}
@@ -72,7 +92,7 @@ export default function Banner() {
             />
             {/* Overlay */}
             <div className="absolute inset-0 bg-black/40" />
-            
+
             {/* Content */}
             <div className="absolute inset-0 flex items-center justify-start text-left px-4 sm:px-6 lg:px-12 mt-16 md:mt-0">
               <div className="max-w-4xl">
@@ -124,25 +144,25 @@ export default function Banner() {
 
         {/* Floating Elements (Constant) */}
         <motion.div
-            className="absolute top-10 left-10 w-20 h-20 bg-white/5 rounded-full blur-xl z-20 pointer-events-none"
-            animate={{ y: [-10, 10, -10] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-10 left-10 w-20 h-20 bg-white/5 rounded-full blur-xl z-20 pointer-events-none"
+          animate={{ y: [-10, 10, -10] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-            className="absolute bottom-20 right-20 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl z-20 pointer-events-none"
-            animate={{ y: [10, -10, 10] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-20 right-20 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl z-20 pointer-events-none"
+          animate={{ y: [10, -10, 10] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
 
         {/* Navigation Arrows */}
         <div className="absolute bottom-10 left-4 sm:left-6 lg:left-12 z-30 flex gap-4">
-          <button 
+          <button
             onClick={prevSlide}
             className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-white text-[#0047AB] shadow-lg hover:scale-110 transition-all border border-gray-100"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
-          <button 
+          <button
             onClick={nextSlide}
             className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-white text-[#0047AB] shadow-lg hover:scale-110 transition-all border border-gray-100"
           >
@@ -156,9 +176,8 @@ export default function Banner() {
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                index === currentSlide ? "bg-white w-8" : "bg-white/40 hover:bg-white/60"
-              }`}
+              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === currentSlide ? "bg-white w-8" : "bg-white/40 hover:bg-white/60"
+                }`}
             />
           ))}
         </div>

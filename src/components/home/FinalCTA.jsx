@@ -62,7 +62,7 @@ export default function FinalCTA() {
     },
     hover: {
       scale: 1.05,
-      backgroundColor: "#b30000",
+      backgroundColor: "#0047AB",
       boxShadow: "0 10px 25px -5px rgba(227, 30, 36, 0.3)",
       transition: {
         duration: 0.2,

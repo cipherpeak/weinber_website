@@ -13,6 +13,7 @@ import DaxDetailing from "./pages/brands/DaxDetailing";
 import DaxSolutions from "./pages/brands/DaxSolutions";
 
 // Wrap all components with loader
+const HomeWithLoader = withLoader(HomeContents, { spinnerColor: 'primary' });
 const ProductsWithLoader = withLoader(Products, { spinnerColor: 'success' });
 const AboutWithLoader = withLoader(AboutUs, { spinnerColor: 'warning' });
 const ContactWithLoader = withLoader(Contact, { spinnerColor: 'warning' });
@@ -30,7 +31,7 @@ function App() {
       <Router>
         <Routes>
           <Route element={<Layout />}>
-            <Route path="/" element={<HomeContents />} />
+            <Route path="/" element={<HomeWithLoader />} />
             <Route path="/products" element={<ProductsWithLoader />} />
 
             {/* Brand Routes */}

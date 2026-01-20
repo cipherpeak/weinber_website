@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import ourStoryBg from "../../assets/banner/hero_car_detail.png";
 
 function OurStory() {
   const [isMobile, setIsMobile] = useState(false);
@@ -105,7 +106,7 @@ function OurStory() {
         variants={imageVariants}
       >
         <img
-          src="https://images.unsplash.com/photo-1550505393-2c3586cd176c?q=80&w=1740&auto=format&fit=crop"
+          src={ourStoryBg}
           alt="Our Story Banner"
           className="object-cover w-full h-full rounded-3xl"
           loading="lazy"
@@ -132,8 +133,8 @@ function OurStory() {
 
         <motion.div
           className={`flex flex-col items-start w-full ${isMobile
-              ? "max-w-full"
-              : "max-w-[90%] md:max-w-[80%] lg:max-w-[60%] xl:max-w-[50%]"
+            ? "max-w-full"
+            : "max-w-[90%] md:max-w-[80%] lg:max-w-[60%] xl:max-w-[50%]"
             } p-4 sm:p-6 md:p-6 rounded-xl md:rounded-2xl bg-black/60 backdrop-blur-sm border border-white/20 shadow-2xl`}
           variants={itemVariants}
           whileHover={{
@@ -143,11 +144,7 @@ function OurStory() {
           transition={{ duration: 0.3 }}
         >
           <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 sm:mb-5 md:mb-6 text-left leading-relaxed sm:leading-loose">
-            Founded in 1992 in Detroit, Michagan, Weinber Inc. began as a passion project
-            to create the perfect car wax. Over three decades, we have evolved into a global
-            leader in automotive surface protection, pioneering nano-ceramic technology and
-            sustainable detailing solutions. From our lab to your garage, every bottle represents
-            our unyielding commitment to excellence and the pursuit of the perfect shine.
+            Weinber Inc. was founded by passionate detailing enthusiasts and chemists. We have been manufacturing premium quality coatings, polishes, compounds, waxes, fuel & oil additives and degreasers for more than 2 decades. Homegrown in the USA, our products are sought after and sold worldwide owing to our commitment to high quality formulations and unparalleled performance.
           </p>
           <Link to="/about">
             <motion.button
