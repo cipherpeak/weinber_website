@@ -270,7 +270,7 @@ function Header() {
                             <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-gray-200"></div>
 
                             <div className={`bg-white rounded-2xl border border-gray-100 overflow-hidden p-6`}>
-                              <div className={`grid gap-4 ${item.dropdown.length === 2 ? 'grid-cols-2 w-[500px]' : 'grid-cols-4 w-[1000px]'}`}>
+                              <div className={`grid gap-4 ${item.dropdown.length === 2 ? 'grid-cols-1 md:grid-cols-2 w-[85vw] md:w-[500px]' : 'grid-cols-2 lg:grid-cols-4 w-[90vw] lg:w-[1000px]'}`}>
                                 {item.dropdown.map((subItem, subIndex) => (
                                   <motion.a
                                     key={subIndex}

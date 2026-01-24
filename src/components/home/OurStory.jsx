@@ -21,7 +21,7 @@ const StorySection = () => {
             <div className="mb-2"></div>
 
             {/* Master tagline */}
-            <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight">
               Legacy of <br />
               <span className="text-[#0047AB]">Excellence</span>
             </h2>
