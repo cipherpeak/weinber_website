@@ -65,31 +65,44 @@ const Contact = () => {
     });
   };
 
-  const contactInfo = [
+  const mainBranch = {
+    country: "USA",
+    company: "Weinber Inc.",
+    address: ["North 2nd Street, New Hyde Park", "NY 11040, USA"],
+    email: "sales@weinberinc.com",
+    isMain: true,
+  };
+
+  const regionalBranches = [
     {
-      icon: <FiMapPin className="w-6 h-6" />,
-      title: "Headquarters",
-      details: [
-        "123 Auto Drive",
-        "Motor City",
-        "Detroit, MI 48201",
-        "United States",
-      ],
+      country: "UAE",
+      company: "Redtronic LLC",
+      address: ["Dubai, UAE"],
+      email: "info@redtronicllc.com",
     },
     {
-      icon: <FiPhone className="w-6 h-6" />,
-      title: "Phone",
-      details: ["+1 (555) 123-4567", "+1 (555) 987-6543"],
+      country: "KSA",
+      company: "Gentle Car Wash and Polishing",
+      address: ["Al Hessa, KSA"],
+      email: "sales.ksa@weinberinc.com",
     },
     {
-      icon: <FiMail className="w-6 h-6" />,
-      title: "Email",
-      details: ["contact@weinberinc.com", "support@weinberinc.com"],
+      country: "Qatar",
+      company: "Advantage Trading & Services WLL",
+      address: ["Doha, Qatar"],
+      email: "info@advantagewll.com",
     },
     {
-      icon: <FiClock className="w-6 h-6" />,
-      title: "Business Hours",
-      details: ["Monday - Friday: 9:00 AM - 6:00 PM EST"],
+      country: "India",
+      company: "Redtronic LLP",
+      address: ["Cochin, Kerala"],
+      email: "sales.ind@weinberinc.com",
+    },
+    {
+      country: "UK",
+      company: "",
+      address: [], // No address provided in requirements
+      email: "sales.uk@weinberinc.com",
     },
   ];
 
@@ -103,11 +116,9 @@ const Contact = () => {
     { icon: FiFacebook, href: "#", label: "Facebook" },
   ];
 
-
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -128,78 +139,129 @@ const Contact = () => {
           </h1>
           <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
             We're here to answer your questions and discuss how we can help you
-            succeed. Choose your preferred way to connect.
+            succeed. Contact our main office or find a partner near you.
           </p>
         </motion.div>
       </motion.section>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-8">
+        {/* Main Branch Section */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16"
+          className="mb-16"
         >
-          {/* Contact Information */}
-          <motion.div variants={itemVariants} className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                Get In Touch
-              </h3>
-              <p className="text-gray-600 mb-8 leading-relaxed">
-                We'd love to hear from you. Send us a message and we'll respond
-                as soon as possible. Our team is dedicated to providing you with
-                the best service and support for all your automotive detailing needs.
-              </p>
-            </div>
-
-            {/* Contact Info Cards */}
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => (
-                <motion.div
-                  key={index}
-                  variants={itemVariants}
-                  className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100"
-                >
-                  <div className="flex items-start space-x-4">
-                    <div className="border border-[#0047AB] text-[#0047AB] p-3 rounded-full flex-shrink-0">
-                      {info.icon}
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-2">
-                        {info.title}
-                      </h4>
-                      {info.details.map((detail, idx) => (
-                        <p key={idx} className="text-gray-600 text-sm">
-                          {detail}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Enquiry Form */}
           <motion.div
             variants={itemVariants}
-            className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100"
+            className="bg-white rounded-2xl p-8 md:p-12 shadow-xl border-t-4 border-[#0047AB] max-w-4xl mx-auto relative overflow-hidden"
           >
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-2">
+            <div className="absolute top-0 right-0 p-8 opacity-5">
+              <FiMapPin className="w-64 h-64 text-[#0047AB]" />
+            </div>
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-6">
+                <FiMapPin className="w-8 h-8 text-[#0047AB]" />
+                <h2 className="text-3xl font-bold text-gray-900">{mainBranch.country}</h2>
+              </div>
+
+              <div className="space-y-4">
+                <h3 className="text-2xl font-semibold text-gray-800">{mainBranch.company}</h3>
+                <div className="text-lg text-gray-600 space-y-1">
+                  {mainBranch.address.map((line, i) => (
+                    <p key={i}>{line}</p>
+                  ))}
+                </div>
+                <div className="pt-4 flex items-center gap-2 text-lg font-medium text-[#0047AB]">
+                  <FiMail className="w-5 h-5" />
+                  <a href={`mailto:${mainBranch.email}`} className="hover:underline">
+                    {mainBranch.email}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Regional Branches Grid */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={containerVariants}
+          className="mb-20"
+        >
+          <motion.h3
+            variants={itemVariants}
+            className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10"
+          >
+            Regional Branches & Partners
+          </motion.h3>
+
+          <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
+            {regionalBranches.map((branch, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 flex flex-col h-full w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <FiMapPin className="w-5 h-5 text-[#0047AB]" />
+                  <h4 className="text-xl font-bold text-gray-900">{branch.country}</h4>
+                </div>
+
+                <div className="flex-grow space-y-3">
+                  {branch.company && (
+                    <p className="font-semibold text-gray-800">{branch.company}</p>
+                  )}
+                  {branch.address.length > 0 && (
+                    <div className="text-gray-600 text-sm">
+                      {branch.address.map((line, i) => (
+                        <p key={i}>{line}</p>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className="mt-4 pt-4 border-t border-gray-100">
+                  <div className="flex items-center gap-2 text-sm font-medium text-[#0047AB] break-words">
+                    <FiMail className="w-4 h-4 flex-shrink-0" />
+                    <a href={`mailto:${branch.email}`} className="hover:underline truncate">
+                      {branch.email}
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Enquiry Form */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={containerVariants}
+          className="max-w-4xl mx-auto mb-20"
+        >
+          <motion.div
+            variants={itemVariants}
+            className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border border-gray-100"
+          >
+            <div className="text-center mb-8">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
                 Send us a Message
               </h3>
               <p className="text-gray-600">
-                Fill out the form below and we'll get back to you shortly.
+                Fill out the form below and ours team will get back to you shortly.
               </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Name and Email Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <motion.div variants={itemVariants}>
                   <label
                     htmlFor="name"
@@ -245,7 +307,7 @@ const Contact = () => {
               </div>
 
               {/* Phone and Subject Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <motion.div variants={itemVariants}>
                   <label
                     htmlFor="phone"
@@ -318,7 +380,7 @@ const Contact = () => {
               <motion.div variants={itemVariants}>
                 <button
                   type="submit"
-                  className="w-full cursor-pointer bg-[#0047AB] text-white font-semibold py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 group"
+                  className="w-full cursor-pointer bg-[#0047AB] text-white font-semibold py-4 px-6 rounded-full transition-colors duration-200 flex items-center justify-center gap-2 group hover:bg-blue-800 hover:shadow-lg"
                 >
                   <FiSend className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
                   <span>Send Message</span>
@@ -346,7 +408,7 @@ const Contact = () => {
             </div>
             <div className="relative h-96 w-full">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d359670.3662446633!2d-83.3361234479589!3d42.352726462791485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8824ca0110cb1d99%3A0x40b983fdf9c72e5!2sDetroit%2C%20MI!5e0!3m2!1sen!2sus!4v1709403157730!5m2!1sen!2sus"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.204092734053!2d-73.69813392319675!3d40.73553443617331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2628b70229253%3A0x62d51e0f7b07495a!2sN%202nd%20St%2C%20North%20Hempstead%2C%20NY%2011040%2C%20USA!5e0!3m2!1sen!2sin!4v1769236338187!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

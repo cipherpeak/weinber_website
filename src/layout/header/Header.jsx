@@ -1,14 +1,49 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { GiShoppingBag } from "react-icons/gi";
 import { BiMessageSquareDetail } from "react-icons/bi";
 import { FiMenu, FiX } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 
+import siriusLogo from "../../assets/logo/sirius_logo.webp";
+import daxDetailingLogo from "../../assets/logo/dax-detailing.png";
+import daxSolutionsLogo from "../../assets/logo/dax-solutions.webp";
+import advantageLogo from "../../assets/logo/advantage-logo.png";
+import weinberLogo from "../../assets/logo/weinber_logo.png";
+
 function Header() {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+  const scrollTimeout = useRef(null);
+
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = lastScrollY.current;
+
+    // Clear existing timeout when scrolling
+    if (scrollTimeout.current) {
+      clearTimeout(scrollTimeout.current);
+    }
+
+    if (latest > previous && latest > 50) {
+      // Scrolling down and past top
+      setIsVisible(false);
+    } else {
+      // Scrolling up
+      setIsVisible(true);
+    }
+
+    // Set timeout to show navbar after scrolling stops
+    scrollTimeout.current = setTimeout(() => {
+      setIsVisible(true);
+    }, 800); // 800ms delay
+
+    lastScrollY.current = latest;
+  });
 
   const navItems = [
     {
@@ -25,20 +60,26 @@ function Header() {
         {
           name: "SIRIUS",
           link: "/brands/sirius",
-          image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=600&auto=format&fit=crop",
+          image: siriusLogo,
           description: "Premium Nano-Ceramic & Graphene Coatings",
         },
         {
           name: "DAX Detailing",
           link: "/brands/dax-detailing",
-          image: "https://images.unsplash.com/photo-1635773124508-8e622b7d59c9?q=80&w=600&auto=format&fit=crop",
+          image: daxDetailingLogo,
           description: "Polishes, Compounds & Restoration Systems",
         },
         {
           name: "DAX Solutions",
           link: "/brands/dax-solutions",
-          image: "https://images.unsplash.com/photo-1486262715619-72a604e3d7e9?q=80&w=600&auto=format&fit=crop",
+          image: daxSolutionsLogo,
           description: "Engine Additives & Fuel System Treatments",
+        },
+        {
+          name: "Advantage",
+          link: "/brands/advantage",
+          image: advantageLogo,
+          description: "High-Performance Engine Oils & Automotive Fluids",
         }
       ]
     },
@@ -144,6 +185,7 @@ function Header() {
       height: "auto",
       transition: {
         duration: 0.3,
+        staggerChildren: 0.05,
       },
     },
   };
@@ -162,15 +204,23 @@ function Header() {
   };
 
   return (
-    <header className="bg-white w-full sticky top-0 z-50 shadow-sm p-1">
-      <div className="flex items-center justify-between max-w-7xl mx-auto px-4 py-2">
+    <motion.header
+      className="bg-white/70 backdrop-blur-md w-full fixed top-0 z-50 shadow-sm p-1"
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: "-100%" },
+      }}
+      animate={isVisible ? "visible" : "hidden"}
+      transition={{ duration: 0.3, ease: "easeInOut" }}
+    >
+      <div className="flex items-center justify-between max-w-7xl mx-auto px-4 py-4">
         <Link to="/">
 
-          <div className="flex items-center cursor-pointer">
+          <div className="flex items-center cursor-pointer py-1.5">
             <img
-              src="/logo.png"
+              src={weinberLogo}
               alt="Weinber Inc Logo"
-              className="md:h-28 h-16 w-auto"
+              className="md:h-10 h-7 w-auto object-contain"
             />
           </div>
         </Link>
@@ -219,8 +269,8 @@ function Header() {
                             {/* Arrow tip */}
                             <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-gray-200"></div>
 
-                            <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden p-6">
-                              <div className="grid grid-cols-2 gap-6 w-[500px]">
+                            <div className={`bg-white rounded-2xl border border-gray-100 overflow-hidden p-6`}>
+                              <div className={`grid gap-4 ${item.dropdown.length === 2 ? 'grid-cols-2 w-[500px]' : 'grid-cols-4 w-[1000px]'}`}>
                                 {item.dropdown.map((subItem, subIndex) => (
                                   <motion.a
                                     key={subIndex}
@@ -237,7 +287,7 @@ function Header() {
                                       <img
                                         src={subItem.image}
                                         alt={subItem.name}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                        className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-110"
                                       />
                                       {/* Gradient Overlay */}
                                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -274,9 +324,9 @@ function Header() {
         <div className="flex items-center gap-4">
           <Link
             to="/contact"
-            className="flex items-center gap-2 bg-blue-100 text-[#0047AB] px-4 py-2.5 rounded-full text-sm font-medium hover:bg-blue-200 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg"
+            className="flex items-center gap-2 bg-[#0047AB] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg"
           >
-            <BiMessageSquareDetail className="text-[#0047AB] text-xl" />
+            <BiMessageSquareDetail className="text-white text-xl" />
             <span className="hidden sm:inline">Enquire Now</span>
           </Link>
 
@@ -392,7 +442,7 @@ function Header() {
             <div className="p-4 border-t border-gray-100">
               <Link
                 to="/contact"
-                className="flex items-center justify-center gap-2 bg-blue-100 text-[#0047AB] px-4 py-3 rounded-full font-medium hover:bg-blue-200 hover:scale-105 transition-all duration-300 shadow-md"
+                className="flex items-center justify-center gap-2 bg-[#0047AB] text-white px-6 py-3 rounded-full font-medium hover:bg-blue-700 hover:scale-105 transition-all duration-300 shadow-md"
               >
                 <BiMessageSquareDetail className="text-xl" />
                 Enquire Now
@@ -401,7 +451,7 @@ function Header() {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
 

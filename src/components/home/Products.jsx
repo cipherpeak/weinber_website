@@ -22,51 +22,51 @@ function Products() {
   };
 
   const imageVariants = {
-    hidden: { 
-      opacity: 0, 
-      x: 300, // Start from right
-      scale: 1.2 
+    hidden: {
+      opacity: 0,
+      y: 50, // Start from bottom
+      scale: 0.95
     },
     visible: {
       opacity: 1,
-      x: 0, // Move to center
+      y: 0, // Move to center
       scale: 1,
       transition: {
-        duration: 1.0,
+        duration: 0.8,
         ease: "easeOut"
       }
     },
     exit: {
       opacity: 0,
-      x: -300, 
+      y: 50,
       transition: {
-        duration: 0.8,
+        duration: 0.6,
         ease: "easeIn"
       }
     }
   };
 
   return (
-      <motion.section 
-        className="relative  flex items-center justify-center overflow-hidden"
-        initial="hidden"
-        whileInView="visible"
-        exit="exit"
-        viewport={{ once: false, amount: 0.05 }} 
-        variants={containerVariants}
+    <motion.section
+      className="relative  flex items-center justify-center overflow-hidden"
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ once: false, amount: 0.05 }}
+      variants={containerVariants}
+    >
+      <motion.div
+        className="w-full h-full"
+        variants={imageVariants}
       >
-        <motion.div
-          className="w-full h-full"
-          variants={imageVariants}
-        >
-          <img 
-            src={products} 
-            alt="Products Banner" 
-            className="object-cover w-full h-full"
-            loading="lazy" 
-          />
-        </motion.div>
-      </motion.section>
+        <img
+          src={products}
+          alt="Products Banner"
+          className="object-cover w-full h-full"
+          loading="lazy"
+        />
+      </motion.div>
+    </motion.section>
   );
 }
 

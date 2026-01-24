@@ -1,28 +1,27 @@
 import React from "react";
-import { FaLeaf, FaCheckCircle, FaUtensils } from "react-icons/fa";
-import { GiGrainBundle } from "react-icons/gi";
+import { FaShieldAlt, FaFlask, FaCar, FaGlobeAmericas } from "react-icons/fa";
 
 const ProductFeatures = () => {
   const features = [
     {
-      icon: <FaLeaf className="text-[#0047AB] text-2xl" />,
-      title: "Clean-Label Ingredients",
-      description: "100% natural, no preservatives, colors, or flavors.",
+      icon: <FaShieldAlt className="text-[#0047AB] text-2xl" />,
+      title: "Advanced Protection",
+      description: "Nano-ceramic technology providing long-lasting durability against harsh elements.",
     },
     {
-      icon: <FaCheckCircle className="text-[#0047AB] text-2xl" />,
-      title: "Quality You Can Trust",
-      description: "Every batch tested for purity, freshness, and safety.",
+      icon: <FaFlask className="text-[#0047AB] text-2xl" />,
+      title: "Professional Formulas",
+      description: "Engineering-grade compounds designed for superior gloss and correction.",
     },
     {
-      icon: <GiGrainBundle className="text-[#0047AB] text-2xl" />,
-      title: "Stone-Ground Freshness",
-      description: "Traditional milling preserves nutrition & authentic flavor.",
+      icon: <FaCar className="text-[#0047AB] text-2xl" />,
+      title: "Showroom Finish",
+      description: "Achieve a deep, wet-look shine that enhances your vehicle's aesthetic.",
     },
     {
-      icon: <FaUtensils className="text-[#0047AB] text-2xl" />,
-      title: "Authentic Kerala Recipes",
-      description: "Perfectly crafted for puttu, idiyappam, appam, and dosa.",
+      icon: <FaGlobeAmericas className="text-[#0047AB] text-2xl" />,
+      title: "Global Standards",
+      description: "Trusted by elite detailers worldwide for consistent, high-performance results.",
     },
   ];
 

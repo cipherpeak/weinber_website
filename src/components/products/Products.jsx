@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { ChevronDown, ShieldCheck, Droplets, SprayCan, Sparkles, Leaf } from "lucide-react";
+import { ChevronDown, ShieldCheck, Droplets, SprayCan, Sparkles, Leaf, ArrowRight } from "lucide-react";
 import { FaCarSide } from "react-icons/fa";
 import ProductGrid from "./ProductGrid";
 import ProductFeatures from "./ProductFeatures";
@@ -9,87 +9,125 @@ import ProductBanner from "./ProductBanner";
 import { Link, useLocation } from "react-router-dom";
 
 // Categories - Updated for Car Detailing
+// Categories - Updated for Car Detailing
 const categories = [
   "All",
-  "Exterior",
-  "Interior",
-  "Protection",
-  "Tools",
+  "Sirius",
+  "Dax Detailing",
+  "Dax Solutions",
+  "Advantage",
 ];
 
 // Products - Automotive Detailing
-const products = [
+// Products - Automotive Detailing
+export const products = [
   {
     id: 1,
     name: "Ceramic Coating Kit",
     description: "Professional grade 9H ceramic coating for 5+ years of protection.",
-    category: "Protection",
+    category: "Sirius",
     sizes: ["50ml", "100ml"],
-    cta: ["Shop on Amazon"],
+    cta: ["Know More"],
     image: "https://images.unsplash.com/photo-1625902382753-48092a54a01c?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: 2,
     name: "Ultra-Gloss Wax",
     description: "Carnauba-infused liquid wax for a deep, wet-look shine.",
-    category: "Exterior",
+    category: "Dax Detailing",
     sizes: ["16oz", "1 Gallon"],
-    cta: ["Shop on Amazon"],
+    cta: ["Know More"],
     image: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: 3,
     name: "Interior Detailer",
     description: "Cleans and protects plastic, vinyl, and leather surfaces.",
-    category: "Interior",
+    category: "Dax Detailing",
     sizes: ["16oz", "1 Gallon"],
-    cta: ["Shop on Amazon"],
+    cta: ["Know More"],
     image: "https://images.unsplash.com/photo-1605218427360-3638d6899a61?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: 4,
     name: "PH Neutral Shampoo",
     description: "Safe for coatings, high-foam formula for scratch-free washing.",
-    category: "Exterior",
+    category: "Dax Detailing",
     sizes: ["16oz", "1 Gallon"],
-    cta: ["Shop on Amazon"],
+    cta: ["Know More"],
     image: "https://images.unsplash.com/photo-1601362840136-e0c1df5c468e?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: 5,
     name: "Iron Remover",
     description: "Dissolves embedded iron particles and brake dust instantly.",
-    category: "Exterior",
+    category: "Dax Detailing",
     sizes: ["16oz", "1 Gallon"],
-    cta: ["Shop on Amazon"],
+    cta: ["Know More"],
     image: "https://images.unsplash.com/photo-1616423666945-8c7c10b7f082?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: 6,
     name: "Leather Conditioner",
     description: "Restores soft feel and protects leather from UV damage.",
-    category: "Interior",
+    category: "Dax Detailing",
     sizes: ["16oz"],
-    cta: ["Shop on Amazon"],
+    cta: ["Know More"],
     image: "https://images.unsplash.com/photo-1594968940801-b3716d7a468e?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: 7,
     name: "Microfiber Towel Set",
     description: "Premium edgeless 500 GSM towels for buffing and drying.",
-    category: "Tools",
+    category: "Dax Detailing",
     sizes: ["6-Pack", "12-Pack"],
-    cta: ["Shop on Amazon"],
+    cta: ["Know More"],
     image: "https://images.unsplash.com/photo-1606752393282-3d8b5845c470?q=80&w=600&auto=format&fit=crop",
   },
   {
     id: 8,
     name: "Tire Shine Gel",
     description: "No-sling formula for high-gloss, long-lasting black tires.",
-    category: "Exterior",
+    category: "Dax Detailing",
     sizes: ["16oz"],
-    cta: ["Shop on Amazon"],
+    cta: ["Know More"],
     image: "https://images.unsplash.com/photo-1550961812-706d87178303?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    id: 9,
+    name: "Fuel Injector Cleaner",
+    description: "Restores lost power and improves fuel economy.",
+    category: "Dax Solutions",
+    sizes: ["12oz"],
+    cta: ["Know More"],
+    image: "https://images.unsplash.com/photo-1635773124508-8e622b7d59c9?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    id: 10,
+    name: "Oil System Cleaner",
+    description: "Dissolves sludge and deposits for a cleaner engine.",
+    category: "Dax Solutions",
+    sizes: ["12oz"],
+    cta: ["Know More"],
+    image: "https://images.unsplash.com/photo-1486262715619-72a604e3d7e9?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    id: 11,
+    name: "5W-30 Full Synthetic Oil",
+    description: "Advanced protection for modern turbocharged engines.",
+    category: "Advantage",
+    sizes: ["1 Quart", "5 Gallons"],
+    cta: ["Know More"],
+    image: "https://images.unsplash.com/photo-1504222490245-4f67dd74ae48?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    id: 12,
+    name: "Transmission Fluid",
+    description: "High-performance fluid for smooth shifting and wear protection.",
+    category: "Advantage",
+    sizes: ["1 Quart"],
+    cta: ["Know More"],
+    image: "https://images.unsplash.com/photo-1594968940801-b3716d7a468e?q=80&w=600&auto=format&fit=crop",
   },
 ];
 
@@ -271,15 +309,14 @@ export default function ProductsPage() {
           </div>
           <div className="flex gap-3 flex-wrap justify-center">
             <Link to="/contact">
-
-              <motion.button className="bg-[#0047AB] cursor-pointer text-white px-4 py-2 rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+              <motion.button className="bg-[#0047AB] cursor-pointer text-white px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 font-medium flex items-center justify-center gap-2">
                 Wholesale Inquiry
+                <ArrowRight size={18} />
               </motion.button>
             </Link>
 
             <Link to="/contact">
-
-              <motion.button className="bg-[#0047AB] cursor-pointer text-white px-4 py-2 rounded-md shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
+              <motion.button className="bg-white border text-[#0047AB] border-[#0047AB] cursor-pointer px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 font-medium flex items-center justify-center gap-2 hover:bg-blue-50">
                 Become a Dealer
               </motion.button>
             </Link>

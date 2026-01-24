@@ -210,7 +210,7 @@ export default function Testimonials() {
                     <p className="text-[#0047AB] text-xs md:text-sm">
                       {testimonial.role}
                     </p>
-                    <p className="text-blue-500 text-xs">
+                    <p className="text-[#0047AB] text-xs">
                       {testimonial.location}
                     </p>
                   </div>
@@ -290,38 +290,7 @@ export default function Testimonials() {
           ))}
         </motion.div>
 
-        {/* Impact Stats */}
-        <motion.div
-          className="bg-white rounded-2xl md:rounded-3xl p-5 md:p-6 lg:p-8 border border-blue-100"
-          variants={titleVariants}
-        >
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-center text-black mb-5 md:mb-6 lg:mb-8">
-            Weinber by the Numbers
-          </h3>
-          <motion.div
-            className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 lg:gap-6"
-            variants={containerVariants}
-          >
-            {impactStats.map((stat, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                className="text-center p-3 md:p-4 lg:p-5 bg-blue-50 rounded-xl md:rounded-2xl border border-blue-100"
-                whileHover={{
-                  scale: 1.02,
-                  transition: { duration: 0.2, ease: "easeOut" },
-                }}
-              >
-                <div className="text-xl md:text-2xl lg:text-3xl font-bold text-black mb-1 md:mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-black font-medium text-xs md:text-sm lg:text-base">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
+
       </div>
     </motion.div>
   );

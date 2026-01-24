@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Fuel, Settings, TriangleAlert, FileText, Check, ArrowRight, Activity, Zap } from "lucide-react";
+import { Wrench, Shield, Truck, Package, Download, ArrowRight } from "lucide-react";
 
-const DaxSolutions = () => {
+const Advantage = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -16,8 +16,8 @@ const DaxSolutions = () => {
     return (
         <div className="bg-white text-gray-900">
             <div className="hidden">
-                <title>DAX Solutions — Engine Additives & Fuel System Treatments | Weinber Inc.</title>
-                <meta name="description" content="DAX Solutions keeps engines clean and efficient with professional fuel system cleaners, oil treatments, and engine flushes." />
+                <title>Advantage — Premium Automotive Trading & Services | Weinber Inc.</title>
+                <meta name="description" content="Advantage Trading & Services provides top-tier automotive products and solutions." />
             </div>
 
             {/* Hero Section - Matching Banner.jsx */}
@@ -25,8 +25,8 @@ const DaxSolutions = () => {
                 <div className="relative w-full h-[28rem] lg:h-[50rem] rounded-3xl overflow-hidden group">
                     <div className="absolute inset-0">
                         <img
-                            src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?q=80&w=2070&auto=format&fit=crop"
-                            alt="Dax Solutions Hero"
+                            src="https://images.unsplash.com/photo-1542744094-24638eff58bb?q=80&w=2070&auto=format&fit=crop"
+                            alt="Advantage Hero"
                             className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-black/40" />
@@ -40,10 +40,10 @@ const DaxSolutions = () => {
                                     transition={{ duration: 0.8 }}
                                 >
                                     <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent block">
-                                        Engine & Mechanical
+                                        The Weinber
                                     </span>
                                     <span className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent block mt-2">
-                                        Performance
+                                        Advantage
                                     </span>
                                 </motion.h1>
 
@@ -53,7 +53,7 @@ const DaxSolutions = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.8, delay: 0.2 }}
                                 >
-                                    DAX Solutions complements exterior detailing with internal care essentials that improve vehicle reliability and efficiency.
+                                    Over 20 Years of Expertise in delivering products developed with long-standing experience in coatings, detailing chemistry and automotive care.
                                 </motion.p>
 
                                 <motion.div
@@ -62,15 +62,15 @@ const DaxSolutions = () => {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.8, delay: 0.4 }}
                                 >
+                                    <button className="px-8 py-3 bg-[#0047AB] text-white font-medium rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center gap-2">
+                                        <Download size={18} />
+                                        Download Brochure
+                                    </button>
                                     <Link to="/contact">
-                                        <button className="px-8 py-3 bg-[#0047AB] text-white font-medium rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center gap-2">
-                                            View Additives
-                                            <ArrowRight size={18} />
+                                        <button className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-lg">
+                                            Partner With Us
                                         </button>
                                     </Link>
-                                    <button className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-lg">
-                                        Data Sheets
-                                    </button>
                                 </motion.div>
                             </div>
                         </div>
@@ -90,12 +90,15 @@ const DaxSolutions = () => {
                             transition={{ duration: 0.8 }}
                         >
                             <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight">
-                                Internal <br />
-                                <span className="text-[#0047AB]">Automotive Care</span>
+                                Quality & <br />
+                                <span className="text-[#0047AB]">Innovation</span>
                             </h2>
                             <div className="text-gray-700 leading-relaxed mb-8 space-y-6">
                                 <p>
-                                    DAX Solutions is Weinber Inc.’s brand focused on internal automotive care — specifically chemical additives and compounds formulated to support mechanical systems.
+                                    The brand’s advantage lies in its commitment to quality, innovation, and comprehensive solutions that cover both appearance and performance aspects of vehicle care.
+                                </p>
+                                <p>
+                                    Made in USA, Globally Trusted: Products manufactured in the United States and distributed worldwide, with a reputation for high quality and performance.
                                 </p>
                             </div>
                         </motion.div>
@@ -109,58 +112,53 @@ const DaxSolutions = () => {
                         >
                             <div className="relative">
                                 <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#0047AB] rounded-xl z-0"></div>
-                                <div className="relative h-[24rem] md:h-[30rem] rounded-xl overflow-hidden shadow-md bg-gray-100 p-8 flex items-center justify-center z-10">
-                                    <Settings className="w-48 h-48 text-[#0047AB] opacity-20" />
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="bg-white p-6 rounded-xl shadow-xl max-w-xs text-center border border-gray-100">
-                                            <Activity className="w-12 h-12 text-[#0047AB] mx-auto mb-4" />
-                                            <h3 className="font-bold text-xl mb-2">Restores Efficiency</h3>
-                                            <p className="text-sm text-gray-500">Proven to improve fuel economy by cleaning vital intake components.</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <img
+                                    src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Logistics"
+                                    className="w-full h-72 md:h-96 object-cover rounded-xl shadow-md relative z-10"
+                                />
                             </div>
                         </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* Core Solutions Section */}
+            {/* Brand Highlights Section */}
             <section className="py-10 md:py-16 px-4 bg-white">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid md:grid-cols-3 gap-6">
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
-                                <Fuel className="text-[#0047AB]" size={24} />
+                                <Shield className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Engine Additives</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">20+ Years Expertise</h3>
                             <p className="text-gray-600 text-sm">
-                                Products such as engine oil system detergents, fuel system cleaners, and oil treatments that help clean, protect and optimize engine performance.
+                                Products developed with long-standing experience in coatings, detailing chemistry and automotive care.
                             </p>
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
-                                <Settings className="text-[#0047AB]" size={24} />
+                                <Truck className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Mechanical Support</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Global Distribution</h3>
                             <p className="text-gray-600 text-sm">
-                                Formulations meant to reduce internal contamination, prevent leaks, maintain smooth operation, and extend component life.
+                                Products manufactured in the United States and distributed worldwide, with a reputation for high quality.
                             </p>
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
-                                <Zap className="text-[#0047AB]" size={24} />
+                                <Wrench className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">System Performance</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Innovation & Quality</h3>
                             <p className="text-gray-600 text-sm">
-                                Advanced chemical engineering to restore lost power, improve fuel economy, and reduce emissions in modern engines.
+                                Continuous technological improvement in protective coatings, cleaning systems and performance additives.
                             </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            {/* Products Section - Matching ProductShowCase.jsx */}
+            {/* Services Section - Matching ProductShowCase.jsx */}
             <section className="py-16 px-4 bg-white">
                 <div className="max-w-7xl mx-auto">
                     <motion.div
@@ -171,99 +169,75 @@ const DaxSolutions = () => {
                         variants={fadeIn}
                     >
                         <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
-                            Performance <span className="text-[#0047AB]">Chemistry</span>
+                            Our <span className="text-[#0047AB]">Services</span>
                         </h2>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {/* Product 1 */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {/* Service 1 */}
                         <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
                             <div className="relative h-48 overflow-hidden bg-gray-100">
                                 <img
-                                    src="https://images.unsplash.com/photo-1486262715619-72a604e3d7e9?q=80&w=2070&auto=format&fit=crop"
-                                    alt="Engine Components"
+                                    src="https://images.unsplash.com/photo-1566576912906-253c7c320d33?q=80&w=600&auto=format&fit=crop"
+                                    alt="Distribution"
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                 />
                                 <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    ADDITIVES
+                                    LOGISTICS
                                 </div>
                             </div>
                             <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Engine Additives & Treatments</h4>
+                                <h4 className="font-bold text-gray-900 mb-1 truncate">Product Distribution</h4>
                                 <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Products such as engine oil system detergents, fuel system cleaners, and oil treatments that help clean, protect and optimize engine performance.
+                                    Seamless supply chain solutions for automotive consumables and equipment.
                                 </p>
                                 <button className="block w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2">
-                                    View Details
+                                    Learn More
                                     <ArrowRight size={18} />
                                 </button>
                             </div>
                         </div>
 
-                        {/* Product 2 */}
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1625902382753-48092a54a01c?q=80&w=600&auto=format&fit=crop"
-                                    alt="DIESEL"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    MECHANICAL
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Mechanical Support</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Formulations meant to reduce internal contamination, prevent leaks, maintain smooth operation, and extend component life.
-                                </p>
-                                <button className="block w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2">
-                                    View Details
-                                    <ArrowRight size={18} />
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Product 3 */}
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1552934440-5bb95cc9ad5a?q=80&w=600&auto=format&fit=crop"
-                                    alt="OIL ADDITIVE"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    OIL ADDITIVE
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Engine Oil Treatment</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Fortifies motor oil with anti-wear polymers and friction modifiers for older engines.
-                                </p>
-                                <button className="block w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2">
-                                    View Details
-                                    <ArrowRight size={18} />
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Product 4 */}
+                        {/* Service 2 */}
                         <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
                             <div className="relative h-48 overflow-hidden bg-gray-100">
                                 <img
                                     src="https://images.unsplash.com/photo-1621905251189-08b95ddd71a6?q=80&w=600&auto=format&fit=crop"
-                                    alt="SERVICE"
+                                    alt="Consulting"
                                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                                 />
                                 <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    SERVICE
+                                    VERSATILE
                                 </div>
                             </div>
                             <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Engine Flush</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Powerful solvent blend to dissolve sludge before oil change.
+                                <h4 className="font-bold text-gray-900 mb-1 truncate">Professional & DIY Focus</h4>
+                                <p className="text-gray-500 text-xs line-clamp-3 mb-3 h-12">
+                                    Formulations suitable for both professional detailers and car enthusiasts.
+                                </p>
+                                <button className="block w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2">
+                                    Get Consultation
+                                    <ArrowRight size={18} />
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Service 3 */}
+                        <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
+                            <div className="relative h-48 overflow-hidden bg-gray-100">
+                                <img
+                                    src="https://images.unsplash.com/photo-1542744094-24638eff58bb?q=80&w=600&auto=format&fit=crop"
+                                    alt="Sourcing"
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                />
+                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
+                                    INNOVATION
+                                </div>
+                            </div>
+                            <div className="p-4">
+                                <h4 className="font-bold text-gray-900 mb-1 truncate">Innovation & Quality</h4>
+                                <p className="text-gray-500 text-xs line-clamp-3 mb-3 h-12">
+                                    Continuous technological improvement in protective coatings, cleaning systems and performance additives to meet modern demands.
                                 </p>
                                 <button className="block w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2">
                                     View Details
@@ -278,4 +252,4 @@ const DaxSolutions = () => {
     );
 };
 
-export default DaxSolutions;
+export default Advantage;

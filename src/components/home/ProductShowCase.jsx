@@ -1,5 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+import { staggerContainer, fadeInUp, hoverScale } from "../../utils/animations";
 
 // Placeholder images
 const ceramicCoating =
@@ -12,39 +15,6 @@ const accessories =
   "https://images.unsplash.com/photo-1632733711679-529326f6db12?q=80&w=600&auto=format&fit=crop";
 
 function ProductShowCase() {
-  const [isVisible, setIsVisible] = useState({});
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsVisible((prev) => ({
-            ...prev,
-            [entry.target.id]: entry.isIntersecting,
-          }));
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    setTimeout(() => {
-      document.querySelectorAll("[id^='product-item-']").forEach((el) => {
-        observer.observe(el);
-      });
-
-      const titleEl = document.getElementById("showcase-title");
-      const subtitleEl = document.getElementById("showcase-subtitle");
-      const buttonEl = document.getElementById("view-all-button");
-
-      if (titleEl) observer.observe(titleEl);
-      if (subtitleEl) observer.observe(subtitleEl);
-      if (buttonEl) observer.observe(buttonEl);
-    }, 100);
-
-    return () => observer.disconnect();
-  }, []);
-
   const productItems = [
     {
       id: 1,
@@ -101,42 +71,38 @@ function ProductShowCase() {
   ];
 
   return (
-    <section ref={sectionRef} className="py-16 px-4 bg-white">
+    <section className="py-16 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2
-            id="showcase-title"
-            className={`text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 transition-all duration-1000 ${isVisible["showcase-title"]
-              ? "opacity-100 translate-x-0"
-              : "opacity-0 -translate-x-20"
-              }`}
-          >
+        <motion.div
+          className="text-center mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={fadeInUp}
+        >
+          <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
             <span className="text-[#0047AB]">Weinber</span> Products
           </h2>
-          <p
-            id="showcase-subtitle"
-            className={`text-black text-sm sm:text-base mx-auto transition-all duration-1000 delay-200 ${isVisible["showcase-subtitle"]
-              ? "opacity-100 translate-x-0"
-              : "opacity-0 -translate-x-20"
-              }`}
-          >
+          <p className="text-black text-sm sm:text-base mx-auto">
             Engineered for perfection. Crafted for enthusiasts.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {productItems.map((item, index) => (
-            <div
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={staggerContainer}
+        >
+          {productItems.map((item) => (
+            <motion.div
               key={item.id}
-              id={`product-item-${item.id}`}
-              className={`group transition-all duration-700 ${isVisible[`product-item-${item.id}`]
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 -translate-x-20"
-                }`}
-              style={{ transitionDelay: `${index * 200}ms` }}
+              variants={fadeInUp}
+              className="group"
             >
-              <div className="bg-white transition-all duration-500 transform hover:-translate-y-2 rounded-lg shadow-md overflow-hidden hover:shadow-lg border border-gray-100">
-                <div className="relative md:h-48 overflow-hidden">
+              <div className="bg-white transition-all duration-500 transform hover:-translate-y-2 rounded-lg shadow-md overflow-hidden hover:shadow-lg border border-gray-100 h-full flex flex-col">
+                <div className="relative md:h-48 overflow-hidden shrink-0">
                   <img
                     src={item.image}
                     alt={item.name}
@@ -147,11 +113,11 @@ function ProductShowCase() {
                   </div>
                 </div>
 
-                <div className="p-5">
+                <div className="p-5 flex flex-col flex-grow">
                   <h3 className="text-xl font-bold text-black mb-2">
                     {item.name}
                   </h3>
-                  <p className="text-black mb-4 text-sm">{item.description}</p>
+                  <p className="text-black mb-4 text-sm flex-grow">{item.description}</p>
 
                   <div className="hidden md:block border-t border-gray-100 pt-4 mb-4">
                     <ul className="space-y-2">
@@ -179,31 +145,42 @@ function ProductShowCase() {
                   </div>
                   <Link
                     to="/products"
+                    className="mt-auto"
                   >
                     <div className="border-t border-gray-100 pt-4">
-                      <button className="w-full bg-[#0047AB] cursor-pointer text-white font-medium py-2 px-4 rounded-md transition-all transform hover:scale-105 duration-300">
+                      <motion.button
+                        className="w-full bg-[#0047AB] cursor-pointer text-white font-medium py-3 px-4 rounded-full transition-all duration-300 flex items-center justify-center gap-2 hover:shadow-lg"
+                        whileHover={hoverScale}
+                        whileTap={{ scale: 0.95 }}
+                      >
                         View Details
-                      </button>
+                        <ArrowRight size={18} />
+                      </motion.button>
                     </div>
                   </Link>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <Link to="/products">
-          <div
-            id="view-all-button"
-            className={`text-center transition-all duration-1000 ${isVisible["view-all-button"]
-              ? "opacity-100 translate-x-0"
-              : "opacity-0 -translate-x-20"
-              }`}
+          <motion.div
+            className="text-center"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeInUp}
           >
-            <button className="bg-[#0047AB] cursor-pointer text-white font-bold py-3 px-8 rounded-md transition-all duration-300 transform hover:scale-105 shadow-md">
+            <motion.button
+              className="bg-[#0047AB] cursor-pointer text-white font-bold py-3 px-8 rounded-full transition-all duration-300 shadow-md flex items-center justify-center gap-2 mx-auto"
+              whileHover={hoverScale}
+              whileTap={{ scale: 0.95 }}
+            >
               View All Products
-            </button>
-          </div>
+              <ArrowRight size={18} />
+            </motion.button>
+          </motion.div>
         </Link>
       </div>
     </section>

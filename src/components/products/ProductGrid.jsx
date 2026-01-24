@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 
 function ProductGrid({
   categories,
@@ -6,6 +8,7 @@ function ProductGrid({
   filteredProducts,
   setActiveCategory,
 }) {
+  const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
   const [isVisible, setIsVisible] = useState({});
   const [showAllProducts, setShowAllProducts] = useState(false);
@@ -51,8 +54,8 @@ function ProductGrid({
       <div
         id="products-title"
         className={`transition-all duration-1000 text-center mb-10 ${isVisible["products-title"]
-            ? "opacity-100 translate-x-0"
-            : "opacity-0 translate-x-10"
+          ? "opacity-100 translate-x-0"
+          : "opacity-0 translate-x-10"
           }`}
       >
         <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">Professional Series</h2>
@@ -64,8 +67,8 @@ function ProductGrid({
       <div
         id="products-tabs"
         className={`flex gap-3 mb-10 flex-wrap justify-center transition-all duration-700 ${isVisible["products-tabs"]
-            ? "opacity-100 translate-x-0"
-            : "opacity-0 translate-x-10"
+          ? "opacity-100 translate-x-0"
+          : "opacity-0 translate-x-10"
           }`}
       >
         {categories.map((cat) => (
@@ -73,8 +76,8 @@ function ProductGrid({
             key={cat}
             onClick={() => setActiveCategory(cat)}
             className={`px-4 py-2 cursor-pointer rounded-md text-sm font-medium transition-all duration-300 ${activeCategory === cat
-                ? "bg-[#0047AB] text-white"
-                : "border border-[#0047AB] text-[#0047AB] "
+              ? "bg-[#0047AB] text-white"
+              : "border border-[#0047AB] text-[#0047AB] "
               }`}
           >
             {cat}
@@ -83,14 +86,14 @@ function ProductGrid({
       </div>
 
       {/* Products Grid */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {productsToShow.map((product, index) => (
           <div
             key={product.id}
             id={`product-${product.id}`}
             className={`bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-500 hover:scale-105 ${isVisible[`product-${product.id}`]
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-20"
+              ? "opacity-100 translate-x-0"
+              : "opacity-0 translate-x-20"
               }`}
             style={{ transitionDelay: `${index * 100}ms` }}
           >
@@ -137,14 +140,22 @@ function ProductGrid({
                 {product.cta.map((buttonText, index) => (
                   <button
                     key={index}
-                    onClick={() => window.open("https://www.amazon.com", "_blank")}
-                    className={`flex-1 min-w-[120px] cursor-pointer text-sm font-medium py-2 px-3 rounded-md transition-all duration-300 transform hover:scale-105 shadow-md ${buttonText === "Shop Online" ||
-                        buttonText === "Shop on Amazon"
-                        ? "bg-[#0047AB] text-white hover:bg-blue-800"
-                        : "border border-[#0047AB] text-[#0047AB] "
+                    onClick={() => {
+                      if (buttonText === "Know More") {
+                        navigate(`/products/${product.id}`);
+                      } else {
+                        window.open("https://www.amazon.com", "_blank");
+                      }
+                    }}
+                    className={`flex-1 min-w-[120px] cursor-pointer text-sm font-medium py-2 px-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-md flex items-center justify-center gap-2 ${buttonText === "Shop Online" ||
+                      buttonText === "Shop on Amazon" ||
+                      buttonText === "Know More"
+                      ? "bg-[#0047AB] text-white hover:bg-blue-800"
+                      : "border border-[#0047AB] text-[#0047AB] "
                       }`}
                   >
                     {buttonText}
+                    <ArrowRight size={16} />
                   </button>
                 ))}
               </div>
@@ -158,9 +169,10 @@ function ProductGrid({
         <div className="text-center mt-8">
           <button
             onClick={() => setShowAllProducts(!showAllProducts)}
-            className="bg-[#0047AB] text-white px-6 py-3 rounded-md font-medium transition-all duration-300 transform hover:scale-105 cursor-pointer shadow-md"
+            className="bg-[#0047AB] text-white px-8 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 cursor-pointer shadow-md flex items-center justify-center gap-2 mx-auto"
           >
             {showAllProducts ? "Show Less" : `Show More Products`}
+            <ArrowRight size={18} />
           </button>
         </div>
       )}

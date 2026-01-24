@@ -1,47 +1,41 @@
 import { useEffect, useState, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
-import { ChevronLeft, ChevronRight } from "lucide-react"
-
-// Import Banner Images
-import banner1 from "../../assets/banner/hero_ppf.png"
-import banner2 from "../../assets/banner/hero_coatings.png"
-import banner3 from "../../assets/banner/hero_interior.png"
-import banner4 from "../../assets/banner/hero_exterior.png"
-import banner5 from "../../assets/banner/hero_solutions.png"
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
+import { fadeInUp, fadeIn, scaleUp } from "../../utils/animations"
 
 const BANNER_SLIDES = [
   {
     id: 1,
-    image: banner1,
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769078031/lb_to_lane_xkudvt.jpg",
     title1: "PPF Coating",
     title2: "Color, Clear, Print",
     description: "Ultimate protection for your vehicle's paint with our advanced Paint Protection Films."
   },
   {
     id: 2,
-    image: banner2,
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769079872/bluecloth_hero_dgwesq.jpg",
     title1: "Coatings",
     title2: "Ceramic, Graphene, Borophine",
     description: "Next-level surface protection technology for unmatched durability and shine."
   },
   {
     id: 3,
-    image: banner3,
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769079872/tinit_hero_vaoitm.jpg",
     title1: "Interior Detailing",
     title2: "Revitalize Your Cabin",
     description: "Deep cleaning and conditioning to keep your car's interior looking and feeling brand new."
   },
   {
     id: 4,
-    image: banner4,
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769079872/polish_hero_cch2yo.jpg",
     title1: "Exterior Detailing",
     title2: "Restore the Glow",
     description: "Professional exterior treatments to enhance gloss and remove imperfections."
   },
   {
     id: 5,
-    image: banner5,
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769079871/coating_hero_toew08.jpg",
     title1: "Solutions",
     title2: "Lubricants",
     description: "High-performance lubricants and solutions for optimal automotive maintenance."
@@ -79,10 +73,10 @@ export default function Banner() {
           <motion.div
             key={currentSlide}
             className="absolute inset-0"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.7 }}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={fadeIn}
           >
             {/* Image */}
             <img
@@ -100,9 +94,9 @@ export default function Banner() {
                   className="text-white font-bold tracking-tight text-balance leading-tight
                              text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl
                              drop-shadow-2xl"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+                  variants={fadeInUp}
+                  initial="hidden"
+                  animate="visible"
                 >
                   <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent block">
                     {BANNER_SLIDES[currentSlide].title1}
@@ -114,28 +108,40 @@ export default function Banner() {
 
                 <motion.p
                   className="mt-4 sm:mt-6 hidden md:block text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl leading-relaxed drop-shadow-lg"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
+                  variants={fadeInUp}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: 0.2 }}
                 >
                   {BANNER_SLIDES[currentSlide].description}
                 </motion.p>
 
                 <motion.div
                   className="mt-6 sm:mt-8 flex gap-3"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.7, duration: 0.5 }}
+                  variants={scaleUp}
+                  initial="hidden"
+                  animate="visible"
+                  transition={{ delay: 0.4 }}
                 >
                   <Link to="/products">
-                    <button className="px-6 sm:px-8 py-3 sm:py-4 cursor-pointer bg-[#0047AB] border border-[#0047AB] rounded-full text-white font-medium text-sm sm:text-base hover:bg-blue-700 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                    <motion.button
+                      className="px-8 py-3 bg-[#0047AB] text-white font-medium rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center gap-2"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
                       Shop Products
-                    </button>
+                      <ArrowRight size={18} />
+                    </motion.button>
                   </Link>
 
-                  <a className="px-6 sm:px-8 py-3 sm:py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium text-sm sm:text-base hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-xl" href="https://www.amazon.com">
+                  <motion.a
+                    className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-xl"
+                    href="https://www.amazon.com"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
                     Order on Amazon
-                  </a>
+                  </motion.a>
                 </motion.div>
               </div>
             </div>
@@ -156,18 +162,22 @@ export default function Banner() {
 
         {/* Navigation Arrows */}
         <div className="absolute bottom-10 left-4 sm:left-6 lg:left-12 z-30 flex gap-4">
-          <button
+          <motion.button
             onClick={prevSlide}
-            className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-white text-[#0047AB] shadow-lg hover:scale-110 transition-all border border-gray-100"
+            className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-white text-[#0047AB] shadow-lg border border-gray-100"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
             <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             onClick={nextSlide}
-            className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-white text-[#0047AB] shadow-lg hover:scale-110 transition-all border border-gray-100"
+            className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-full bg-white text-[#0047AB] shadow-lg border border-gray-100"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
           >
             <ChevronRight className="w-6 h-6" />
-          </button>
+          </motion.button>
         </div>
 
         {/* Dots */}

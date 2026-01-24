@@ -1,165 +1,93 @@
-import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import ourStoryBg from "../../assets/banner/hero_car_detail.png";
+import { ArrowRight } from "lucide-react";
+import { fadeInLeft, fadeInRight } from "../../utils/animations";
 
-function OurStory() {
-  const [isMobile, setIsMobile] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 100);
-
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-      clearTimeout(timer);
-    };
-  }, []);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.1,
-      },
-    },
-    exit: {
-      opacity: 0,
-      transition: { duration: 0.8, ease: "easeIn" },
-    },
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, x: 100, scale: 1.1 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      scale: 1,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-    exit: {
-      opacity: 0,
-      x: -100,
-      transition: { duration: 0.6, ease: "easeIn" },
-    },
-  };
-
-  const contentVariants = {
-    hidden: { opacity: 0, x: -100 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: { delay: 0.5, duration: 0.7, ease: "easeOut" },
-    },
-    exit: {
-      opacity: 0,
-      x: -100,
-      transition: { duration: 0.5, ease: "easeIn" },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
-    },
-    exit: {
-      opacity: 0,
-      y: 30,
-      transition: { duration: 0.4, ease: "easeIn" },
-    },
-  };
-
-  if (!isLoaded) {
-    return (
-      <section className="relative w-full h-[50vh] md:h-[70vh] flex items-center justify-center overflow-hidden mt-3">
-        <div className="w-full h-full bg-gray-200 animate-pulse rounded-3xl"></div>
-      </section>
-    );
-  }
-
+const StorySection = () => {
   return (
-    <motion.section
-      className="relative w-full md:py-16 px-4 min-h-[50vh] md:min-h-[70vh] flex items-center justify-center overflow-hidden group"
-      initial="hidden"
-      whileInView="visible"
-      exit="exit"
-      viewport={{ once: false, amount: 0.05 }}
-      variants={containerVariants}
+    <section
+      className="py-10 md:py-16 px-4 bg-white"
     >
-      {/* Background Image */}
-      <motion.div
-        className="absolute md:py-16 px-4 inset-0 w-full h-full"
-        variants={imageVariants}
-      >
-        <img
-          src={ourStoryBg}
-          alt="Our Story Banner"
-          className="object-cover w-full h-full rounded-3xl"
-          loading="lazy"
-        />
-      </motion.div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          {/* Content */}
+          <motion.div
+            className="order-2 md:order-1"
+            variants={fadeInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <div className="mb-2"></div>
 
-      {/* Content Container */}
-      <motion.div
-        className="relative z-10 flex flex-col p-4 sm:p-6 md:p-8 lg:p-10 text-white w-full "
-        variants={contentVariants}
-      >
-        <motion.div variants={itemVariants} className="mb-4 md:mb-6">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold inline-block relative">
-            Our Story
-            <motion.span
-              className="absolute -bottom-1 sm:-bottom-2 left-0 h-1 bg-[#0047AB]"
-              initial={{ width: 0 }}
-              whileInView={{ width: "100%" }}
-              viewport={{ amount: 0.05 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
-            />
-          </h1>
-        </motion.div>
+            {/* Master tagline */}
+            <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight">
+              Legacy of <br />
+              <span className="text-[#0047AB]">Excellence</span>
+            </h2>
 
-        <motion.div
-          className={`flex flex-col items-start w-full ${isMobile
-            ? "max-w-full"
-            : "max-w-[90%] md:max-w-[80%] lg:max-w-[60%] xl:max-w-[50%]"
-            } p-4 sm:p-6 md:p-6 rounded-xl md:rounded-2xl bg-black/60 backdrop-blur-sm border border-white/20 shadow-2xl`}
-          variants={itemVariants}
-          whileHover={{
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-            boxShadow: "0 0 20px rgba(227, 30, 36, 0.3)",
-          }}
-          transition={{ duration: 0.3 }}
-        >
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-4 sm:mb-5 md:mb-6 text-left leading-relaxed sm:leading-loose">
-            Weinber Inc. was founded by passionate detailing enthusiasts and chemists. We have been manufacturing premium quality coatings, polishes, compounds, waxes, fuel & oil additives and degreasers for more than 2 decades. Homegrown in the USA, our products are sought after and sold worldwide owing to our commitment to high quality formulations and unparalleled performance.
-          </p>
-          <Link to="/about">
-            <motion.button
-              className="px-5 py-2 cursor-pointer sm:px-6 sm:py-2.5 bg-[#0047AB] text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            {/* Story text */}
+            <p className="text-gray-700 leading-relaxed mb-6">
+              Weinber Inc. was founded with a singular vision: to revolutionize the
+              automotive care industry through advanced chemistry and superior product
+              performance. From humble beginnings to a global presence, our journey has
+              been defined by an unwavering commitment to quality.
+            </p>
+
+            <p className="text-gray-700 leading-relaxed mb-8">
+              Today, we stand at the forefront of automotive innovation, delivering
+              professional-grade coatings, detailing solutions, and performance additives
+              that set new industry standards. We don't just protect vehicles; we preserve
+              value and enhance beauty.
+            </p>
+
+            {/* Action Buttons */}
+            <div
+              className="flex flex-wrap items-center gap-4"
             >
-              Learn More
-            </motion.button>
-          </Link>
-        </motion.div>
-      </motion.div>
-    </motion.section>
-  );
-}
+              <Link to="/about">
+                <motion.button
+                  className="px-8 py-3 bg-[#0047AB] text-white font-medium rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center gap-2"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Our Story
+                  <ArrowRight size={18} />
+                </motion.button>
+              </Link>
+              <Link to="/products">
+                <motion.button
+                  className="px-8 py-3 bg-white text-[#0047AB] border border-[#0047AB] font-medium rounded-full hover:bg-blue-50 transition-all duration-300 hover:shadow-lg"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  View Products
+                </motion.button>
+              </Link>
+            </div>
+          </motion.div>
 
-export default OurStory;
+          {/* Image */}
+          <motion.div
+            className="order-1 md:order-2"
+            variants={fadeInRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            <div className="relative">
+              <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#0047AB] rounded-xl z-0"></div>
+              <img
+                src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1000&auto=format&fit=crop"
+                alt="Weinber Quality Contral"
+                className="w-full h-72 md:h-96 object-cover rounded-xl shadow-md relative z-10"
+              />
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default StorySection;

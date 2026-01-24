@@ -1,125 +1,132 @@
-import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import siriusLogo from "../../assets/logo/sirius_logo.webp";
+import daxDetailingLogo from "../../assets/logo/dax-detailing.png";
+import daxSolutionsLogo from "../../assets/logo/dax-solutions.webp";
+import advantageLogo from "../../assets/logo/advantage-logo.png";
+
+// Placeholder for Advantage since no logo exists yet
+const advantagePlaceholder = "https://images.unsplash.com/photo-1504222490245-4f67dd74ae48?q=80&w=600&auto=format&fit=crop";
 
 function WhereItBuy() {
-  const [isVisible, setIsVisible] = useState({});
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsVisible((prev) => ({
-            ...prev,
-            [entry.target.id]: entry.isIntersecting,
-          }));
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    document.querySelectorAll("[id]").forEach((el) => {
-      observer.observe(el);
-    });
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
     }
+  };
 
-    return () => observer.disconnect();
-  }, []);
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
 
-  // Store locations data with images
   const storeLocations = [
     {
       id: 1,
       name: "SIRIUS PRO",
-      description: "SIRIUS PRO is a premium quality nano ceramic coating engineered with advanced nano ceramic protective coating technology. Equipped with a 3D hybrid molecular structure, SIRIUS PRO coating is designed to give you the best surface protection with a high gloss and ultra hydrophobic finish.",
-      image: "../src/assets/logo/sirius_logo.webp"
+      description: "Premium nano ceramic coating engineered with 3D hybrid molecular structure for ultimate surface protection and gloss.",
+      image: siriusLogo,
+      color: "bg-blue-50"
     },
     {
       id: 2,
       name: "DAX DETAILING",
-      description: "DAX Detailing hosts a variety of products each with its own specific formula and application. From compounds, waxes, cleaner-conditioner to shines, DAX detailing offers products that transform your vehicle inside out to give it that show-quality level of finish and detail.",
-      image: "../src/assets/logo/dax-detailing.png"
+      description: "Professional detailing formulas including compounds, waxes, and cleaners for that showroom-quality finish.",
+      image: daxDetailingLogo,
+      color: "bg-gray-50"
     },
     {
       id: 3,
       name: "DAX SOLUTIONS",
-      description: "DAX Solutions include chemical compounds that work on the internals of your vehicle and keep it running smooth and efficient for a longer period of time. They provide vital support to modern internal combustion engines and avoid leaks, contamination and engine break downs.",
-      image: "../src/assets/logo/dax-solutions.webp"
+      description: "Advanced chemical compounds for internal engine health, preventing leaks and ensuring efficient performance.",
+      image: daxSolutionsLogo,
+      color: "bg-blue-50"
+    },
+    {
+      id: 4,
+      name: "ADVANTAGE",
+      description: "High-performance engine oils and automotive fluids formulated for superior protection and extended engine life.",
+      image: advantageLogo,
+      color: "bg-gray-50",
     },
   ];
 
   return (
-    <div
-      ref={sectionRef}
-      id="where-to-buy" // Added this ID for the scroll functionality
-      className="w-full bg-background flex items-center justify-center py-10 md:py-16 px-4"
-      initial="hidden"
+    <section
+      id="where-to-buy"
+      className="w-full bg-white py-16 md:py-24 px-0 bg-white relative overflow-hidden"
     >
-      <div className="w-full max-w-7xl mx-auto">
+      {/* Decorative Background Elements */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 opacity-60 pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gray-50 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 opacity-60 pointer-events-none" />
 
-        {/* Our Stores Section */}
-        <div
-          id="our-stores"
-          className={`transition-all duration-1000 ${isVisible["our-stores"]
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-10"
-            }`}
+      <div className="w-full px-12 md:px-20 relative z-10">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={containerVariants}
         >
-          <div className="text-center mb-10 mt-16">
-            <h3 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
-              Our Brands
+          {/* Header */}
+          <motion.div variants={itemVariants} className="text-center mb-16">
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 tracking-tight">
+              Our <span className="text-[#0047AB]">Brands</span>
             </h3>
-            <p className="text-black text-sm sm:text-base max-w-2xl mx-auto">
-              Our premium brands for your ultimate car detailing experience
-            </p>
-          </div>
 
-          {/* Store Cards with Images - Modern Minimal Design */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-6 mb-10">
-            {storeLocations.map((store, index) => (
-              <div
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
+              Discover our family of premium automotive care brands, each engineered for excellence.
+            </p>
+          </motion.div>
+
+          {/* Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {storeLocations.map((store) => (
+              <motion.div
                 key={store.id}
-                id={`store-${store.id}`}
-                className={`bg-white rounded-2xl  shadow-md hover:shadow-lg transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 overflow-hidden group ${isVisible[`store-${store.id}`]
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-20"
-                  }`}
+                variants={itemVariants}
+                className="group relative bg-white rounded-3xl overflow-hidden border border-gray-100 hover:border-blue-100 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full"
               >
-                <div className="h-32 overflow-hidden relative border-b border-gray-100">
+                {/* Image Area */}
+                <div className={`h-40 flex items-center justify-center p-8 ${store.color} transition-colors duration-500 group-hover:bg-white`}>
                   <img
                     src={store.image}
                     alt={store.name}
-                    className="w-full h-full object-contain p-4 object-center group-hover:scale-105 transition-transform duration-300"
+                    className={`w-full h-full ${store.isImage ? "object-cover rounded-lg" : "object-contain"} transition-transform duration-500 group-hover:scale-110`}
                   />
-                  <div className="absolute top-3 right-3 bg-white rounded-full p-1 shadow-sm border border-gray-100">
-                    <ArrowRight className="h-4 w-4 text-[#0047AB]" />
-                  </div>
+
+                  {/* Overlay for "View" */}
+                  <div className="absolute inset-0 bg-[#0047AB]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                 </div>
-                <div className="p-5 flex flex-col flex-grow">
-                  <div className="flex items-center justify-center mb-3">
-                    <h4 className="text-2xl font-bold text-gray-900 text-center">{store.name}</h4>
-                  </div>
-                  <p className="text-sm text-gray-600 mb-6 leading-relaxed line-clamp-4 flex-grow">
+
+                {/* Content */}
+                <div className="p-8 flex flex-col flex-grow bg-white">
+                  <h4 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#0047AB] transition-colors duration-300">
+                    {store.name}
+                  </h4>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
                     {store.description}
                   </p>
 
-                  <button
-                    className="w-full cursor-pointer rounded-lg transition-all transform hover:scale-105 duration-300 flex items-center justify-center gap-2 bg-[#0047AB] text-white py-2.5 px-4 text-sm font-medium mt-auto"
-                  >
-                    Read More
-                    <ArrowRight size={16} />
-                  </button>
+                  <div className="mt-auto">
+                    <button className="w-full bg-[#0047AB] text-white font-bold py-3 px-6 rounded-full hover:bg-[#003380] transition-all duration-300 shadow-sm hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                      Explore Brand
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
                 </div>
-              </div>
+
+                {/* Bottom Accent Line */}
+                <div className="absolute bottom-0 left-0 w-0 h-1 bg-[#0047AB] transition-all duration-500 group-hover:w-full" />
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
-
-    </div>
+    </section>
   );
 }
 

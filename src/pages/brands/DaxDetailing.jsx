@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Sparkles, Layers, PenTool, Droplet, ArrowRight, Star, Download, CirclePlay } from "lucide-react";
+import { fadeInUp, fadeIn, fadeInLeft, fadeInRight, staggerContainer, hoverScale } from "../../utils/animations";
 
 const DaxDetailing = () => {
     useEffect(() => {
@@ -14,231 +15,276 @@ const DaxDetailing = () => {
     };
 
     return (
-        <div className="bg-white font-sans text-gray-900">
+        <div className="bg-white text-gray-900">
             <div className="hidden">
                 <title>DAX Detailing — Polishes, Compounds & Interior Care | Weinber Inc.</title>
-                <meta name="description" content="DAX Detailing offers a full range of professional polishes, compounds, waxes and interior systems for flawless finishes." />
+                <meta name="description" content="DAX Detailing professional polishes and compounds." />
             </div>
 
-            {/* Hero Section */}
-            <section className="relative h-[80vh] min-h-[600px] flex items-center bg-gray-900 overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    <img
-                        src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=2070&auto=format&fit=crop"
-                        alt="Polishing a car"
-                        className="w-full h-full object-cover opacity-50"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent" />
-                </div>
-
-                <div className="container mx-auto px-6 relative z-10 text-white">
+            {/* Hero Section - Matching Banner.jsx */}
+            <section className="relative w-full md:p-5 p-2 flex items-center justify-center overflow-hidden">
+                <div className="relative w-full h-[28rem] lg:h-[50rem] rounded-3xl overflow-hidden group">
                     <motion.div
+                        className="absolute inset-0"
                         initial="hidden"
                         animate="visible"
                         variants={fadeIn}
-                        className="max-w-3xl"
                     >
-                        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-                            Restore. Polish. <br />
-                            <span className="text-orange-500">DAX</span> Perfect.
-                        </h1>
-                        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl leading-relaxed">
-                            Professional-grade compounds, polishes, and interior systems specifically engineered for flawless, showroom-quality finishes.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4">
-                            <Link to="/contact" className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-4 rounded-full font-bold transition-all flex items-center justify-center gap-2">
-                                <Sparkles size={20} />
-                                View Products
-                            </Link>
-                            <Link to="/contact" className="border border-white/30 hover:bg-white/10 text-white px-8 py-4 rounded-full font-bold transition-all flex items-center justify-center">
-                                Shop Kits
-                            </Link>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* Brand Overview */}
-            <section className="py-20 px-6 bg-white">
-                <div className="container mx-auto grid md:grid-cols-2 gap-16 items-center">
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                    >
-                        <h2 className="text-4xl font-bold mb-6 text-black">
-                            The Art of <span className="text-orange-600">Restoration</span>
-                        </h2>
-                        <p className="text-lg text-gray-600 leading-relaxed mb-6">
-                            DAX Detailing is the performance finishing line focused on restoration and detailing — the products detailers rely on to remove defects, refine finishes, and deliver showroom results. Coverage spans from aggressive compounding to ultra-fine finishing polishes and complete interior care systems.
-                        </p>
-                        <div className="h-1 w-20 bg-orange-600" />
-                    </motion.div>
-                    <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
                         <img
-                            src="https://images.unsplash.com/photo-1635773124508-8e622b7d59c9?q=80&w=1000&auto=format&fit=crop"
-                            alt="Detailing Tools"
+                            src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=2070&auto=format&fit=crop"
+                            alt="Dax Hero"
                             className="w-full h-full object-cover"
                         />
-                    </div>
-                </div>
-            </section>
+                        <div className="absolute inset-0 bg-black/40" />
 
-            {/* Product Families */}
-            <section className="py-20 px-6 bg-gray-50">
-                <div className="container mx-auto">
-                    <h2 className="text-4xl font-bold mb-16 text-center">Professional Systems</h2>
+                        <div className="absolute inset-0 flex items-center justify-start text-left px-4 sm:px-6 lg:px-12 mt-16 md:mt-0">
+                            <div className="max-w-4xl">
+                                <motion.h1
+                                    className="text-white font-bold tracking-tight text-balance leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl drop-shadow-2xl"
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={fadeInUp}
+                                >
+                                    <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent block">
+                                        Complete
+                                    </span>
+                                    <span className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent block mt-2">
+                                        Detailing Care
+                                    </span>
+                                </motion.h1>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {[
-                            { title: "Compounds", sub: "Heavy Correction", icon: Layers, desc: "Remove heavy swirls, oxidation, and scratches." },
-                            { title: "Polishes", sub: "Finishing & Gloss", icon: Sparkles, desc: "Refine paint to a mirror finish with zero hazing." },
-                            { title: "Interior", sub: "Leather & Fabric", icon: PenTool, desc: "Clean and condition delicate interior surfaces." },
-                            { title: "Waxes", sub: "Final Protection", icon: Droplet, desc: "Seal in the shine with carnauba and synthetic blends." }
-                        ].map((item, index) => (
-                            <div key={index} className="bg-white p-8 rounded-xl shadow-md border-t-4 border-orange-500 hover:shadow-xl transition-all group">
-                                <item.icon className="w-10 h-10 text-orange-600 mb-6 group-hover:scale-110 transition-transform" />
-                                <h3 className="text-2xl font-bold mb-1">{item.title}</h3>
-                                <p className="text-orange-600 font-medium text-sm mb-4">{item.sub}</p>
-                                <p className="text-gray-600">{item.desc}</p>
+                                <motion.p
+                                    className="mt-4 sm:mt-6 hidden md:block text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl leading-relaxed drop-shadow-lg"
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={fadeInUp}
+                                    transition={{ delay: 0.2 }}
+                                >
+                                    DAX Detailing stands as a broad professional-grade portfolio for achieving showroom-quality detailing results across all vehicle surfaces.
+                                </motion.p>
+
+                                <motion.div
+                                    className="mt-6 sm:mt-8 flex gap-3"
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={fadeInUp}
+                                    transition={{ delay: 0.4 }}
+                                >
+                                    <Link to="/contact">
+                                        <motion.button
+                                            className="px-8 py-3 bg-[#0047AB] text-white font-medium rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center gap-2"
+                                            whileHover={hoverScale}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
+                                            View Products
+                                            <ArrowRight size={18} />
+                                        </motion.button>
+                                    </Link>
+                                    <Link to="/contact">
+                                        <motion.button
+                                            className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-lg"
+                                            whileHover={hoverScale}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
+                                            Shop Kits
+                                        </motion.button>
+                                    </Link>
+                                </motion.div>
                             </div>
-                        ))}
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Intro Section - Matching OurStory.jsx */}
+            <section className="py-10 md:py-16 px-4 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+                        <motion.div
+                            className="order-2 md:order-1"
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={fadeInLeft}
+                        >
+                            <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight">
+                                Showroom-Quality <br />
+                                <span className="text-[#0047AB]">Results</span>
+                            </h2>
+                            <div className="text-gray-700 leading-relaxed mb-8 space-y-6">
+                                <p>
+                                    DAX Detailing encompasses a full range of products designed specifically for the cleaning, restoration, polishing and finishing of vehicles — far beyond basic washing.
+                                </p>
+                            </div>
+                        </motion.div>
+
+                        <motion.div
+                            className="order-1 md:order-2"
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true }}
+                            variants={fadeInRight}
+                        >
+                            <div className="relative">
+                                <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#0047AB] rounded-xl z-0"></div>
+                                <img
+                                    src="https://images.unsplash.com/photo-1635773124508-8e622b7d59c9?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Dax Tools"
+                                    className="w-full h-72 md:h-96 object-cover rounded-xl shadow-md relative z-10"
+                                />
+                            </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* Kits & Packages */}
-            <section className="py-20 px-6 bg-white">
-                <div className="container mx-auto">
-                    <div className="flex justify-between items-end mb-12">
-                        <div>
-                            <h2 className="text-3xl font-bold mb-2">Essential Kits</h2>
-                            <p className="text-gray-600">Curated bundles for every stage of detailing.</p>
-                        </div>
-                        <Link to="/contact" className="text-orange-600 font-bold hover:underline hidden md:block">View All Kits &rarr;</Link>
-                    </div>
+            {/* Comprehensive Care Section */}
+            <section className="py-10 md:py-16 px-4 bg-white">
+                <div className="max-w-7xl mx-auto">
+                    <motion.div
+                        className="grid md:grid-cols-3 gap-6"
+                        variants={staggerContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                    >
+                        <motion.div variants={fadeInUp} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                                <Layers className="text-[#0047AB]" size={24} />
+                            </div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Comprehensive Detailing</h3>
+                            <p className="text-gray-600 text-sm">
+                                Including heavy-cut compounds, finish polishes, waxes, and protective sprays designed to refine paint and exterior surfaces.
+                            </p>
+                        </motion.div>
+                        <motion.div variants={fadeInUp} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                                <Sparkles className="text-[#0047AB]" size={24} />
+                            </div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Interior & Exterior</h3>
+                            <p className="text-gray-600 text-sm">
+                                Effective interior cleaners, wheel cleaners, engine detailing solutions, and surface conditioners for hard-to-reach areas.
+                            </p>
+                        </motion.div>
+                        <motion.div variants={fadeInUp} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
+                                <Droplet className="text-[#0047AB]" size={24} />
+                            </div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Specialty Products</h3>
+                            <p className="text-gray-600 text-sm">
+                                Quick detailers, multipurpose degreasers, tire and trim shines optimized for professional and DIY workflows.
+                            </p>
+                        </motion.div>
+                    </motion.div>
+                </div>
+            </section>
 
-                    <div className="grid md:grid-cols-3 gap-8">
+            {/* Products Section - Matching ProductShowCase.jsx */}
+            <section className="py-16 px-4 bg-white">
+                <div className="max-w-7xl mx-auto">
+                    <motion.div
+                        className="text-center mb-12"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={fadeInUp}
+                    >
+                        <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
+                            Essential <span className="text-[#0047AB]">Kits</span>
+                        </h2>
+                    </motion.div>
+
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                        variants={staggerContainer}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                    >
                         {/* Kit 1 */}
-                        <div className="border border-gray-200 rounded-2xl overflow-hidden hover:border-orange-200 transition-colors">
-                            <div className="h-64 bg-gray-200 relative">
-                                <img src="https://images.unsplash.com/photo-1605218457332-dd092f25492d?q=80&w=600&auto=format&fit=crop" className="w-full h-full object-cover" alt="Starter Kit" />
-                                <div className="absolute top-4 right-4 bg-white px-3 py-1 rounded-full text-xs font-bold shadow-sm">STARTER</div>
+                        <motion.div variants={fadeInUp} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
+                            <div className="relative h-48 overflow-hidden bg-gray-100">
+                                <img
+                                    src="https://images.unsplash.com/photo-1605218457332-dd092f25492d?q=80&w=600&auto=format&fit=crop"
+                                    alt="STARTER"
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                />
+                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
+                                    STARTER
+                                </div>
                             </div>
-                            <div className="p-6">
-                                <h3 className="text-xl font-bold mb-2">Quick Detailer Kit</h3>
-                                <p className="text-gray-600 text-sm mb-4">Everything needed for a rapid gloss enhancement.</p>
-                                <ul className="text-sm text-gray-500 space-y-2 mb-6">
-                                    <li>• Spray Wax</li>
-                                    <li>• Microfiber Towels</li>
-                                    <li>• Tire Dressing</li>
-                                </ul>
-                                <button className="w-full border border-gray-900 text-gray-900 py-3 rounded-lg font-bold hover:bg-gray-900 hover:text-white transition-colors">View Details</button>
+                            <div className="p-4">
+                                <h4 className="font-bold text-gray-900 mb-1 truncate">Quick Detailer Kit</h4>
+                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
+                                    Everything needed for a rapid gloss enhancement.
+                                </p>
+                                <motion.button
+                                    className="w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
+                                    whileHover={hoverScale}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    View Details
+                                    <ArrowRight size={18} />
+                                </motion.button>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Kit 2 */}
-                        <div className="border border-orange-200 rounded-2xl overflow-hidden shadow-lg relative transform md:-translate-y-4 bg-white">
-                            <div className="absolute top-0 left-0 w-full bg-orange-600 text-white text-center text-xs font-bold py-1">BEST SELLER</div>
-                            <div className="h-64 bg-gray-200 relative mt-6">
-                                <img src="https://images.unsplash.com/photo-1625902382753-48092a54a01c?q=80&w=600&auto=format&fit=crop" className="w-full h-full object-cover" alt="Correction Kit" />
-                                <div className="absolute top-4 right-4 bg-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-sm">PRO</div>
+                        <motion.div variants={fadeInUp} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
+                            <div className="relative h-48 overflow-hidden bg-gray-100">
+                                <img
+                                    src="https://images.unsplash.com/photo-1625902382753-48092a54a01c?q=80&w=600&auto=format&fit=crop"
+                                    alt="PRO"
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                />
+                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
+                                    PRO
+                                </div>
                             </div>
-                            <div className="p-6">
-                                <h3 className="text-xl font-bold mb-2">Paint Correction Kit</h3>
-                                <p className="text-gray-600 text-sm mb-4">Complete system for removing swirls and defects.</p>
-                                <ul className="text-sm text-gray-500 space-y-2 mb-6">
-                                    <li>• DAX Cut Compound</li>
-                                    <li>• DAX Fine Polish</li>
-                                    <li>• Pad Set (Cut/Polish/Finish)</li>
-                                </ul>
-                                <button className="w-full bg-orange-600 text-white py-3 rounded-lg font-bold hover:bg-orange-700 transition-colors">Add to Cart</button>
+                            <div className="p-4">
+                                <h4 className="font-bold text-gray-900 mb-1 truncate">Paint Correction Kit</h4>
+                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
+                                    Complete system for removing swirls and defects.
+                                </p>
+                                <motion.button
+                                    className="w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
+                                    whileHover={hoverScale}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    Add to Cart
+                                    <ArrowRight size={18} />
+                                </motion.button>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Kit 3 */}
-                        <div className="border border-gray-200 rounded-2xl overflow-hidden hover:border-orange-200 transition-colors">
-                            <div className="h-64 bg-gray-200 relative">
-                                <img src="https://images.unsplash.com/photo-1552934440-5bb95cc9ad5a?q=80&w=600&auto=format&fit=crop" className="w-full h-full object-cover" alt="Interior Kit" />
+                        <motion.div variants={fadeInUp} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
+                            <div className="relative h-48 overflow-hidden bg-gray-100">
+                                <img
+                                    src="https://images.unsplash.com/photo-1552934440-5bb95cc9ad5a?q=80&w=600&auto=format&fit=crop"
+                                    alt="Interior"
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                />
+                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
+                                    INTERIOR
+                                </div>
                             </div>
-                            <div className="p-6">
-                                <h3 className="text-xl font-bold mb-2">Interior Revival Kit</h3>
-                                <p className="text-gray-600 text-sm mb-4">Deep clean and condition leather and plastics.</p>
-                                <ul className="text-sm text-gray-500 space-y-2 mb-6">
-                                    <li>• Leather Cleaner & Conditioner</li>
-                                    <li>• Interior Detailer</li>
-                                    <li>• Horsehair Brush</li>
-                                </ul>
-                                <button className="w-full border border-gray-900 text-gray-900 py-3 rounded-lg font-bold hover:bg-gray-900 hover:text-white transition-colors">View Details</button>
+                            <div className="p-4">
+                                <h4 className="font-bold text-gray-900 mb-1 truncate">Interior Revival Kit</h4>
+                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
+                                    Deep clean and condition leather and plastics.
+                                </p>
+                                <motion.button
+                                    className="w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
+                                    whileHover={hoverScale}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    View Details
+                                    <ArrowRight size={18} />
+                                </motion.button>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* How To / Tutorials */}
-            <section className="py-20 px-6 bg-gray-900 text-white">
-                <div className="container mx-auto">
-                    <div className="text-center mb-16">
-                        <h2 className="text-4xl font-bold mb-4">Master Your Craft</h2>
-                        <p className="text-gray-400">Step-by-step guides to achieving perfection.</p>
-                    </div>
-
-                    <div className="flex flex-col md:flex-row gap-8 justify-center">
-                        <div className="bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10 w-full max-w-md hover:bg-white/10 transition-colors cursor-pointer group">
-                            <div className="flex justify-between items-start mb-6">
-                                <CirclePlay className="text-orange-500 w-12 h-12 group-hover:scale-110 transition-transform" />
-                                <span className="text-xs font-bold bg-orange-600 px-2 py-1 rounded text-white">VIDEO</span>
-                            </div>
-                            <h3 className="text-2xl font-bold mb-2">Paint Correction 101</h3>
-                            <p className="text-gray-400 text-sm mb-4">Learn the fundamentals of dual-action polishing and compound selection.</p>
-                            <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                                <div className="w-1/3 h-full bg-orange-500"></div>
-                            </div>
-                        </div>
-
-                        <div className="bg-white/5 p-6 rounded-2xl backdrop-blur-sm border border-white/10 w-full max-w-md hover:bg-white/10 transition-colors cursor-pointer group">
-                            <div className="flex justify-between items-start mb-6">
-                                <CirclePlay className="text-orange-500 w-12 h-12 group-hover:scale-110 transition-transform" />
-                                <span className="text-xs font-bold bg-orange-600 px-2 py-1 rounded text-white">GUIDE</span>
-                            </div>
-                            <h3 className="text-2xl font-bold mb-2">Leather Restoration</h3>
-                            <p className="text-gray-400 text-sm mb-4">Proper techniques for deep cleaning and hydrating aged leather seats.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Testimonials */}
-            <section className="py-20 px-6 bg-orange-50">
-                <div className="container mx-auto max-w-4xl text-center">
-                    <Star className="w-10 h-10 text-orange-500 mx-auto mb-6 fill-current" />
-                    <h2 className="text-3xl font-bold mb-8">"DAX compounds cut my correction time by 30%. The finish is consistently flawless."</h2>
-                    <div>
-                        <p className="font-bold text-lg">Michael R.</p>
-                        <p className="text-gray-600">Professional Detailer, Chicago</p>
-                    </div>
-                </div>
-            </section>
-
-            {/* Final Conversion */}
-            <section className="py-24 px-6 bg-white text-center">
-                <div className="container mx-auto max-w-4xl">
-                    <h2 className="text-4xl font-bold mb-6">Ready for Showroom Results?</h2>
-                    <p className="text-xl text-gray-600 mb-10">Join thousands of professionals who trust DAX for their finishing needs.</p>
-                    <div className="flex flex-col sm:flex-row justify-center gap-4">
-                        <Link to="/contact">
-                            <button className="bg-black text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-600 transition-colors w-full sm:w-auto">
-                                Buy Starter Kit
-                            </button>
-                        </Link>
-                        <Link to="/contact">
-                            <button className="border-2 border-black text-black px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-colors w-full sm:w-auto">
-                                Request Pro Pricing
-                            </button>
-                        </Link>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </section>
         </div>

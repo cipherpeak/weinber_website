@@ -5,26 +5,26 @@ import { ArrowRight, MoveHorizontal } from "lucide-react";
 // Slide Data
 const SLIDES = [
   {
-    before: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754294715/image4_hkhrwo.png",
-    after: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754294715/image4_hkhrwo.png",
+    before: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769077798/Tint-Before_kyniru.jpg",
+    after: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769077797/Tint-After_ufm3hi.jpg",
     label: "WINDOW TINTING FILM",
     title: "Ride in style, comfort and clarity with long lasting tinting options."
   },
   {
-    before: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295127/retail3_gdeiqi.webp",
-    after: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295127/retail3_gdeiqi.webp",
+    before: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769077797/Before_seat_cvmjpg.jpg",
+    after: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769077797/After_seat_i7muxt.jpg",
     label: "LEATHER CARE & COATING",
     title: "A super formulated conditioner for cleaning and hydrating leather."
   },
   {
-    before: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295127/retail1_qqtlr4.webp",
-    after: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295127/retail1_qqtlr4.webp",
+    before: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1768909473/PPF_before_cloysk.webp",
+    after: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1768909473/ppf_after_snyous.jpg",
     label: "POLISHES & COMPOUND",
     title: "Polishing and waxing your car's exterior to give a brand new shiny finish."
   },
   {
-    before: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295127/retail3_gdeiqi.webp",
-    after: "https://res.cloudinary.com/dkzvu1c4j/image/upload/v1754295127/retail3_gdeiqi.webp",
+    before: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769077797/knob_before_ujoskp.jpg",
+    after: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769077797/after_knob_kpyt3g.jpg",
     label: "INTERIOR CLEANING & DRESSING",
     title: "A full interior detailing will keep your car feeling fresh and new."
   }
@@ -94,7 +94,8 @@ const BeforeAfterSection = () => {
           <motion.div
             key={currentSlide}
             initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="space-y-8 lg:col-span-5"
           >
@@ -141,7 +142,8 @@ const BeforeAfterSection = () => {
             <motion.div
               key={`img-${currentSlide}`}
               initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.5 }}
               ref={containerRef}
               className="relative z-10 w-full h-[500px] md:h-[650px] lg:h-[750px] rounded-3xl overflow-hidden cursor-ew-resize select-none shadow-2xl border border-gray-100 bg-gray-100 group"
@@ -177,7 +179,7 @@ const BeforeAfterSection = () => {
                 <img
                   src={currentData.before}
                   alt="Before"
-                  className="absolute inset-0 w-full h-full object-cover filter grayscale sepia-[0.3]"
+                  className="absolute inset-0 w-full h-full object-cover"
                   draggable="false"
                 />
 

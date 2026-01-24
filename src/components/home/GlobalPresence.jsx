@@ -103,10 +103,10 @@ function GlobalPresence() {
 
   // Corrected dot positions for the map (responsive)
   const mapDots = [
-    { left: "21%", top: "38%", country: "USA" },
-    { left: "62%", top: "44%", country: "UAE" },
-    { left: "49%", top: "26%", country: "UK" },
-    { left: "69%", top: "46%", country: "India" },
+    { left: "20%", top: "36%", country: "USA" },
+    { left: "63%", top: "43%", country: "UAE" },
+    { left: "49%", top: "21%", country: "UK" },
+    { left: "71%", top: "46%", country: "India" },
   ];
 
   return (
@@ -142,11 +142,11 @@ function GlobalPresence() {
             className="w-full lg:w-1/2 flex justify-center order-2 lg:order-1"
             variants={itemVariants}
           >
-            <div className="relative w-full h-full min-h-[200px] sm:min-h-[250px]">
+            <div className="relative w-full">
               <img
                 src="https://res.cloudinary.com/dkzvu1c4j/image/upload/v1758356912/OJO4YQ0_ksimat.jpg"
                 alt="World map showing Avees export destinations"
-                className="w-full h-full object-contain opacity-90 rounded-lg"
+                className="w-full h-auto object-contain opacity-90 rounded-lg"
               />
 
               {/* Animated dots on map */}

@@ -60,7 +60,7 @@ function HomeContents() {
       <GlobalPresence />
 
       <Testimonials />
-      <FinalCTA />
+
     </div>
   )
 }

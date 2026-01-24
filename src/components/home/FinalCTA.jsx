@@ -144,7 +144,7 @@ export default function FinalCTA() {
           <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-[#ffff] rounded-full opacity-30 blur-xl"></div>
 
           {/* Diagonal accent line */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent opacity-50"></div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#0047AB] to-transparent opacity-50"></div>
 
           <motion.div
             className="text-center mb-8 md:mb-12"

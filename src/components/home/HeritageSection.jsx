@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
-import heroValues1 from '../../assets/banner/hero_ppf.png';
-import heroValues2 from '../../assets/banner/hero_interior.png';
-import heroValues3 from '../../assets/banner/hero_solutions.png';
 
 const HERITAGE_SLIDES = [
   {
     id: 1,
-    image: heroValues1,
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769080353/Protect_zijoqy.jpg",
     title: "Protect",
     description: "Protect your car with SIRIUS PRO. Our nano ceramic protective coating engineered using advanced nano technology. SIRIUS PRO products are tailor-made to provide you with the best surface protection using latest ceramic coating technology.",
     features: [
@@ -19,7 +16,7 @@ const HERITAGE_SLIDES = [
   },
   {
     id: 2,
-    image: heroValues2,
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769080352/revive_aky0ro.jpg",
     title: "Revive",
     description: "We offer a variety of car detailing products catering to revive a car's interior and exterior. From cleaning, restoration to polishing and finishing; car detailing goes much beyond than a car wash. Our products also include solutions for damage restoration and thorough cleansing of all parts of the vehicle.",
     features: [
@@ -31,7 +28,7 @@ const HERITAGE_SLIDES = [
   },
   {
     id: 3,
-    image: heroValues3,
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769080353/Enhance_sybsth.jpg",
     title: "Enhance",
     description: "Enhance your engine and fuel performance using our premium products with curated oil additives and chemical compounds. These additives can be applied to the same base stock for each formulation to create solutions specific to the required application.",
     features: [
@@ -61,10 +58,15 @@ const HeritageSection = () => {
   const slide = HERITAGE_SLIDES[currentSlide];
 
   return (
-    <section className="py-10 md:py-16 px-4 bg-white relative">
-      <div className="max-w-7xl mx-auto">
-        <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden relative">
-
+    <section className="py-10 md:py-16 px-0 md:px-0 bg-white relative">
+      <div className="w-full px-12 md:px-20">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
+          className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden relative"
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={slide.id}
@@ -110,7 +112,7 @@ const HeritageSection = () => {
               </div>
 
               {/* Content Section */}
-              <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+              <div className="p-6 md:p-10 lg:p-12 flex flex-col justify-center">
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -146,9 +148,9 @@ const HeritageSection = () => {
               </div>
             </motion.div>
           </AnimatePresence>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </section >
   );
 };
 
