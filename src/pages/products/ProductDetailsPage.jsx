@@ -48,12 +48,12 @@ const ProductDetailsPage = () => {
     }
 
     return (
-        <div className="bg-gray-50 min-h-screen pt-24 pb-12">
+        <div className="bg-white min-h-screen pt-24 pb-12">
             <div className="container mx-auto px-4 max-w-7xl">
                 {/* ... (existing breadcrumb) */}
                 <button
                     onClick={() => navigate('/products')}
-                    className="flex items-center text-gray-600 hover:text-[#0047AB] transition-colors mb-8 group"
+                    className="inline-flex items-center bg-[#0047AB] text-white font-bold py-3 px-8 rounded-full shadow-lg shadow-blue-900/20 hover:bg-blue-800 hover:shadow-blue-900/30 transform hover:-translate-y-0.5 transition-all mb-10 group"
                 >
                     <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" />
                     Back to Products

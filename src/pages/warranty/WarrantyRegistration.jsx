@@ -3,22 +3,42 @@ import { motion } from "framer-motion";
 
 export default function WarrantyRegistration() {
     const [formData, setFormData] = useState({
-        name: "",
+        // Product Information
+        serialNumber: "",
+        ppfProduct: "",
+        coatingProduct: "",
+
+        // Customer Information
+        firstName: "",
+        lastName: "",
         email: "",
         phone: "",
-        productSku: "",
-        purchaseDate: "",
+
+        // Vehicle Information
+        installationDate: "",
+        chassisNo: "",
+        vehicleModel: "",
+        invoiceFile: null,
+
+        // Dealer Information
+        companyName: "",
         dealerName: "",
-        uniqueCode: "",
+        dealerEmail: "",
+        dealerPhone: "",
+        dealerAddress: "",
+        dealerCity: "",
+        dealerState: "",
+        dealerZip: "",
+        dealerCountry: "",
     });
 
     const [submitted, setSubmitted] = useState(false);
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value, type, files } = e.target;
         setFormData((prev) => ({
             ...prev,
-            [name]: value,
+            [name]: type === 'file' ? files[0] : value,
         }));
     };
 
@@ -57,8 +77,11 @@ export default function WarrantyRegistration() {
         )
     }
 
+    const inputClasses = "w-full px-4 py-3 bg-gray-100 rounded-full border border-gray-200 focus:ring-2 focus:ring-[#0047AB] focus:border-transparent outline-none transition-all";
+    const labelClasses = "block text-sm font-semibold text-gray-800 mb-2";
+
     return (
-        <section className="py-16 px-4 max-w-4xl mx-auto">
+        <section className="py-16 px-4 max-w-5xl mx-auto">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -73,107 +96,357 @@ export default function WarrantyRegistration() {
                     </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="bg-white p-8 md:p-10 rounded-3xl shadow-xl border border-gray-100">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                        <div>
-                            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                required
-                                value={formData.name}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#0047AB] focus:border-transparent outline-none transition-all"
-                                placeholder="John Doe"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                required
-                                value={formData.email}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#0047AB] focus:border-transparent outline-none transition-all"
-                                placeholder="john@example.com"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                            <input
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#0047AB] focus:border-transparent outline-none transition-all"
-                                placeholder="+1 (555) 000-0000"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="purchaseDate" className="block text-sm font-medium text-gray-700 mb-2">Date of Purchase</label>
-                            <input
-                                type="date"
-                                id="purchaseDate"
-                                name="purchaseDate"
-                                required
-                                value={formData.purchaseDate}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#0047AB] focus:border-transparent outline-none transition-all"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="productSku" className="block text-sm font-medium text-gray-700 mb-2">Product SKU / Name</label>
-                            <input
-                                type="text"
-                                id="productSku"
-                                name="productSku"
-                                required
-                                value={formData.productSku}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#0047AB] focus:border-transparent outline-none transition-all"
-                                placeholder="e.g. WB-CERAMIC-9H"
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="dealerName" className="block text-sm font-medium text-gray-700 mb-2">Dealer / Store Name</label>
-                            <input
-                                type="text"
-                                id="dealerName"
-                                name="dealerName"
-                                value={formData.dealerName}
-                                onChange={handleChange}
-                                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#0047AB] focus:border-transparent outline-none transition-all"
-                                placeholder="Where did you buy it?"
-                            />
+                <form onSubmit={handleSubmit} className="bg-white p-6 md:p-10 rounded-3xl shadow-xl border border-gray-100 space-y-10">
+
+                    {/* PRODUCT INFORMATION */}
+                    <div>
+                        <h2 className="text-xl md:text-2xl font-bold text-black border-b pb-4 mb-6">PRODUCT INFORMATION</h2>
+                        <div className="space-y-6">
+                            <div>
+                                <label htmlFor="serialNumber" className={labelClasses}>Serial No. *</label>
+                                <input
+                                    type="text"
+                                    id="serialNumber"
+                                    name="serialNumber"
+                                    required
+                                    value={formData.serialNumber}
+                                    onChange={handleChange}
+                                    className={inputClasses}
+                                />
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label className={labelClasses}>Application Type</label>
+                                    <div className="w-full px-4 py-3 bg-gray-200 text-gray-600 rounded-full border border-gray-300 cursor-not-allowed">
+                                        PAINT PROTECTION FILMS
+                                    </div>
+                                </div>
+                                <div>
+                                    <label htmlFor="ppfProduct" className={labelClasses}>Select</label>
+                                    <select
+                                        id="ppfProduct"
+                                        name="ppfProduct"
+                                        value={formData.ppfProduct}
+                                        onChange={handleChange}
+                                        className={`${inputClasses} appearance-none`}
+                                    >
+                                        <option value="">Select Product...</option>
+                                        <option value="PPF MAGNIFENCE">PPF MAGNIFENCE</option>
+                                        <option value="PPF MATTE">PPF MATTE</option>
+                                        <option value="PPF BLACK">PPF BLACK</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label className={labelClasses}>Application Type</label>
+                                    <div className="w-full px-4 py-3 bg-gray-200 text-gray-600 rounded-full border border-gray-300 cursor-not-allowed">
+                                        COATINGS
+                                    </div>
+                                </div>
+                                <div>
+                                    <label htmlFor="coatingProduct" className={labelClasses}>Select</label>
+                                    <select
+                                        id="coatingProduct"
+                                        name="coatingProduct"
+                                        value={formData.coatingProduct}
+                                        onChange={handleChange}
+                                        className={`${inputClasses} appearance-none`}
+                                    >
+                                        <option value="">Select Product...</option>
+                                        <option value="CERAMIC COATING">CERAMIC COATING</option>
+                                        <option value="GRAPHENE COATING">GRAPHENE COATING</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div className="mb-8">
-                        <label htmlFor="uniqueCode" className="block text-sm font-medium text-gray-700 mb-2">Unique Authenticity Code</label>
-                        <input
-                            type="text"
-                            id="uniqueCode"
-                            name="uniqueCode"
-                            required
-                            value={formData.uniqueCode}
-                            onChange={handleChange}
-                            className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#0047AB] focus:border-transparent outline-none transition-all font-mono tracking-widest uppercase"
-                            placeholder="XXXX-XXXX-XXXX-XXXX"
-                        />
-                        <p className="text-xs text-gray-500 mt-2">Found on the scratch-off label on the product packaging.</p>
+                    {/* CUSTOMER INFORMATION */}
+                    <div>
+                        <h2 className="text-xl md:text-2xl font-bold text-black border-b pb-4 mb-6">CUSTOMER INFORMATION</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label htmlFor="firstName" className={labelClasses}>First Name *</label>
+                                <input
+                                    type="text"
+                                    id="firstName"
+                                    name="firstName"
+                                    required
+                                    value={formData.firstName}
+                                    onChange={handleChange}
+                                    className={inputClasses}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="lastName" className={labelClasses}>Last Name *</label>
+                                <input
+                                    type="text"
+                                    id="lastName"
+                                    name="lastName"
+                                    required
+                                    value={formData.lastName}
+                                    onChange={handleChange}
+                                    className={inputClasses}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="email" className={labelClasses}>Email Address</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className={inputClasses}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="phone" className={labelClasses}>Phone *</label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    required
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                    className={inputClasses}
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* VEHICLE INFORMATION */}
+                    <div>
+                        <h2 className="text-xl md:text-2xl font-bold text-black border-b pb-4 mb-6">VEHICLE INFORMATION</h2>
+                        <div className="space-y-6">
+                            <div>
+                                <label htmlFor="installationDate" className={labelClasses}>Installation Date *</label>
+                                <input
+                                    type="date"
+                                    id="installationDate"
+                                    name="installationDate"
+                                    required
+                                    value={formData.installationDate}
+                                    onChange={handleChange}
+                                    className={inputClasses}
+                                />
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label htmlFor="chassisNo" className={labelClasses}>Chassis No. *</label>
+                                    <input
+                                        type="text"
+                                        id="chassisNo"
+                                        name="chassisNo"
+                                        required
+                                        value={formData.chassisNo}
+                                        onChange={handleChange}
+                                        className={inputClasses}
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="vehicleModel" className={labelClasses}>Year, Make & Model *</label>
+                                    <input
+                                        type="text"
+                                        id="vehicleModel"
+                                        name="vehicleModel"
+                                        required
+                                        value={formData.vehicleModel}
+                                        onChange={handleChange}
+                                        className={inputClasses}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* File Upload */}
+                            <div>
+                                <label className={labelClasses}>Upload proof of Purchase *</label>
+                                <div className="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                                    <div className="space-y-1 text-center">
+                                        <svg
+                                            className="mx-auto h-12 w-12 text-gray-400"
+                                            stroke="currentColor"
+                                            fill="none"
+                                            viewBox="0 0 48 48"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                strokeWidth={2}
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                        </svg>
+                                        <div className="flex text-sm text-gray-600 justify-center">
+                                            <label
+                                                htmlFor="invoiceFile"
+                                                className="relative cursor-pointer bg-white rounded-md font-medium text-[#0047AB] hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-[#0047AB]"
+                                            >
+                                                <span>Upload a file</span>
+                                                <input
+                                                    id="invoiceFile"
+                                                    name="invoiceFile"
+                                                    type="file"
+                                                    className="sr-only"
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </label>
+                                            <p className="pl-1">or drag and drop</p>
+                                        </div>
+                                        <p className="text-xs text-gray-500">PNG, JPG, PDF up to 10MB</p>
+                                        {formData.invoiceFile && (
+                                            <p className="text-sm text-green-600 font-medium mt-2">
+                                                Selected: {formData.invoiceFile.name}
+                                            </p>
+                                        )}
+                                    </div>
+                                </div>
+                                <p className="text-xs text-gray-500 mt-2 text-center">Attach a copy of your invoice or purchase receipt</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* DEALER INFORMATION */}
+                    <div>
+                        <h2 className="text-xl md:text-2xl font-bold text-black border-b pb-4 mb-6">DEALER INFORMATION</h2>
+                        <div className="space-y-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label htmlFor="companyName" className={labelClasses}>Company Name *</label>
+                                    <input
+                                        type="text"
+                                        id="companyName"
+                                        name="companyName"
+                                        required
+                                        value={formData.companyName}
+                                        onChange={handleChange}
+                                        className={inputClasses}
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="dealerName" className={labelClasses}>Dealer Name *</label>
+                                    <input
+                                        type="text"
+                                        id="dealerName"
+                                        name="dealerName"
+                                        required
+                                        value={formData.dealerName}
+                                        onChange={handleChange}
+                                        className={inputClasses}
+                                    />
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label htmlFor="dealerEmail" className={labelClasses}>Email Address *</label>
+                                    <input
+                                        type="email"
+                                        id="dealerEmail"
+                                        name="dealerEmail"
+                                        required
+                                        value={formData.dealerEmail}
+                                        onChange={handleChange}
+                                        className={inputClasses}
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="dealerPhone" className={labelClasses}>Phone *</label>
+                                    <input
+                                        type="tel"
+                                        id="dealerPhone"
+                                        name="dealerPhone"
+                                        required
+                                        value={formData.dealerPhone}
+                                        onChange={handleChange}
+                                        className={inputClasses}
+                                        placeholder="+971 50 123 4567"
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label htmlFor="dealerAddress" className={labelClasses}>Street Address *</label>
+                                <input
+                                    type="text"
+                                    id="dealerAddress"
+                                    name="dealerAddress"
+                                    required
+                                    value={formData.dealerAddress}
+                                    onChange={handleChange}
+                                    className={inputClasses}
+                                />
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label htmlFor="dealerCity" className={labelClasses}>City *</label>
+                                    <input
+                                        type="text"
+                                        id="dealerCity"
+                                        name="dealerCity"
+                                        required
+                                        value={formData.dealerCity}
+                                        onChange={handleChange}
+                                        className={inputClasses}
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="dealerState" className={labelClasses}>State / Province *</label>
+                                    <input
+                                        type="text"
+                                        id="dealerState"
+                                        name="dealerState"
+                                        required
+                                        value={formData.dealerState}
+                                        onChange={handleChange}
+                                        className={inputClasses}
+                                    />
+                                </div>
+                            </div>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label htmlFor="dealerZip" className={labelClasses}>ZIP / Postal Code *</label>
+                                    <input
+                                        type="text"
+                                        id="dealerZip"
+                                        name="dealerZip"
+                                        required
+                                        value={formData.dealerZip}
+                                        onChange={handleChange}
+                                        className={inputClasses}
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="dealerCountry" className={labelClasses}>Country *</label>
+                                    <select
+                                        id="dealerCountry"
+                                        name="dealerCountry"
+                                        required
+                                        value={formData.dealerCountry}
+                                        onChange={handleChange}
+                                        className={`${inputClasses} appearance-none`}
+                                    >
+                                        <option value="">Select country</option>
+                                        <option value="United States">United States</option>
+                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="India">India</option>
+                                        {/* Add more countries as needed */}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         type="submit"
-                        className="w-full bg-[#0047AB] text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                        className="w-full bg-[#0047AB] text-white font-bold py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 mt-8"
                     >
-                        Register Warranty
+                        Submit
                     </motion.button>
                 </form>
             </motion.div>

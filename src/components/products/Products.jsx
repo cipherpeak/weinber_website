@@ -308,16 +308,16 @@ export default function ProductsPage() {
             </p>
           </div>
           <div className="flex gap-3 flex-wrap justify-center">
-            <Link to="/contact">
+            <Link to="/about">
               <motion.button className="bg-[#0047AB] cursor-pointer text-white px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 font-medium flex items-center justify-center gap-2">
-                Wholesale Inquiry
+                About Us
                 <ArrowRight size={18} />
               </motion.button>
             </Link>
 
             <Link to="/contact">
               <motion.button className="bg-white border text-[#0047AB] border-[#0047AB] cursor-pointer px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 font-medium flex items-center justify-center gap-2 hover:bg-blue-50">
-                Become a Dealer
+                Contact Us
               </motion.button>
             </Link>
           </div>

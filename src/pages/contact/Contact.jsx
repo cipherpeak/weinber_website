@@ -98,12 +98,7 @@ const Contact = () => {
       address: ["Cochin, Kerala"],
       email: "sales.ind@weinberinc.com",
     },
-    {
-      country: "UK",
-      company: "",
-      address: [], // No address provided in requirements
-      email: "sales.uk@weinberinc.com",
-    },
+
   ];
 
   const socialLinks = [
@@ -145,250 +140,257 @@ const Contact = () => {
       </motion.section>
 
       <div className="container mx-auto px-4 py-8">
-        {/* Main Branch Section */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={containerVariants}
-          className="mb-16"
-        >
-          <motion.div
-            variants={itemVariants}
-            className="bg-white rounded-2xl p-8 md:p-12 shadow-xl border-t-4 border-[#0047AB] max-w-4xl mx-auto relative overflow-hidden"
-          >
-            <div className="absolute top-0 right-0 p-8 opacity-5">
-              <FiMapPin className="w-64 h-64 text-[#0047AB]" />
-            </div>
-
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-6">
-                <FiMapPin className="w-8 h-8 text-[#0047AB]" />
-                <h2 className="text-3xl font-bold text-gray-900">{mainBranch.country}</h2>
-              </div>
-
-              <div className="space-y-4">
-                <h3 className="text-2xl font-semibold text-gray-800">{mainBranch.company}</h3>
-                <div className="text-lg text-gray-600 space-y-1">
-                  {mainBranch.address.map((line, i) => (
-                    <p key={i}>{line}</p>
-                  ))}
-                </div>
-                <div className="pt-4 flex items-center gap-2 text-lg font-medium text-[#0047AB]">
-                  <FiMail className="w-5 h-5" />
-                  <a href={`mailto:${mainBranch.email}`} className="hover:underline">
-                    {mainBranch.email}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Regional Branches Grid */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={containerVariants}
-          className="mb-20"
-        >
-          <motion.h3
-            variants={itemVariants}
-            className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10"
-          >
-            Regional Branches & Partners
-          </motion.h3>
-
-          <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
-            {regionalBranches.map((branch, index) => (
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-20">
+          {/* Left Column: Branches */}
+          <div className="space-y-12">
+            {/* Main Branch Section */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={containerVariants}
+            >
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+                Headquarters
+              </h2>
               <motion.div
-                key={index}
                 variants={itemVariants}
-                className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 flex flex-col h-full w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+                className="bg-white rounded-2xl p-8 shadow-xl border-t-4 border-[#0047AB] relative overflow-hidden"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <FiMapPin className="w-5 h-5 text-[#0047AB]" />
-                  <h4 className="text-xl font-bold text-gray-900">{branch.country}</h4>
+                <div className="absolute top-0 right-0 p-8 opacity-5">
+                  <FiMapPin className="w-64 h-64 text-[#0047AB]" />
                 </div>
 
-                <div className="flex-grow space-y-3">
-                  {branch.company && (
-                    <p className="font-semibold text-gray-800">{branch.company}</p>
-                  )}
-                  {branch.address.length > 0 && (
-                    <div className="text-gray-600 text-sm">
-                      {branch.address.map((line, i) => (
+                <div className="relative z-10">
+                  <div className="flex items-center gap-3 mb-6">
+                    <FiMapPin className="w-8 h-8 text-[#0047AB]" />
+                    <h2 className="text-3xl font-bold text-gray-900">{mainBranch.country}</h2>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-2xl font-semibold text-gray-800">{mainBranch.company}</h3>
+                    <div className="text-lg text-gray-600 space-y-1">
+                      {mainBranch.address.map((line, i) => (
                         <p key={i}>{line}</p>
                       ))}
                     </div>
-                  )}
-                </div>
-
-                <div className="mt-4 pt-4 border-t border-gray-100">
-                  <div className="flex items-center gap-2 text-sm font-medium text-[#0047AB] break-words">
-                    <FiMail className="w-4 h-4 flex-shrink-0" />
-                    <a href={`mailto:${branch.email}`} className="hover:underline truncate">
-                      {branch.email}
-                    </a>
+                    <div className="pt-4 flex items-center gap-2 text-lg font-medium text-[#0047AB]">
+                      <FiMail className="w-5 h-5" />
+                      <a href={`mailto:${mainBranch.email}`} className="hover:underline">
+                        {mainBranch.email}
+                      </a>
+                    </div>
                   </div>
                 </div>
               </motion.div>
-            ))}
+            </motion.div>
+
+            {/* Regional Branches Grid */}
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+              variants={containerVariants}
+            >
+              <motion.h3
+                variants={itemVariants}
+                className="text-2xl md:text-3xl font-bold text-gray-900 mb-8"
+              >
+                Regional Partners
+              </motion.h3>
+
+              <div className="flex flex-wrap justify-center gap-6">
+                {regionalBranches.map((branch, index) => (
+                  <motion.div
+                    key={index}
+                    variants={itemVariants}
+                    className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 flex flex-col h-full w-full md:w-[calc(50%-12px)]"
+                  >
+                    <div className="flex items-center gap-3 mb-4">
+                      <FiMapPin className="w-5 h-5 text-[#0047AB]" />
+                      <h4 className="text-xl font-bold text-gray-900">{branch.country}</h4>
+                    </div>
+
+                    <div className="flex-grow space-y-3">
+                      {branch.company && (
+                        <p className="font-semibold text-gray-800">{branch.company}</p>
+                      )}
+                      {branch.address.length > 0 && (
+                        <div className="text-gray-600 text-sm">
+                          {branch.address.map((line, i) => (
+                            <p key={i}>{line}</p>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <div className="flex items-center gap-2 text-sm font-medium text-[#0047AB] break-words">
+                        <FiMail className="w-4 h-4 flex-shrink-0" />
+                        <a href={`mailto:${branch.email}`} className="hover:underline truncate">
+                          {branch.email}
+                        </a>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
 
-        {/* Enquiry Form */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={containerVariants}
-          className="max-w-4xl mx-auto mb-20"
-        >
-          <motion.div
-            variants={itemVariants}
-            className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border border-gray-100"
-          >
-            <div className="text-center mb-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-                Send us a Message
-              </h3>
-              <p className="text-gray-600">
-                Fill out the form below and ours team will get back to you shortly.
-              </p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name and Email Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <motion.div variants={itemVariants}>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Full Name *
-                  </label>
-                  <div className="relative">
-                    <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                      placeholder="Your full name"
-                    />
-                  </div>
-                </motion.div>
-                <motion.div variants={itemVariants}>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Email Address *
-                  </label>
-                  <div className="relative">
-                    <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                      placeholder="your.email@example.com"
-                    />
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Phone and Subject Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <motion.div variants={itemVariants}>
-                  <label
-                    htmlFor="phone"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Phone Number
-                  </label>
-                  <div className="relative">
-                    <FiPhone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                      placeholder="+1 (555) 000-0000"
-                    />
-                  </div>
-                </motion.div>
-                <motion.div variants={itemVariants}>
-                  <label
-                    htmlFor="subject"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Subject *
-                  </label>
-                  <select
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
-                  >
-                    <option value="">Select a subject</option>
-                    <option value="general">General Inquiry</option>
-                    <option value="partnership">Dealer Partnership</option>
-                    <option value="support">Technical Support</option>
-                    <option value="sales">Sales Inquiry</option>
-                    <option value="warranty">Warranty Issue</option>
-                  </select>
-                </motion.div>
-              </div>
-
-              {/* Message */}
-              <motion.div variants={itemVariants}>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-gray-700 mb-2"
-                >
-                  Message *
-                </label>
-                <div className="relative">
-                  <FiMessageSquare className="absolute left-3 top-3 text-gray-400 w-5 h-5" />
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    rows={5}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
-                    placeholder="Tell us about your inquiry..."
-                  ></textarea>
+          {/* Right Column: Enquiry Form */}
+          <div className="lg:sticky lg:top-24">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              variants={containerVariants}
+            >
+              <motion.div
+                variants={itemVariants}
+                className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border border-gray-100"
+              >
+                <div className="mb-8">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+                    Send us a Message
+                  </h3>
+                  <p className="text-gray-600">
+                    Fill out the form below and ours team will get back to you shortly.
+                  </p>
                 </div>
-              </motion.div>
 
-              {/* Submit Button */}
-              <motion.div variants={itemVariants}>
-                <button
-                  type="submit"
-                  className="w-full cursor-pointer bg-[#0047AB] text-white font-semibold py-4 px-6 rounded-full transition-colors duration-200 flex items-center justify-center gap-2 group hover:bg-blue-800 hover:shadow-lg"
-                >
-                  <FiSend className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
-                  <span>Send Message</span>
-                </button>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Name and Email Row */}
+                  <div className="grid grid-cols-1 gap-6">
+                    <motion.div variants={itemVariants}>
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Full Name *
+                      </label>
+                      <div className="relative">
+                        <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                          placeholder="Your full name"
+                        />
+                      </div>
+                    </motion.div>
+                    <motion.div variants={itemVariants}>
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Email Address *
+                      </label>
+                      <div className="relative">
+                        <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                          placeholder="your.email@example.com"
+                        />
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  {/* Phone and Subject Row */}
+                  <div className="grid grid-cols-1 gap-6">
+                    <motion.div variants={itemVariants}>
+                      <label
+                        htmlFor="phone"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Phone Number
+                      </label>
+                      <div className="relative">
+                        <FiPhone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                          placeholder="+1 (555) 000-0000"
+                        />
+                      </div>
+                    </motion.div>
+                    <motion.div variants={itemVariants}>
+                      <label
+                        htmlFor="subject"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Subject *
+                      </label>
+                      <select
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                      >
+                        <option value="">Select a subject</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="partnership">Dealer Partnership</option>
+                        <option value="support">Technical Support</option>
+                        <option value="sales">Sales Inquiry</option>
+                        <option value="warranty">Warranty Issue</option>
+                      </select>
+                    </motion.div>
+                  </div>
+
+                  {/* Message */}
+                  <motion.div variants={itemVariants}>
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-gray-700 mb-2"
+                    >
+                      Message *
+                    </label>
+                    <div className="relative">
+                      <FiMessageSquare className="absolute left-3 top-3 text-gray-400 w-5 h-5" />
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        rows={5}
+                        className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors resize-none"
+                        placeholder="Tell us about your inquiry..."
+                      ></textarea>
+                    </div>
+                  </motion.div>
+
+                  {/* Submit Button */}
+                  <motion.div variants={itemVariants}>
+                    <button
+                      type="submit"
+                      className="w-full cursor-pointer bg-[#0047AB] text-white font-semibold py-4 px-6 rounded-full transition-colors duration-200 flex items-center justify-center gap-2 group hover:bg-blue-800 hover:shadow-lg"
+                    >
+                      <FiSend className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                      <span>Send Message</span>
+                    </button>
+                  </motion.div>
+                </form>
               </motion.div>
-            </form>
-          </motion.div>
-        </motion.div>
+            </motion.div>
+          </div>
+        </div>
 
         {/* Full Width Map Section */}
         <motion.div

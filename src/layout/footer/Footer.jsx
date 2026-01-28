@@ -30,7 +30,7 @@ function Footer() {
                   />
                 </div>
                 <p className="text-base font-medium text-white/90">
-                  Premium Auto Care. Made in USA.
+                  Premium Car Care Products
                 </p>
               </div>
 
@@ -52,67 +52,66 @@ function Footer() {
                 >
                   <li>
                     <Link to="/products" className="hover:text-white transition-colors">
-                      Ceramic Coatings
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/products"
-                      className="hover:text-white transition-colors"
-                    >
-                      Waxes & Polishes
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/products"
-                      className="hover:text-white transition-colors"
-                    >
-                      Detailing Sprays
+                      Automotive PPF
                     </Link>
                   </li>
                   <li>
                     <Link to="/products" className="hover:text-white transition-colors">
-                      Accessories
+                      Coatings
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/products" className="hover:text-white transition-colors">
+                      Cleaning Products
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/products" className="hover:text-white transition-colors">
+                      Detailing
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/products" className="hover:text-white transition-colors">
+                      Solutions
                     </Link>
                   </li>
                 </ul>
               </div>
 
-              {/* About Section */}
+              {/* Brands Section */}
               <div>
                 <button
                   className="md:hidden flex justify-between items-center w-full text-left font-semibold text-white"
-                  onClick={() => toggleSection("about")}
+                  onClick={() => toggleSection("brands")}
                 >
-                  Company
-                  <span>{openSection === "about" ? "−" : "+"}</span>
+                  Brands
+                  <span>{openSection === "brands" ? "−" : "+"}</span>
                 </button>
                 <h3 className="text-lg font-semibold mb-4 hidden md:block text-white">
-                  Company
+                  Brands
                 </h3>
                 <ul
-                  className={`space-y-2 text-white/80 ${openSection === "about" ? "block" : "hidden md:block"
+                  className={`space-y-2 text-white/80 ${openSection === "brands" ? "block" : "hidden md:block"
                     }`}
                 >
                   <li>
-                    <Link to="/about" className="hover:text-white transition-colors">
-                      About Us
+                    <Link to="/brands/sirius" className="hover:text-white transition-colors">
+                      Sirius
                     </Link>
                   </li>
                   <li>
-                    <Link to="/warranty" className="hover:text-white transition-colors">
-                      Warranty Info
+                    <Link to="/brands/dax-detailing" className="hover:text-white transition-colors">
+                      Dax Detailing
                     </Link>
                   </li>
                   <li>
-                    <Link to="/privacy-policy" className="hover:text-white transition-colors">
-                      Privacy Policy
+                    <Link to="/brands/dax-solutions" className="hover:text-white transition-colors">
+                      Dax Solutions
                     </Link>
                   </li>
                   <li>
-                    <Link to="/contact" className="hover:text-white transition-colors">
-                      Contact
+                    <Link to="/brands/advantage" className="hover:text-white transition-colors">
+                      Advantage
                     </Link>
                   </li>
                 </ul>
@@ -135,23 +134,18 @@ function Footer() {
                     }`}
                 >
                   <p className="font-semibold text-white">Weinber Inc.</p>
-                  <p>1234 Detailers Way</p>
-                  <p>Detroit, MI 48201, USA</p>
+                  <p>North 2<sup>nd</sup> Street, New Hyde Park</p>
+                  <p>NY 11040, USA</p>
                   <p>
-                    Phone:{" "}
-                    <a href="tel:+15550001234" className="hover:text-white transition-colors">
-                      +1 555 000 1234
-                    </a>
-                  </p>
-                  <p>
-                    Mail:{" "}
+                    Email:{" "}
                     <a
-                      href="mailto:info@weinberinc.com"
+                      href="mailto:sales@weinberinc.com"
                       className="hover:text-white transition-colors"
                     >
-                      info@weinberinc.com
+                      sales@weinberinc.com
                     </a>
                   </p>
+
 
                 </div>
               </div>
@@ -168,16 +162,20 @@ function Footer() {
                   <FaYoutube size={22} />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.instagram.com/sirius__india/"
                   aria-label="Instagram"
                   className="text-white border border-white/30 p-3 rounded-full hover:bg-white hover:text-[#0047AB] transition-all"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <FaInstagram size={22} />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.facebook.com/weinberglobal"
                   aria-label="Facebook"
                   className="text-white border border-white/30 p-3 rounded-full hover:bg-white hover:text-[#0047AB] transition-all"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <BiLogoFacebook size={22} />
                 </a>
@@ -188,7 +186,7 @@ function Footer() {
             <div className="border-t border-white/20 mt-8 pt-6">
               <div className="flex flex-col md:flex-row justify-between items-center text-sm text-white/60 space-y-3 md:space-y-0">
                 <p>
-                  © 2025 Weinber Inc. All Rights Reserved.
+                  © 2026 Weinber Inc. Powered by CipherPeak Private Limited
                 </p>
               </div>
             </div>

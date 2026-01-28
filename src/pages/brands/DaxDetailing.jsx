@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Sparkles, Layers, PenTool, Droplet, ArrowRight, Star, Download, CirclePlay } from "lucide-react";
 import { fadeInUp, fadeIn, fadeInLeft, fadeInRight, staggerContainer, hoverScale } from "../../utils/animations";
 
+import daxDetailingProducts from "../../assets/brand/dax-detailing-products.png";
+
 const DaxDetailing = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -127,11 +129,14 @@ const DaxDetailing = () => {
                         >
                             <div className="relative">
                                 <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#0047AB] rounded-xl z-0"></div>
-                                <img
-                                    src="https://images.unsplash.com/photo-1635773124508-8e622b7d59c9?q=80&w=1000&auto=format&fit=crop"
-                                    alt="Dax Tools"
-                                    className="w-full h-72 md:h-96 object-cover rounded-xl shadow-md relative z-10"
-                                />
+                                <div className="relative h-72 md:h-96 rounded-xl overflow-hidden shadow-md bg-white border border-gray-100 z-10">
+                                    <img
+                                        src={daxDetailingProducts}
+                                        alt="Dax Tools"
+                                        className="w-full h-full object-contain p-4"
+                                    />
+                                </div>
+
                             </div>
                         </motion.div>
                     </div>

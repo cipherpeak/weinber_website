@@ -129,19 +129,20 @@ export default function Banner() {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      Shop Products
+                      Our Products
                       <ArrowRight size={18} />
                     </motion.button>
                   </Link>
 
-                  <motion.a
-                    className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-xl"
-                    href="https://www.amazon.com"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Order on Amazon
-                  </motion.a>
+                  <Link to="/contact">
+                    <motion.button
+                      className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-xl"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Contact Us
+                    </motion.button>
+                  </Link>
                 </motion.div>
               </div>
             </div>

@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Fuel, Settings, TriangleAlert, FileText, Check, ArrowRight, Activity, Zap } from "lucide-react";
 
+import daxSolutionsProducts from "../../assets/brand/dax-solutions-products.png";
+
 const DaxSolutions = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -109,15 +111,12 @@ const DaxSolutions = () => {
                         >
                             <div className="relative">
                                 <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#0047AB] rounded-xl z-0"></div>
-                                <div className="relative h-[24rem] md:h-[30rem] rounded-xl overflow-hidden shadow-md bg-gray-100 p-8 flex items-center justify-center z-10">
-                                    <Settings className="w-48 h-48 text-[#0047AB] opacity-20" />
-                                    <div className="absolute inset-0 flex items-center justify-center">
-                                        <div className="bg-white p-6 rounded-xl shadow-xl max-w-xs text-center border border-gray-100">
-                                            <Activity className="w-12 h-12 text-[#0047AB] mx-auto mb-4" />
-                                            <h3 className="font-bold text-xl mb-2">Restores Efficiency</h3>
-                                            <p className="text-sm text-gray-500">Proven to improve fuel economy by cleaning vital intake components.</p>
-                                        </div>
-                                    </div>
+                                <div className="relative h-[24rem] md:h-[30rem] rounded-xl overflow-hidden shadow-md bg-white p-0 flex items-center justify-center z-10 border border-gray-100">
+                                    <img
+                                        src={daxSolutionsProducts}
+                                        alt="Dax Tools"
+                                        className="w-full h-full object-contain"
+                                    />
                                 </div>
                             </div>
                         </motion.div>

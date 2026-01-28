@@ -1,8 +1,8 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import siriusLogo from "../../assets/logo/sirius_logo.webp";
+import siriusLogo from "../../assets/logo/sirius_logo.png";
 import daxDetailingLogo from "../../assets/logo/dax-detailing.png";
-import daxSolutionsLogo from "../../assets/logo/dax-solutions.webp";
+import daxSolutionsLogo from "../../assets/logo/dax-solutions.png";
 import advantageLogo from "../../assets/logo/advantage-logo.png";
 
 // Placeholder for Advantage since no logo exists yet
