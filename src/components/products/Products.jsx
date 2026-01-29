@@ -15,6 +15,7 @@ const categories = [
   "Sirius",
   "Dax Detailing",
   "Dax Solutions",
+  "Dax Additives",
   "Advantage",
 ];
 
@@ -128,6 +129,24 @@ export const products = [
     sizes: ["1 Quart"],
     cta: ["Know More"],
     image: "https://images.unsplash.com/photo-1594968940801-b3716d7a468e?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    id: 13,
+    name: "Octane Booster",
+    description: "Maximizes engine performance and reduces engine knock.",
+    category: "Dax Additives",
+    sizes: ["12oz"],
+    cta: ["Know More"],
+    image: "https://images.unsplash.com/photo-1635773124508-8e622b7d59c9?q=80&w=600&auto=format&fit=crop",
+  },
+  {
+    id: 14,
+    name: "Engine Flush",
+    description: "Removes carbon deposits and neutralizes harmful acids.",
+    category: "Dax Additives",
+    sizes: ["12oz"],
+    cta: ["Know More"],
+    image: "https://images.unsplash.com/photo-1486262715619-72a604e3d7e9?q=80&w=600&auto=format&fit=crop",
   },
 ];
 

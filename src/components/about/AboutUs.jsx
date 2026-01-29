@@ -9,10 +9,10 @@ export default function AboutUs() {
   }, []);
 
   const stats = [
-    { label: "Years Experience", value: "30+" },
-    { label: "Products", value: "50+" },
-    { label: "Countries", value: "40+" },
-    { label: "Partners", value: "1000+" },
+    { label: "Years Experience", value: "20+" },
+    { label: "Products", value: "100+" },
+    { label: "Countries", value: "10+" },
+    { label: "Partners", value: "100+" },
   ];
 
   return (
@@ -178,13 +178,13 @@ export default function AboutUs() {
             <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">Experience the difference of professional-grade chemistry. Locate a dealer near you or shop online today.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/contact">
-                <button className="px-8 py-4 bg-white text-[#0047AB] font-bold rounded-full hover:bg-gray-50 transition-colors shadow-lg min-w-[180px]">
-                  Find a Dealer
+                <button className="px-8 py-4 bg-white text-[#0047AB] font-bold rounded-full hover:bg-gray-50 transition-colors shadow-lg min-w-[180px] cursor-pointer">
+                  Contact Us
                 </button>
               </Link>
-              <Link to="/contact">
-                <button className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-colors min-w-[180px]">
-                  Contact Us
+              <Link to="/products">
+                <button className="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white/10 transition-colors min-w-[180px] cursor-pointer">
+                  Our Products
                 </button>
               </Link>
             </div>

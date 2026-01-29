@@ -68,7 +68,7 @@ const Contact = () => {
   const mainBranch = {
     country: "USA",
     company: "Weinber Inc.",
-    address: ["North 2nd Street, New Hyde Park", "NY 11040, USA"],
+    address: ["New Hyde Park", "NY 11040, USA"],
     email: "sales@weinberinc.com",
     isMain: true,
   };
@@ -81,12 +81,6 @@ const Contact = () => {
       email: "info@redtronicllc.com",
     },
     {
-      country: "KSA",
-      company: "Gentle Car Wash and Polishing",
-      address: ["Al Hessa, KSA"],
-      email: "sales.ksa@weinberinc.com",
-    },
-    {
       country: "Qatar",
       company: "Advantage Trading & Services WLL",
       address: ["Doha, Qatar"],
@@ -97,6 +91,12 @@ const Contact = () => {
       company: "Redtronic LLP",
       address: ["Cochin, Kerala"],
       email: "sales.ind@weinberinc.com",
+    },
+    {
+      country: "KSA",
+      company: "Gentle Car Wash and Polishing",
+      address: ["Al Hessa, KSA"],
+      email: "sales.ksa@weinberinc.com",
     },
 
   ];
@@ -344,11 +344,10 @@ const Contact = () => {
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                       >
                         <option value="">Select a subject</option>
-                        <option value="general">General Inquiry</option>
-                        <option value="partnership">Dealer Partnership</option>
-                        <option value="support">Technical Support</option>
-                        <option value="sales">Sales Inquiry</option>
-                        <option value="warranty">Warranty Issue</option>
+                        <option value="product">Product Enquiry</option>
+                        <option value="distributor">Distributor</option>
+                        <option value="warranty">Warranty Registration</option>
+                        <option value="general">General Enquiry</option>
                       </select>
                     </motion.div>
                   </div>
@@ -393,35 +392,35 @@ const Contact = () => {
         </div>
 
         {/* Full Width Map Section */}
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={containerVariants}
-          className="mb-16"
-        >
-          <motion.div
-            variants={itemVariants}
-            className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"
-          >
-            <div className="p-6 border-b border-gray-200">
-              <h3 className="text-2xl font-bold text-gray-900">Global Presence</h3>
-              <p className="text-gray-600">Weinber Inc. Worldwide Headquarters</p>
-            </div>
-            <div className="relative h-96 w-full">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.204092734053!2d-73.69813392319675!3d40.73553443617331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2628b70229253%3A0x62d51e0f7b07495a!2sN%202nd%20St%2C%20North%20Hempstead%2C%20NY%2011040%2C%20USA!5e0!3m2!1sen!2sin!4v1769236338187!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Our Location"
-              ></iframe>
-            </div>
-          </motion.div>
-        </motion.div>
+        {/* <motion.div
+           initial="hidden"
+           whileInView="visible"
+           viewport={{ once: true, amount: 0.2 }}
+           variants={containerVariants}
+           className="mb-16"
+         >
+           <motion.div
+             variants={itemVariants}
+             className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"
+           >
+             <div className="p-6 border-b border-gray-200">
+               <h3 className="text-2xl font-bold text-gray-900">Global Presence</h3>
+               <p className="text-gray-600">Weinber Inc. Worldwide Headquarters</p>
+             </div>
+             <div className="relative h-96 w-full">
+               <iframe
+                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.204092734053!2d-73.69813392319675!3d40.73553443617331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2628e9327914f%3A0x6b6d517b6a1e7bce!2sNew%20Hyde%20Park%2C%20NY%2011040%2C%20USA!5e0!3m2!1sen!2sin!4v1769236338187!5m2!1sen!2sin"
+                 width="100%"
+                 height="100%"
+                 style={{ border: 0 }}
+                 allowFullScreen=""
+                 loading="lazy"
+                 referrerPolicy="no-referrer-when-downgrade"
+                 title="Our Location"
+               ></iframe>
+             </div>
+           </motion.div>
+         </motion.div> */}
       </div>
 
       {/* CTA Section */}

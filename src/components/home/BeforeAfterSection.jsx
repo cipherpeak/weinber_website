@@ -1,9 +1,17 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, MoveHorizontal } from "lucide-react";
+import ppfBefore from "../../assets/images/ppf_before.png";
+import ppfAfter from "../../assets/images/ppf_after.png";
 
 // Slide Data
 const SLIDES = [
+  {
+    before: ppfBefore,
+    after: ppfAfter,
+    label: "PAINT PROTECTION FILM (PPF)",
+    title: "Shield your vehicle with our premium self healing paint protection films."
+  },
   {
     before: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769077798/Tint-Before_kyniru.jpg",
     after: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769077797/Tint-After_ufm3hi.jpg",

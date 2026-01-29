@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, Check, Star, Info, Share2, MessageCircle, ArrowRight } from "lucide-react";
+import { ArrowLeft, Check, Star, Info, Download, MessageCircle, ArrowRight } from "lucide-react";
 import { products } from '../../components/products/Products';
 
 // Dummy data for the product - in real app this would come from backend based on ID
 const dummyProduct = {
     id: 1,
     name: "Ceramic Coating Pro",
-    category: "Professional Series",
+    category: "Sirius",
     // price: "$89.99",
     rating: 4.8,
     reviews: 124,
@@ -70,9 +70,7 @@ const ProductDetailsPage = () => {
                                     alt={dummyProduct.name}
                                     className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
                                 />
-                                <div className="absolute top-4 left-4 bg-[#0047AB] text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
-                                    Best Seller
-                                </div>
+
                             </div>
                             <div className="flex gap-4 overflow-x-auto pb-2 w-full max-w-[500px] justify-center">
                                 {dummyProduct.images.map((img, index) => (
@@ -121,19 +119,13 @@ const ProductDetailsPage = () => {
                                     Enquire Now
                                 </button>
 
-                                <button className="flex-1 border-2 border-[#0047AB] text-[#0047AB] font-bold py-4 px-8 rounded-full hover:bg-blue-50 transition-all flex items-center justify-center gap-2">
-                                    <Share2 size={20} />
-                                    Share Product
+                                <button className="flex-1 border-2 border-[#0047AB] text-[#0047AB] font-bold py-4 px-8 rounded-full hover:bg-blue-50 transition-all flex items-center justify-center gap-2 cursor-pointer">
+                                    <Download size={20} />
+                                    Download Brochure
                                 </button>
                             </div>
 
-                            <div className="mt-6 flex items-center justify-between text-xs text-gray-500 font-medium">
-                                <div className="flex items-center gap-2">
-                                    <span className="w-2 h-2 bg-[#0047AB] rounded-full"></span>
-                                    Professional Grade
-                                </div>
-                                <span>SKU: {dummyProduct.sku}</span>
-                            </div>
+
                         </div>
                     </div>
 

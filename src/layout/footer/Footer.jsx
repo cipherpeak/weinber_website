@@ -134,7 +134,7 @@ function Footer() {
                     }`}
                 >
                   <p className="font-semibold text-white">Weinber Inc.</p>
-                  <p>North 2<sup>nd</sup> Street, New Hyde Park</p>
+                  <p>New Hyde Park</p>
                   <p>NY 11040, USA</p>
                   <p>
                     Email:{" "}

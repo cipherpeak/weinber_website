@@ -92,6 +92,8 @@ function GlobalPresence() {
     { name: "UAE", flag: 'https://flagcdn.com/w160/ae.png' },
     { name: "UK", flag: "https://flagcdn.com/w160/gb.png" },
     { name: "India", flag: "https://flagcdn.com/w160/in.png" },
+    { name: "Qatar", flag: 'https://flagcdn.com/w160/qa.png' },
+    { name: "KSA", flag: 'https://flagcdn.com/w160/sa.png' },
     { name: "And More", icon: Globe },
   ];
 
@@ -107,6 +109,8 @@ function GlobalPresence() {
     { left: "63%", top: "43%", country: "UAE" },
     { left: "49%", top: "21%", country: "UK" },
     { left: "71%", top: "46%", country: "India" },
+    { left: "61%", top: "42%", country: "Qatar" },
+    { left: "59%", top: "46%", country: "KSA" },
   ];
 
   return (
@@ -183,7 +187,7 @@ function GlobalPresence() {
             >
               <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-3 md:mb-4 flex items-center">
                 <span className="bg-[#0047AB] p-4 text-white rounded-full w-5 h-5 md:w-6 md:h-6 flex items-center justify-center mr-2 text-xs">
-                  40+
+                  10+
                 </span>
                 Countries Served
               </h3>
@@ -203,7 +207,7 @@ function GlobalPresence() {
                       <img
                         src={country.flag}
                         alt={`${country.name} flag`}
-                        className="w-6 h-6 md:w-8 md:h-8 object-contain mb-1 rounded-sm"
+                        className="w-10 h-6 md:w-12 md:h-8 object-cover mb-1 rounded-sm shadow-sm"
                         loading="lazy"
                       />
                     ) : (
