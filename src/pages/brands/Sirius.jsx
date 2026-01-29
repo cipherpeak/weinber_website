@@ -9,10 +9,7 @@ const Sirius = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    const fadeIn = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-    };
+
 
     return (
         <div className="bg-white text-gray-900">
@@ -28,7 +25,7 @@ const Sirius = () => {
                         className="absolute inset-0"
                         initial="hidden"
                         animate="visible"
-                        variants={fadeIn}
+                        variants={fadeInUp}
                     >
                         <img
                             src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=2070&auto=format&fit=crop"
@@ -70,23 +67,24 @@ const Sirius = () => {
                                     animate="visible"
                                     transition={{ delay: 0.4 }}
                                 >
+                                    <Link to="/products" state={{ activeCategory: 'Sirius' }}>
+                                        <motion.button
+                                            className="px-8 py-3 bg-[#0047AB] text-white font-medium rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center gap-2"
+                                            whileHover={hoverScale}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
+                                            <Sparkles size={18} />
+                                            Our Products
+                                        </motion.button>
+                                    </Link>
                                     <motion.button
-                                        className="px-8 py-3 bg-[#0047AB] text-white font-medium rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center gap-2"
+                                        className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-lg flex items-center gap-2"
                                         whileHover={hoverScale}
                                         whileTap={{ scale: 0.95 }}
                                     >
                                         <Download size={18} />
-                                        Get Datasheet
+                                        Download Brochure
                                     </motion.button>
-                                    <Link to="/contact">
-                                        <motion.button
-                                            className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-lg"
-                                            whileHover={hoverScale}
-                                            whileTap={{ scale: 0.95 }}
-                                        >
-                                            Find Certified Applicator
-                                        </motion.button>
-                                    </Link>
                                 </motion.div>
                             </div>
                         </div>
@@ -106,12 +104,12 @@ const Sirius = () => {
                             variants={fadeInLeft}
                         >
                             <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight">
-                                Premium <br />
-                                <span className="text-[#0047AB]">Protection Solutions</span>
+                                Premium Car <br />
+                                <span className="text-[#0047AB]">Detailing Products</span>
                             </h2>
                             <div className="text-gray-700 leading-relaxed mb-8 space-y-6">
                                 <p>
-                                    SIRIUS is Weinber Inc.’s flagship brand dedicated to advanced surface protection and automotive appearance enhancement. It focuses on high-performance coatings and protection films that defend vehicles from environmental elements while enhancing gloss and durability.
+                                    Sirius pro is the 3D hybrid molecular structure that creates a 3D matrix high gloss finish to the coated surfaces and ultra-hydrophobicity keeps safer for longer.<br /> <br />It focuses on high-performance coatings and protection films that defend vehicles from environmental elements while enhancing gloss and durability.
                                 </p>
                             </div>
                         </motion.div>
@@ -150,7 +148,7 @@ const Sirius = () => {
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                                 <Shield className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Nano-Ceramic & Graphene</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Coatings</h3>
                             <p className="text-gray-600 text-sm">
                                 High-tech protective coatings engineered for superior hardness, hydrophobic performance, weather resistance and UV protection.
                             </p>
@@ -159,7 +157,7 @@ const Sirius = () => {
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                                 <Shield className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Paint Protection Film</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Automotive Protection Films</h3>
                             <p className="text-gray-600 text-sm">
                                 Thermoplastic Polyurethane (TPU) films that guard automotive paint surfaces against scratches, chips and environmental damage.
                             </p>
@@ -168,9 +166,9 @@ const Sirius = () => {
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                                 <Shield className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Window Tinting Films</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Interior Protection</h3>
                             <p className="text-gray-600 text-sm">
-                                Precision-engineered films that improve comfort, reduce heat and UV exposure, and provide privacy with various shades.
+                                Advanced protective solutions for leather, fabric, and vinyl surfaces to prevent staining, fading, and wear from daily use.
                             </p>
                         </motion.div>
                     </motion.div>

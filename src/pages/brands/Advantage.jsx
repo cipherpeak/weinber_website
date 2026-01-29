@@ -2,16 +2,14 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Wrench, Shield, Truck, Package, Download, ArrowRight } from "lucide-react";
+import { fadeInUp, fadeIn, fadeInLeft, staggerContainer, hoverScale } from "../../utils/animations";
 
 const Advantage = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
 
-    const fadeIn = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-    };
+
 
     return (
         <div className="bg-white text-gray-900">
@@ -35,9 +33,9 @@ const Advantage = () => {
                             <div className="max-w-4xl">
                                 <motion.h1
                                     className="text-white font-bold tracking-tight text-balance leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl drop-shadow-2xl"
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.8 }}
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={fadeInUp}
                                 >
                                     <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent block">
                                         The Weinber
@@ -49,28 +47,31 @@ const Advantage = () => {
 
                                 <motion.p
                                     className="mt-4 sm:mt-6 hidden md:block text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl leading-relaxed drop-shadow-lg"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.8, delay: 0.2 }}
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={fadeInUp}
+                                    transition={{ delay: 0.2 }}
                                 >
                                     Over 20 Years of Expertise in delivering products developed with long-standing experience in coatings, detailing chemistry and automotive care.
                                 </motion.p>
 
                                 <motion.div
                                     className="mt-6 sm:mt-8 flex gap-3"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.8, delay: 0.4 }}
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={fadeInUp}
+                                    transition={{ delay: 0.4 }}
                                 >
-                                    <button className="px-8 py-3 bg-[#0047AB] text-white font-medium rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center gap-2">
+                                    <Link to="/products" state={{ activeCategory: 'Advantage' }}>
+                                        <button className="px-8 py-3 bg-[#0047AB] text-white font-medium rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center gap-2">
+                                            <Package size={18} />
+                                            Our Products
+                                        </button>
+                                    </Link>
+                                    <button className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-lg flex items-center gap-2">
                                         <Download size={18} />
                                         Download Brochure
                                     </button>
-                                    <Link to="/contact">
-                                        <button className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-lg">
-                                            Partner With Us
-                                        </button>
-                                    </Link>
                                 </motion.div>
                             </div>
                         </div>
@@ -84,10 +85,10 @@ const Advantage = () => {
                     <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
                         <motion.div
                             className="order-2 md:order-1"
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial="hidden"
+                            whileInView="visible"
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
+                            variants={fadeInLeft}
                         >
                             <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight">
                                 Quality & <br />
@@ -95,20 +96,19 @@ const Advantage = () => {
                             </h2>
                             <div className="text-gray-700 leading-relaxed mb-8 space-y-6">
                                 <p>
-                                    The brand’s advantage lies in its commitment to quality, innovation, and comprehensive solutions that cover both appearance and performance aspects of vehicle care.
-                                </p>
-                                <p>
-                                    Made in USA, Globally Trusted: Products manufactured in the United States and distributed worldwide, with a reputation for high quality and performance.
+                                    Automotive Oil Additives are specialized chemical agents formulated to significantly boost the lubricating properties of base oils. Manufacturers leverage these varied additives to customize standard base stocks for diverse, high-performance applications. In many advanced formulations, these vital additives constitute up to 5% of the total volume.<br /> <br />
+
+                                    These agents are indispensable for maintaining modern engine health. They prevent oil degradation, seal against leaks, and defend critical engine components from wear and contamination. Without them, engines would suffer from breakdown and lack protection under varying operating temperatures.
                                 </p>
                             </div>
                         </motion.div>
 
                         <motion.div
                             className="order-1 md:order-2"
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial="hidden"
+                            whileInView="visible"
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
+                            variants={fadeInUp}
                         >
                             <div className="relative">
                                 <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#0047AB] rounded-xl z-0"></div>
@@ -131,27 +131,27 @@ const Advantage = () => {
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                                 <Shield className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">20+ Years Expertise</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Enhanced Lubrication</h3>
                             <p className="text-gray-600 text-sm">
-                                Products developed with long-standing experience in coatings, detailing chemistry and automotive care.
+                                Boosting the performance of base oils through specialized chemical compounding for targeted applications.
                             </p>
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                                 <Truck className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Global Distribution</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Engine Longevity</h3>
                             <p className="text-gray-600 text-sm">
-                                Products manufactured in the United States and distributed worldwide, with a reputation for high quality.
+                                Vital protection that prevents contamination and breakdown, ensuring the long-term health of internal components.
                             </p>
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                                 <Wrench className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Innovation & Quality</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Thermal Protection</h3>
                             <p className="text-gray-600 text-sm">
-                                Continuous technological improvement in protective coatings, cleaning systems and performance additives.
+                                Maintaining oil integrity and protection capabilities across all operating temperatures to prevent failure.
                             </p>
                         </div>
                     </div>
@@ -166,7 +166,7 @@ const Advantage = () => {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
-                        variants={fadeIn}
+                        variants={fadeInUp}
                     >
                         <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
                             Our <span className="text-[#0047AB]">Services</span>
@@ -247,8 +247,8 @@ const Advantage = () => {
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     );
 };
 

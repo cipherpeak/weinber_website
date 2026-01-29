@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Sparkles, Layers, PenTool, Droplet, ArrowRight, Star, Download, CirclePlay } from "lucide-react";
+import { Sparkles, Layers, PenTool, Droplet, ArrowRight, Star, Download, CirclePlay, Diamond } from "lucide-react";
 import { fadeInUp, fadeIn, fadeInLeft, fadeInRight, staggerContainer, hoverScale } from "../../utils/animations";
 
 import daxDetailingProducts from "../../assets/brand/dax-detailing-products.png";
@@ -11,10 +11,7 @@ const DaxDetailing = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    const fadeIn = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-    };
+
 
     return (
         <div className="bg-white text-gray-900">
@@ -30,7 +27,7 @@ const DaxDetailing = () => {
                         className="absolute inset-0"
                         initial="hidden"
                         animate="visible"
-                        variants={fadeIn}
+                        variants={fadeInUp}
                     >
                         <img
                             src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=2070&auto=format&fit=crop"
@@ -72,25 +69,24 @@ const DaxDetailing = () => {
                                     variants={fadeInUp}
                                     transition={{ delay: 0.4 }}
                                 >
-                                    <Link to="/contact">
+                                    <Link to="/products" state={{ activeCategory: 'Dax Detailing' }}>
                                         <motion.button
                                             className="px-8 py-3 bg-[#0047AB] text-white font-medium rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center gap-2"
                                             whileHover={hoverScale}
                                             whileTap={{ scale: 0.95 }}
                                         >
-                                            View Products
-                                            <ArrowRight size={18} />
+                                            <Sparkles size={18} />
+                                            Our Products
                                         </motion.button>
                                     </Link>
-                                    <Link to="/contact">
-                                        <motion.button
-                                            className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-lg"
-                                            whileHover={hoverScale}
-                                            whileTap={{ scale: 0.95 }}
-                                        >
-                                            Shop Kits
-                                        </motion.button>
-                                    </Link>
+                                    <motion.button
+                                        className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-lg flex items-center gap-2"
+                                        whileHover={hoverScale}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        <Download size={18} />
+                                        Download Brochure
+                                    </motion.button>
                                 </motion.div>
                             </div>
                         </div>
@@ -110,12 +106,14 @@ const DaxDetailing = () => {
                             variants={fadeInLeft}
                         >
                             <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight">
-                                Showroom-Quality <br />
+                                Showroom Quality <br />
                                 <span className="text-[#0047AB]">Results</span>
                             </h2>
                             <div className="text-gray-700 leading-relaxed mb-8 space-y-6">
                                 <p>
-                                    DAX Detailing encompasses a full range of products designed specifically for the cleaning, restoration, polishing and finishing of vehicles — far beyond basic washing.
+                                    Car Detailing is the performance of thorough cleaning, restoration, Polishing & finishing of an automobile, both inside and out, to produce a show-quality level of detail. One very important thing to point out about auto detailing is that it involves much more than just car washing.<br /> <br />
+
+                                    It will also include polishing paint damage and restoring, as well as thoroughly cleaning areas which are normally ignored such as the engine and under-chassis. Exterior detailing involves cleaning and restoring or exceeding the original condition of the surface of the cars finish.
                                 </p>
                             </div>
                         </motion.div>
@@ -157,27 +155,27 @@ const DaxDetailing = () => {
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                                 <Layers className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Comprehensive Detailing</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Thorough Cleaning</h3>
                             <p className="text-gray-600 text-sm">
-                                Including heavy-cut compounds, finish polishes, waxes, and protective sprays designed to refine paint and exterior surfaces.
+                                Involves much more than just washing, including thoroughly cleaning ignored areas like the engine and under-chassis.
                             </p>
                         </motion.div>
                         <motion.div variants={fadeInUp} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                                 <Sparkles className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Interior & Exterior</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Restoration & Polishing</h3>
                             <p className="text-gray-600 text-sm">
-                                Effective interior cleaners, wheel cleaners, engine detailing solutions, and surface conditioners for hard-to-reach areas.
+                                Includes polishing paint damage and restoring the surface to exceed the original condition of the car's finish.
                             </p>
                         </motion.div>
                         <motion.div variants={fadeInUp} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
-                                <Droplet className="text-[#0047AB]" size={24} />
+                                <Diamond className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Specialty Products</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Showroom Quality</h3>
                             <p className="text-gray-600 text-sm">
-                                Quick detailers, multipurpose degreasers, tire and trim shines optimized for professional and DIY workflows.
+                                Producing a show-quality level of detail both inside and out through thorough cleaning, restoration, and finishing.
                             </p>
                         </motion.div>
                     </motion.div>

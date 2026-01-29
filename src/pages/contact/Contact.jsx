@@ -9,30 +9,11 @@ import {
   FiSend,
   FiUser,
 } from "react-icons/fi";
-import { FiYoutube, FiInstagram, FiFacebook } from "react-icons/fi";
+import { FiInstagram, FiFacebook } from "react-icons/fi";
+import { fadeInUp, fadeIn, staggerContainer } from "../../utils/animations";
 
 // Animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
 
-const itemVariants = {
-  hidden: { opacity: 0, x: -50 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -102,7 +83,7 @@ const Contact = () => {
   ];
 
   const socialLinks = [
-    { icon: FiYoutube, href: "#", label: "Youtube" },
+
     {
       icon: FiInstagram,
       href: "#",
@@ -122,11 +103,11 @@ const Contact = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.0 }}
-        variants={containerVariants}
+        variants={staggerContainer}
         className="py-16 px-4"
       >
         <motion.div
-          variants={itemVariants}
+          variants={fadeInUp}
           className="container mx-auto text-center max-w-4xl"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -148,13 +129,13 @@ const Contact = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
-              variants={containerVariants}
+              variants={staggerContainer}
             >
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
                 Headquarters
               </h2>
               <motion.div
-                variants={itemVariants}
+                variants={fadeInUp}
                 className="bg-white rounded-2xl p-8 shadow-xl border-t-4 border-[#0047AB] relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 p-8 opacity-5">
@@ -190,10 +171,10 @@ const Contact = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}
-              variants={containerVariants}
+              variants={staggerContainer}
             >
               <motion.h3
-                variants={itemVariants}
+                variants={fadeInUp}
                 className="text-2xl md:text-3xl font-bold text-gray-900 mb-8"
               >
                 Regional Partners
@@ -203,7 +184,7 @@ const Contact = () => {
                 {regionalBranches.map((branch, index) => (
                   <motion.div
                     key={index}
-                    variants={itemVariants}
+                    variants={fadeInUp}
                     className="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 flex flex-col h-full w-full md:w-[calc(50%-12px)]"
                   >
                     <div className="flex items-center gap-3 mb-4">
@@ -244,10 +225,10 @@ const Contact = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
-              variants={containerVariants}
+              variants={staggerContainer}
             >
               <motion.div
-                variants={itemVariants}
+                variants={fadeInUp}
                 className="bg-white rounded-2xl p-8 md:p-10 shadow-lg border border-gray-100"
               >
                 <div className="mb-8">
@@ -400,7 +381,7 @@ const Contact = () => {
            className="mb-16"
          >
            <motion.div
-             variants={itemVariants}
+             variants={fadeInUp}
              className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100"
            >
              <div className="p-6 border-b border-gray-200">

@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Fuel, Settings, TriangleAlert, FileText, Check, ArrowRight, Activity, Zap } from "lucide-react";
+import { Fuel, Settings, TriangleAlert, FileText, Check, ArrowRight, Activity, Zap, Download, Sparkles } from "lucide-react";
+import { fadeInUp, fadeIn, fadeInLeft, staggerContainer, hoverScale } from "../../utils/animations";
 
 import daxSolutionsProducts from "../../assets/brand/dax-solutions-products.png";
 
@@ -10,10 +11,7 @@ const DaxSolutions = () => {
         window.scrollTo(0, 0);
     }, []);
 
-    const fadeIn = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-    };
+
 
     return (
         <div className="bg-white text-gray-900">
@@ -37,9 +35,9 @@ const DaxSolutions = () => {
                             <div className="max-w-4xl">
                                 <motion.h1
                                     className="text-white font-bold tracking-tight text-balance leading-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl drop-shadow-2xl"
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.8 }}
+                                    variants={fadeInUp}
+                                    initial="hidden"
+                                    animate="visible"
                                 >
                                     <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent block">
                                         Engine & Mechanical
@@ -51,27 +49,30 @@ const DaxSolutions = () => {
 
                                 <motion.p
                                     className="mt-4 sm:mt-6 hidden md:block text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl leading-relaxed drop-shadow-lg"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.8, delay: 0.2 }}
+                                    variants={fadeInUp}
+                                    initial="hidden"
+                                    animate="visible"
+                                    transition={{ delay: 0.2 }}
                                 >
                                     DAX Solutions complements exterior detailing with internal care essentials that improve vehicle reliability and efficiency.
                                 </motion.p>
 
                                 <motion.div
                                     className="mt-6 sm:mt-8 flex gap-3"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.8, delay: 0.4 }}
+                                    variants={fadeInUp}
+                                    initial="hidden"
+                                    animate="visible"
+                                    transition={{ delay: 0.4 }}
                                 >
-                                    <Link to="/contact">
+                                    <Link to="/products" state={{ activeCategory: 'Dax Solutions' }}>
                                         <button className="px-8 py-3 bg-[#0047AB] text-white font-medium rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center gap-2">
-                                            View Additives
-                                            <ArrowRight size={18} />
+                                            <Sparkles size={18} />
+                                            Our Products
                                         </button>
                                     </Link>
-                                    <button className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-lg">
-                                        Data Sheets
+                                    <button className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-lg flex items-center gap-2">
+                                        <Download size={18} />
+                                        Download Brochure
                                     </button>
                                 </motion.div>
                             </div>
@@ -86,10 +87,10 @@ const DaxSolutions = () => {
                     <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
                         <motion.div
                             className="order-2 md:order-1"
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial="hidden"
+                            whileInView="visible"
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
+                            variants={fadeInLeft}
                         >
                             <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 leading-tight">
                                 Internal <br />
@@ -97,17 +98,19 @@ const DaxSolutions = () => {
                             </h2>
                             <div className="text-gray-700 leading-relaxed mb-8 space-y-6">
                                 <p>
-                                    DAX Solutions is Weinber Inc.’s brand focused on internal automotive care — specifically chemical additives and compounds formulated to support mechanical systems.
+                                    Oil Additives are chemical compounds that improve the lubricant performance of base oil. The manufacturer of many different oils can utilize the same base stock for each formulation and can choose different additives for each specific application. Additives comprise up to 5% by weight of some oils.<br /> <br />
+
+                                    Oil additives are vital for the proper lubrication and prolonged use of motor oil in modern internal combustion engines. Without many of these, the oil would become contaminated, break down, leak out, or not properly protect engine parts at all operating temperatures.
                                 </p>
                             </div>
                         </motion.div>
 
                         <motion.div
                             className="order-1 md:order-2"
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial="hidden"
+                            whileInView="visible"
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
+                            variants={fadeInUp}
                         >
                             <div className="relative">
                                 <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#0047AB] rounded-xl z-0"></div>
@@ -132,27 +135,27 @@ const DaxSolutions = () => {
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                                 <Fuel className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Engine Additives</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Lubricant Performance</h3>
                             <p className="text-gray-600 text-sm">
-                                Products such as engine oil system detergents, fuel system cleaners, and oil treatments that help clean, protect and optimize engine performance.
+                                Chemical compounds that significantly improve the lubricant performance of base oils for various specific applications.
                             </p>
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                                 <Settings className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">Mechanical Support</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Vital Engine Protection</h3>
                             <p className="text-gray-600 text-sm">
-                                Formulations meant to reduce internal contamination, prevent leaks, maintain smooth operation, and extend component life.
+                                Vital for proper lubrication, preventing oil contamination, breakdown, and protecting engine parts from damage.
                             </p>
                         </div>
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
                             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center mb-4">
                                 <Zap className="text-[#0047AB]" size={24} />
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">System Performance</h3>
+                            <h3 className="text-xl font-bold text-gray-900 mb-2">Temperature Stability</h3>
                             <p className="text-gray-600 text-sm">
-                                Advanced chemical engineering to restore lost power, improve fuel economy, and reduce emissions in modern engines.
+                                Ensures proper engine part protection and prevents leakage or breakdown at all operating temperatures.
                             </p>
                         </div>
                     </div>
@@ -167,7 +170,7 @@ const DaxSolutions = () => {
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true }}
-                        variants={fadeIn}
+                        variants={fadeInUp}
                     >
                         <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
                             Performance <span className="text-[#0047AB]">Chemistry</span>

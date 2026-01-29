@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
 import { BiLogoFacebook } from "react-icons/bi";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
 import { useState } from "react";
@@ -154,13 +154,7 @@ function Footer() {
             {/* Social Media */}
             <div className="flex justify-center mt-10">
               <div className="flex space-x-5">
-                <a
-                  href="#"
-                  aria-label="YouTube"
-                  className="text-white border border-white/30 p-3 rounded-full hover:bg-white hover:text-[#0047AB] transition-all"
-                >
-                  <FaYoutube size={22} />
-                </a>
+
                 <a
                   href="https://www.instagram.com/sirius__india/"
                   aria-label="Instagram"
