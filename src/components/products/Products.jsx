@@ -179,23 +179,24 @@ const features = [
 // FAQs - Auto Detailing
 const faqs = [
   {
-    question: "How long does the ceramic coating last?",
-    answer:
-      "Our PRO coating lasts up to 5 years with proper maintenance, while spray coatings last 6-12 months.",
+    question: "What does car protection actually protect against?",
+    answer: "Car protection products help protect the vehicle from UV rays, oxidation, fading, light scratches, stains, heat, and environmental damage.",
   },
   {
-    question: "Is the shampoo safe for matte paint?",
-    answer: "Yes, our PH Neutral Shampoo is safe for matte, satin, and glossy finishes.",
+    question: "Can Borophene coating be applied over Glossy PPF?",
+    answer: "Yes, borophene coating can be applied over PPF to enhance gloss, hydrophobic properties, and ease of maintenance.",
   },
   {
-    question: "Do you offer bulk sizes for professional detailers?",
-    answer:
-      "Yes, we offer 1-gallon and 5-gallon sizes for shops and mobile detailers. Contact usage for pricing.",
+    question: "Do ceramic coatings make washing easier?",
+    answer: "Yes, ceramic coatings create a hydrophobic surface that repels water, dirt, and grime.",
   },
   {
-    question: "Can I use the interior detailer on screens?",
-    answer:
-      "We recommend our dedicated Glass & Tech Cleaner for navigation screens and gauge clusters.",
+    question: "What makes SIRIUS car detailing products high quality?",
+    answer: "SIRIUS products are developed using advanced formulations, premium raw materials, and strict quality control to deliver professional-grade performance and reliable results.",
+  },
+  {
+    question: "Why should I choose SIRIUS & DAX?",
+    answer: "SIRIUS & DAX combine premium quality, high performance, safety, and consistent results, making them a trusted choice for professional detailers and car care enthusiasts.",
   },
 ];
 

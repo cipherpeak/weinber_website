@@ -263,6 +263,7 @@ export default function WarrantyRegistration() {
                                     value={formData.phone}
                                     onChange={handleChange}
                                     className={inputClasses}
+                                    placeholder="+00 000 000 0000"
                                 />
                             </div>
                         </div>
@@ -413,7 +414,7 @@ export default function WarrantyRegistration() {
                                         value={formData.dealerPhone}
                                         onChange={handleChange}
                                         className={inputClasses}
-                                        placeholder="+971 50 123 4567"
+                                        placeholder="+00 000 000 0000"
                                     />
                                 </div>
                             </div>
