@@ -30,7 +30,7 @@ const DaxDetailing = () => {
                         variants={fadeInUp}
                     >
                         <img
-                            src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=2070&auto=format&fit=crop"
+                            src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765568/WhatsApp_Image_2026-01-29_at_21.44.30_l2mbvl.jpg"
                             alt="Dax Hero"
                             className="w-full h-full object-cover"
                         />

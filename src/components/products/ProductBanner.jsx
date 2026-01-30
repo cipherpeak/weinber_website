@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 
 function ProductBanner() {
   // Image URLs for different devices - Placeholders for Car Detailing
-  const desktopImage = "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1920&auto=format&fit=crop";
-  const mobileImage = "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=600&auto=format&fit=crop";
+  const desktopImage = "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765572/car-service-worker-polishes-car-details-with-orbital-polisher_ugapqp.jpg";
+  const mobileImage = "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765572/car-service-worker-polishes-car-details-with-orbital-polisher_ugapqp.jpg";
 
   // Animation variants
   const textVariants = {

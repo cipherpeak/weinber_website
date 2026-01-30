@@ -25,7 +25,7 @@ const DaxSolutions = () => {
                 <div className="relative w-full h-[28rem] lg:h-[50rem] rounded-3xl overflow-hidden group">
                     <div className="absolute inset-0">
                         <img
-                            src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?q=80&w=2070&auto=format&fit=crop"
+                            src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765567/WhatsApp_Image_2026-01-29_at_21.45.54_hkwyqg.jpg"
                             alt="Dax Solutions Hero"
                             className="w-full h-full object-cover"
                         />

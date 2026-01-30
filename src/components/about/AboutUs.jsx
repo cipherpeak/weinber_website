@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect } from "react";
-import { Award, Users, Globe, Target } from "lucide-react";
+import { Award, Users, Globe, Target, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export default function AboutUs() {
@@ -23,7 +23,7 @@ export default function AboutUs() {
         <div className="relative w-full h-[28rem] lg:h-[50rem] rounded-3xl overflow-hidden group">
           <div className="absolute inset-0">
             <img
-              src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1920&auto=format&fit=crop"
+              src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765773/luxury-electric-car-driving-through-neon-cityscape_gufbpk.jpg"
               alt="Weinber Lab"
               className="w-full h-full object-cover"
             />
@@ -55,6 +55,33 @@ export default function AboutUs() {
                 >
                   Since 1992, Weinber Inc. has been at the forefront of automotive surface protection, blending American innovation with global manufacturing excellence.
                 </motion.p>
+                <motion.div
+                  className="mt-6 sm:mt-8 flex gap-3"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  <Link to="/products">
+                    <motion.button
+                      className="px-8 py-3 bg-[#0047AB] text-white font-medium rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center gap-2 cursor-pointer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Our Products
+                      <ArrowRight size={18} />
+                    </motion.button>
+                  </Link>
+
+                  <Link to="/contact">
+                    <motion.button
+                      className="px-8 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 transition-all duration-300 hover:shadow-xl cursor-pointer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Contact Us
+                    </motion.button>
+                  </Link>
+                </motion.div>
               </div>
             </div>
 
@@ -127,7 +154,7 @@ export default function AboutUs() {
 
             <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[500px]">
               <img
-                src="https://images.unsplash.com/photo-1620803930818-68c13f9f4bd0?q=80&w=800&auto=format&fit=crop"
+                src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765567/Untitled_1.7.1_dsxpiy.jpg"
                 alt="Weinber Innovation"
                 className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
               />

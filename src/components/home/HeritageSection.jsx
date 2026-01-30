@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight, Check } from 'lucide-react';
 const HERITAGE_SLIDES = [
   {
     id: 1,
-    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769080353/Protect_zijoqy.jpg",
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765569/WhatsApp_Image_2026-01-30_at_01.16.39_o1if10.jpg",
     title: "Protect",
     description: "Protect your car with SIRIUS PRO. Our nano ceramic protective coating engineered using advanced nano technology. SIRIUS PRO products are tailor-made to provide you with the best surface protection using latest ceramic coating technology.",
     features: [
@@ -16,7 +16,7 @@ const HERITAGE_SLIDES = [
   },
   {
     id: 2,
-    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769080352/revive_aky0ro.jpg",
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765569/worker-polishes-car-s-paintwork-with-car_ha3tox.jpg",
     title: "Revive",
     description: "We offer a variety of car detailing products catering to revive a car's interior and exterior. From cleaning, restoration to polishing and finishing; car detailing goes much beyond than a car wash. Our products also include solutions for damage restoration and thorough cleansing of all parts of the vehicle.",
     features: [
@@ -28,7 +28,7 @@ const HERITAGE_SLIDES = [
   },
   {
     id: 3,
-    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769080353/Enhance_sybsth.jpg",
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769766393/250_dug9ut.jpg",
     title: "Enhance",
     description: "Enhance your engine and fuel performance using our premium products with curated oil additives and chemical compounds. These additives can be applied to the same base stock for each formulation to create solutions specific to the required application.",
     features: [

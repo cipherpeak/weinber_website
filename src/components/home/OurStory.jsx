@@ -78,7 +78,7 @@ const StorySection = () => {
             <div className="relative">
               <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#0047AB] rounded-xl z-0"></div>
               <img
-                src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=1000&auto=format&fit=crop"
+                src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765573/car-headlight-buildings-reflecting-headlight-car_txfuu1.jpg"
                 alt="Weinber Quality Contral"
                 className="w-full h-72 md:h-96 object-cover rounded-xl shadow-md relative z-10"
               />

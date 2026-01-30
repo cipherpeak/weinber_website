@@ -23,7 +23,7 @@ const Advantage = () => {
                 <div className="relative w-full h-[28rem] lg:h-[50rem] rounded-3xl overflow-hidden group">
                     <div className="absolute inset-0">
                         <img
-                            src="https://images.unsplash.com/photo-1542744094-24638eff58bb?q=80&w=2070&auto=format&fit=crop"
+                            src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765567/WhatsApp_Image_2026-01-29_at_21.46.14_bvdira.jpg"
                             alt="Advantage Hero"
                             className="w-full h-full object-cover"
                         />
@@ -113,7 +113,7 @@ const Advantage = () => {
                             <div className="relative">
                                 <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#0047AB] rounded-xl z-0"></div>
                                 <img
-                                    src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop"
+                                    src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765567/WhatsApp_Image_2026-01-29_at_21.47.27_aytjn7.jpg"
                                     alt="Logistics"
                                     className="w-full h-72 md:h-96 object-cover rounded-xl shadow-md relative z-10"
                                 />

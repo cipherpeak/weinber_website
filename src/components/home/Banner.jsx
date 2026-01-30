@@ -7,14 +7,14 @@ import { fadeInUp, fadeIn, scaleUp } from "../../utils/animations"
 const BANNER_SLIDES = [
   {
     id: 1,
-    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769078031/lb_to_lane_xkudvt.jpg",
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765773/shutterstock_704504914_hrgq0k.jpg",
     title1: "PPF Coating",
     title2: "Color, Clear, Print",
     description: "Ultimate protection for your vehicle's paint with our advanced Paint Protection Films."
   },
   {
     id: 2,
-    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769079872/bluecloth_hero_dgwesq.jpg",
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765572/C2767.00_00_12_15.Still006_auto_x2_u64stv.jpg",
     title1: "Coatings",
     title2: "Ceramic, Graphene, Borophine",
     description: "Next-level surface protection technology for unmatched durability and shine."
@@ -35,7 +35,7 @@ const BANNER_SLIDES = [
   },
   {
     id: 5,
-    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769079871/coating_hero_toew08.jpg",
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765567/WhatsApp_Image_2026-01-29_at_21.47.27_aytjn7.jpg",
     title1: "Solutions",
     title2: "Lubricants",
     description: "High-performance lubricants and solutions for optimal automotive maintenance."

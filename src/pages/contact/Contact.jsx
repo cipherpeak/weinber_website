@@ -12,6 +12,15 @@ import {
 import { FiInstagram, FiFacebook } from "react-icons/fi";
 import { fadeInUp, fadeIn, staggerContainer } from "../../utils/animations";
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
 // Animation variants
 
 
@@ -236,7 +245,7 @@ const Contact = () => {
                     Send us a Message
                   </h3>
                   <p className="text-gray-600">
-                    Fill out the form below and ours team will get back to you shortly.
+                    Fill out the form below and our team will get back to you shortly.
                   </p>
                 </div>
 

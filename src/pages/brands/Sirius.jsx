@@ -28,7 +28,7 @@ const Sirius = () => {
                         variants={fadeInUp}
                     >
                         <img
-                            src="https://images.unsplash.com/photo-1542362567-b07e54358753?q=80&w=2070&auto=format&fit=crop"
+                            src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769767266/C2767.00_00_12_15.Still006_auto_x2.jpg_copy_snu1hz.jpg"
                             alt="Sirius Hero"
                             className="w-full h-full object-cover"
                         />
@@ -124,7 +124,7 @@ const Sirius = () => {
                             <div className="relative">
                                 <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#0047AB] rounded-xl z-0"></div>
                                 <img
-                                    src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=1000&auto=format&fit=crop"
+                                    src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769767427/Sirius-pro2_xuzpoj.webp"
                                     alt="Sirius Coating"
                                     className="w-full h-72 md:h-96 object-cover rounded-xl shadow-md relative z-10"
                                 />
