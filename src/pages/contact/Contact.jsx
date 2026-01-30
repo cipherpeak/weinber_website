@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import { motion } from "framer-motion";
 import {
   FiClock,
@@ -41,18 +42,63 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log(formData);
-    alert("Thank you for your message. We'll get back to you soon!");
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
+
+    // Show loading state
+    Swal.fire({
+      title: "Sending Message...",
+      text: "Please wait while we process your inquiry.",
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+      },
     });
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "89f095d6-4485-4063-ba02-6c8e76e2f811",
+          ...formData,
+          from_name: "Weinber Website Contact Form",
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Message Sent!",
+          text: "Thank you for your message. We'll get back to you soon!",
+          confirmButtonColor: "#0047AB",
+        });
+
+        // Reset form on success
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        throw new Error(result.message || "Failed to send message");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Submission Failed",
+        text: "Something went wrong. Please try again later or contact us directly.",
+        confirmButtonColor: "#0047AB",
+      });
+    }
   };
 
   const mainBranch = {
