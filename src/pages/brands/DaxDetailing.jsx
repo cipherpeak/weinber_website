@@ -30,7 +30,7 @@ const DaxDetailing = () => {
                         variants={fadeInUp}
                     >
                         <img
-                            src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765568/WhatsApp_Image_2026-01-29_at_21.44.30_l2mbvl.jpg"
+                            src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769777164/2149193628_bse3uo.jpg"
                             alt="Dax Hero"
                             className="w-full h-full object-cover"
                         />
@@ -44,11 +44,8 @@ const DaxDetailing = () => {
                                     animate="visible"
                                     variants={fadeInUp}
                                 >
-                                    <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent block">
-                                        Complete
-                                    </span>
                                     <span className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent block mt-2">
-                                        Detailing Care
+                                        Dax Detailing
                                     </span>
                                 </motion.h1>
 

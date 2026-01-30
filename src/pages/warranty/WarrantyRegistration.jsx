@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiPlus, FiTrash2 } from "react-icons/fi";
+
+const APPLICATION_OPTIONS = {
+    "PAINT PROTECTION FILMS": ["PPF MAGNIFENCE", "PPF MATTE", "PPF BLACK"],
+    "COATINGS": ["CERAMIC COATING", "GRAPHENE COATING"]
+};
 
 export default function WarrantyRegistration() {
     const [formData, setFormData] = useState({
         // Product Information
         serialNumber: "",
-        ppfProduct: "",
-        coatingProduct: "",
+        products: [{ applicationType: "", productName: "" }],
 
         // Customer Information
         firstName: "",
@@ -40,6 +45,31 @@ export default function WarrantyRegistration() {
             ...prev,
             [name]: type === 'file' ? files[0] : value,
         }));
+    };
+
+    const addProductRow = () => {
+        setFormData(prev => ({
+            ...prev,
+            products: [...prev.products, { applicationType: "", productName: "" }]
+        }));
+    };
+
+    const removeProductRow = (index) => {
+        if (formData.products.length > 1) {
+            const newProducts = formData.products.filter((_, i) => i !== index);
+            setFormData(prev => ({ ...prev, products: newProducts }));
+        }
+    };
+
+    const handleProductChange = (index, e) => {
+        const { name, value } = e.target;
+        const newProducts = [...formData.products];
+        newProducts[index][name] = value;
+        // Reset product if application type changes
+        if (name === 'applicationType') {
+            newProducts[index].productName = "";
+        }
+        setFormData(prev => ({ ...prev, products: newProducts }));
     };
 
     const handleSubmit = (e) => {
@@ -101,7 +131,7 @@ export default function WarrantyRegistration() {
                     {/* PRODUCT INFORMATION */}
                     <div>
                         <h2 className="text-xl md:text-2xl font-bold text-black border-b pb-4 mb-6">PRODUCT INFORMATION</h2>
-                        <div className="space-y-6">
+                        <div className="space-y-8">
                             <div>
                                 <label htmlFor="serialNumber" className={labelClasses}>Serial No. *</label>
                                 <input
@@ -115,52 +145,72 @@ export default function WarrantyRegistration() {
                                 />
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className={labelClasses}>Application Type</label>
-                                    <div className="w-full px-4 py-3 bg-gray-200 text-gray-600 rounded-full border border-gray-300 cursor-not-allowed">
-                                        PAINT PROTECTION FILMS
-                                    </div>
-                                </div>
-                                <div>
-                                    <label htmlFor="ppfProduct" className={labelClasses}>Select</label>
-                                    <select
-                                        id="ppfProduct"
-                                        name="ppfProduct"
-                                        value={formData.ppfProduct}
-                                        onChange={handleChange}
-                                        className={`${inputClasses} appearance-none`}
+                            <AnimatePresence>
+                                {formData.products.map((product, index) => (
+                                    <motion.div
+                                        key={index}
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: "auto" }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        className="relative bg-gray-50/50 p-6 rounded-2xl border border-gray-100 space-y-4"
                                     >
-                                        <option value="">Select Product...</option>
-                                        <option value="PPF MAGNIFENCE">PPF MAGNIFENCE</option>
-                                        <option value="PPF MATTE">PPF MATTE</option>
-                                        <option value="PPF BLACK">PPF BLACK</option>
-                                    </select>
-                                </div>
-                            </div>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div>
+                                                <label className={labelClasses}>Application Type</label>
+                                                <select
+                                                    name="applicationType"
+                                                    value={product.applicationType}
+                                                    onChange={(e) => handleProductChange(index, e)}
+                                                    required
+                                                    className={`${inputClasses} appearance-none`}
+                                                >
+                                                    <option value="">Select Type...</option>
+                                                    {Object.keys(APPLICATION_OPTIONS).map(type => (
+                                                        <option key={type} value={type}>{type}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label className={labelClasses}>Select Product</label>
+                                                <select
+                                                    name="productName"
+                                                    value={product.productName}
+                                                    onChange={(e) => handleProductChange(index, e)}
+                                                    required
+                                                    disabled={!product.applicationType}
+                                                    className={`${inputClasses} appearance-none ${!product.applicationType ? 'cursor-not-allowed opacity-50' : ''}`}
+                                                >
+                                                    <option value="">Select Product...</option>
+                                                    {product.applicationType && APPLICATION_OPTIONS[product.applicationType].map(prod => (
+                                                        <option key={prod} value={prod}>{prod}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                        </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className={labelClasses}>Application Type</label>
-                                    <div className="w-full px-4 py-3 bg-gray-200 text-gray-600 rounded-full border border-gray-300 cursor-not-allowed">
-                                        COATINGS
-                                    </div>
+                                        {formData.products.length > 1 && (
+                                            <button
+                                                type="button"
+                                                onClick={() => removeProductRow(index)}
+                                                className="absolute -top-3 -right-3 w-8 h-8 bg-white text-red-500 rounded-full shadow-md border border-red-100 flex items-center justify-center hover:bg-red-50 transition-colors cursor-pointer"
+                                            >
+                                                <FiTrash2 size={16} />
+                                            </button>
+                                        )}
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+
+                            <button
+                                type="button"
+                                onClick={addProductRow}
+                                className="w-full py-4 border-2 border-dashed border-[#0047AB]/20 rounded-2xl text-[#0047AB] font-semibold flex items-center justify-center gap-2 hover:bg-[#0047AB]/5 transition-all cursor-pointer group"
+                            >
+                                <div className="w-8 h-8 bg-[#0047AB] text-white rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <FiPlus size={20} />
                                 </div>
-                                <div>
-                                    <label htmlFor="coatingProduct" className={labelClasses}>Select</label>
-                                    <select
-                                        id="coatingProduct"
-                                        name="coatingProduct"
-                                        value={formData.coatingProduct}
-                                        onChange={handleChange}
-                                        className={`${inputClasses} appearance-none`}
-                                    >
-                                        <option value="">Select Product...</option>
-                                        <option value="CERAMIC COATING">CERAMIC COATING</option>
-                                        <option value="GRAPHENE COATING">GRAPHENE COATING</option>
-                                    </select>
-                                </div>
-                            </div>
+                                Add Another Application Type
+                            </button>
                         </div>
                     </div>
 

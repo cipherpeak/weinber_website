@@ -38,10 +38,10 @@ const Advantage = () => {
                                     variants={fadeInUp}
                                 >
                                     <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent block">
-                                        The Weinber
+                                        Advantage
                                     </span>
                                     <span className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent block mt-2">
-                                        Advantage
+                                        Solutions
                                     </span>
                                 </motion.h1>
 
@@ -113,7 +113,7 @@ const Advantage = () => {
                             <div className="relative">
                                 <div className="absolute -top-4 -right-4 w-full h-full border-2 border-[#0047AB] rounded-xl z-0"></div>
                                 <img
-                                    src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765567/WhatsApp_Image_2026-01-29_at_21.47.27_aytjn7.jpg"
+                                    src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769777422/934_sb5hck.jpg"
                                     alt="Logistics"
                                     className="w-full h-72 md:h-96 object-cover rounded-xl shadow-md relative z-10"
                                 />

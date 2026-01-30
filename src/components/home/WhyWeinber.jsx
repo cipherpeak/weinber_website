@@ -198,7 +198,7 @@ const WhyWeinber = () => {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
                 <img
-                  src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769078031/lb_to_lane_xkudvt.jpg"
+                  src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765567/Untitled_1.7.1_dsxpiy.jpg"
                   alt="Weinber Quality"
                   className="w-full h-96 lg:h-[600px] object-cover transition-transform duration-700 group-hover:scale-105"
                 />

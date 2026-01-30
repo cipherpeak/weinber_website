@@ -39,11 +39,8 @@ const DaxSolutions = () => {
                                     initial="hidden"
                                     animate="visible"
                                 >
-                                    <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent block">
-                                        Engine & Mechanical
-                                    </span>
                                     <span className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent block mt-2">
-                                        Performance
+                                        Dax Solutions
                                     </span>
                                 </motion.h1>
 
