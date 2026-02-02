@@ -9,19 +9,19 @@ const BANNER_SLIDES = [
     id: 1,
     image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765773/shutterstock_704504914_hrgq0k.jpg",
     title1: "PPF Coating",
-    title2: "Color, Clear, Print",
+    title2: "Glossy, Matte, Clear",
     description: "Ultimate protection for your vehicle's paint with our advanced Paint Protection Films."
   },
   {
     id: 2,
     image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765572/C2767.00_00_12_15.Still006_auto_x2_u64stv.jpg",
     title1: "Coatings",
-    title2: "Ceramic, Graphene, Borophine",
+    title2: "Ceramic, Graphene, Borophene",
     description: "Next-level surface protection technology for unmatched durability and shine."
   },
   {
     id: 3,
-    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769079872/tinit_hero_vaoitm.jpg",
+    image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1770023505/3588_lszt5b.jpg",
     title1: "Interior Detailing",
     title2: "Revitalize Your Cabin",
     description: "Deep cleaning and conditioning to keep your car's interior looking and feeling brand new."
