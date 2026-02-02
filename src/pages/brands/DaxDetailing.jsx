@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Sparkles, Layers, PenTool, Droplet, ArrowRight, Star, Download, CirclePlay, Diamond } from "lucide-react";
 import { fadeInUp, fadeIn, fadeInLeft, fadeInRight, staggerContainer, hoverScale } from "../../utils/animations";
+import BrandProductGrid from "../../components/products/BrandProductGrid";
 
 import daxDetailingProducts from "../../assets/brand/dax-detailing-products.png";
 
@@ -179,114 +180,9 @@ const DaxDetailing = () => {
                 </div>
             </section>
 
-            {/* Products Section - Matching ProductShowCase.jsx */}
-            <section className="py-16 px-4 bg-white">
-                <div className="max-w-7xl mx-auto">
-                    <motion.div
-                        className="text-center mb-12"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeInUp}
-                    >
-                        <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
-                            Essential <span className="text-[#0047AB]">Kits</span>
-                        </h2>
-                    </motion.div>
+            {/* Products Section */}
+            <BrandProductGrid brandName="Dax Detailing" title="Essential Kits" />
 
-                    <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                        variants={staggerContainer}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                    >
-                        {/* Kit 1 */}
-                        <motion.div variants={fadeInUp} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1605218457332-dd092f25492d?q=80&w=600&auto=format&fit=crop"
-                                    alt="STARTER"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    STARTER
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Quick Detailer Kit</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Everything needed for a rapid gloss enhancement.
-                                </p>
-                                <motion.button
-                                    className="w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
-                                    whileHover={hoverScale}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    View Details
-                                    <ArrowRight size={18} />
-                                </motion.button>
-                            </div>
-                        </motion.div>
-
-                        {/* Kit 2 */}
-                        <motion.div variants={fadeInUp} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1625902382753-48092a54a01c?q=80&w=600&auto=format&fit=crop"
-                                    alt="PRO"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    PRO
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Paint Correction Kit</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Complete system for removing swirls and defects.
-                                </p>
-                                <motion.button
-                                    className="w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
-                                    whileHover={hoverScale}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    Add to Cart
-                                    <ArrowRight size={18} />
-                                </motion.button>
-                            </div>
-                        </motion.div>
-
-                        {/* Kit 3 */}
-                        <motion.div variants={fadeInUp} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1552934440-5bb95cc9ad5a?q=80&w=600&auto=format&fit=crop"
-                                    alt="Interior"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    INTERIOR
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Interior Revival Kit</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Deep clean and condition leather and plastics.
-                                </p>
-                                <motion.button
-                                    className="w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
-                                    whileHover={hoverScale}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    View Details
-                                    <ArrowRight size={18} />
-                                </motion.button>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                </div>
-            </section>
         </div>
     );
 };

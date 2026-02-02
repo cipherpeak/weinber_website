@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Wrench, Shield, Truck, Package, Download, ArrowRight } from "lucide-react";
 import { fadeInUp, fadeIn, fadeInLeft, staggerContainer, hoverScale } from "../../utils/animations";
+import BrandProductGrid from "../../components/products/BrandProductGrid";
 
 const Advantage = () => {
     useEffect(() => {
@@ -158,96 +159,9 @@ const Advantage = () => {
                 </div>
             </section>
 
-            {/* Services Section - Matching ProductShowCase.jsx */}
-            <section className="py-16 px-4 bg-white">
-                <div className="max-w-7xl mx-auto">
-                    <motion.div
-                        className="text-center mb-12"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeInUp}
-                    >
-                        <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
-                            Our <span className="text-[#0047AB]">Services</span>
-                        </h2>
-                    </motion.div>
+            {/* Products Section */}
+            <BrandProductGrid brandName="Advantage" title="Our Products" />
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {/* Service 1 */}
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1566576912906-253c7c320d33?q=80&w=600&auto=format&fit=crop"
-                                    alt="Distribution"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    LOGISTICS
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Product Distribution</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Seamless supply chain solutions for automotive consumables and equipment.
-                                </p>
-                                <button className="block w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2">
-                                    Learn More
-                                    <ArrowRight size={18} />
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Service 2 */}
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1621905251189-08b95ddd71a6?q=80&w=600&auto=format&fit=crop"
-                                    alt="Consulting"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    VERSATILE
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Professional & DIY Focus</h4>
-                                <p className="text-gray-500 text-xs line-clamp-3 mb-3 h-12">
-                                    Formulations suitable for both professional detailers and car enthusiasts.
-                                </p>
-                                <button className="block w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2">
-                                    Get Consultation
-                                    <ArrowRight size={18} />
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Service 3 */}
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1542744094-24638eff58bb?q=80&w=600&auto=format&fit=crop"
-                                    alt="Sourcing"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    INNOVATION
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Innovation & Quality</h4>
-                                <p className="text-gray-500 text-xs line-clamp-3 mb-3 h-12">
-                                    Continuous technological improvement in protective coatings, cleaning systems and performance additives to meet modern demands.
-                                </p>
-                                <button className="block w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2">
-                                    View Details
-                                    <ArrowRight size={18} />
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section >
         </div >
     );
 };

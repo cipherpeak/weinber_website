@@ -1,12 +1,15 @@
 import { motion } from "framer-motion";
+import siriusLogo from "../../assets/logo/sirius_logo.png";
+import daxDetailingLogo from "../../assets/logo/dax-detailing.png";
+import daxSolutionsLogo from "../../assets/logo/dax-solutions.png";
+import advantageLogo from "../../assets/logo/advantage-logo.png";
 
 export default function OurBrands() {
   const brands = [
-    { id: 1, name: "Appam & Co.", logo: "https://paragonrestaurant.in/wp-content/uploads/2022/10/salkara.png" },
-    { id: 2, name: "Xpress", logo: "https://paragonrestaurant.in/wp-content/uploads/2024/11/salkara-express-logo-1.png" },
-    { id: 3, name: "Meat & Mackerel", logo: "https://paragonrestaurant.in/wp-content/uploads/2022/10/mgrill-2.png" },
-    { id: 4, name: "Cafe Calicut", logo: "https://paragonrestaurant.in/wp-content/uploads/2024/11/salkara-express-logo-1.png" },
-    { id: 5, name: "Paragon Since 1939", logo: "https://paragonrestaurant.in/wp-content/uploads/2024/11/appam-co.png" },
+    { id: 1, name: "Sirius", logo: siriusLogo },
+    { id: 2, name: "Dax Detailing", logo: daxDetailingLogo },
+    { id: 3, name: "Dax Solutions", logo: daxSolutionsLogo },
+    { id: 4, name: "Advantage", logo: advantageLogo },
   ]
 
   const containerVariants = {

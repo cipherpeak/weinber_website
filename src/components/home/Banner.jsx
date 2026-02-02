@@ -3,8 +3,9 @@ import { motion, AnimatePresence } from "framer-motion"
 import { Link } from "react-router-dom"
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react"
 import { fadeInUp, fadeIn, scaleUp } from "../../utils/animations"
+import { API_ENDPOINTS } from "../../config"
 
-const BANNER_SLIDES = [
+const FALLBACK_SLIDES = [
   {
     id: 1,
     image: "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765773/shutterstock_704504914_hrgq0k.jpg",
@@ -45,8 +46,37 @@ const BANNER_SLIDES = [
 export default function Banner() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const [slides, setSlides] = useState(FALLBACK_SLIDES)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    const fetchBannerData = async () => {
+      try {
+        const response = await fetch(API_ENDPOINTS.productsPage)
+        if (!response.ok) throw new Error("Failed to fetch")
+        const data = await response.json()
+
+        if (data && data.length > 0) {
+          // Map products to banner slides structure
+          const dynamicSlides = data.slice(0, 5).map((product, index) => ({
+            id: product.id || index,
+            image: product.images && product.images.length > 0 ? product.images[0].image : FALLBACK_SLIDES[0].image,
+            title1: product.name,
+            title2: product.brand || "Premium Quality",
+            description: product.description || "Leading the way in automotive care and surface protection."
+          }))
+          setSlides(dynamicSlides)
+        }
+      } catch (error) {
+        console.error("Error fetching banner data:", error)
+        // Keep fallback slides
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchBannerData()
+
     const handleResize = () => setIsMobile(window.innerWidth < 640)
     handleResize()
     window.addEventListener("resize", handleResize)
@@ -54,12 +84,12 @@ export default function Banner() {
   }, [])
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % BANNER_SLIDES.length)
-  }, [])
+    setCurrentSlide((prev) => (prev + 1) % slides.length)
+  }, [slides.length])
 
   const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + BANNER_SLIDES.length) % BANNER_SLIDES.length)
-  }, [])
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length)
+  }, [slides.length])
 
   useEffect(() => {
     const timer = setInterval(nextSlide, 5000)
@@ -80,8 +110,8 @@ export default function Banner() {
           >
             {/* Image */}
             <img
-              src={BANNER_SLIDES[currentSlide].image}
-              alt={BANNER_SLIDES[currentSlide].title1}
+              src={slides[currentSlide].image}
+              alt={slides[currentSlide].title1}
               className="w-full h-full object-cover"
             />
             {/* Overlay */}
@@ -99,10 +129,10 @@ export default function Banner() {
                   animate="visible"
                 >
                   <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent block">
-                    {BANNER_SLIDES[currentSlide].title1}
+                    {slides[currentSlide].title1}
                   </span>
                   <span className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent block mt-2">
-                    {BANNER_SLIDES[currentSlide].title2}
+                    {slides[currentSlide].title2}
                   </span>
                 </motion.h1>
 
@@ -113,7 +143,7 @@ export default function Banner() {
                   animate="visible"
                   transition={{ delay: 0.2 }}
                 >
-                  {BANNER_SLIDES[currentSlide].description}
+                  {slides[currentSlide].description}
                 </motion.p>
 
                 <motion.div
@@ -183,7 +213,7 @@ export default function Banner() {
 
         {/* Dots */}
         <div className="absolute bottom-14 left-1/2 -translate-x-1/2 flex gap-3 z-30 hidden md:flex">
-          {BANNER_SLIDES.map((_, index) => (
+          {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}

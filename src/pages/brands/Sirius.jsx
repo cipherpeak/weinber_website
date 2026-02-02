@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Shield, Sparkles, Droplets, Zap, CheckCircle, ArrowRight, Download, FlaskConical, FileText } from "lucide-react";
 import { fadeInUp, fadeIn, fadeInLeft, fadeInRight, staggerContainer, hoverScale } from "../../utils/animations";
+import BrandProductGrid from "../../components/products/BrandProductGrid";
 
 const Sirius = () => {
     useEffect(() => {
@@ -172,142 +173,9 @@ const Sirius = () => {
                 </div>
             </section>
 
-            {/* Products Section - Matching ProductShowCase.jsx */}
-            <section className="py-16 px-4 bg-white">
-                <div className="max-w-7xl mx-auto">
-                    <motion.div
-                        className="text-center mb-12"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeInUp}
-                    >
-                        <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
-                            The <span className="text-[#0047AB]">SIRIUS</span> Collection
-                        </h2>
-                    </motion.div>
+            {/* Products Section */}
+            <BrandProductGrid brandName="Sirius" title="The SIRIUS Collection" />
 
-                    <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-                        variants={staggerContainer}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                    >
-                        {/* Product 1 */}
-                        <motion.div variants={fadeInUp} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=600&auto=format&fit=crop"
-                                    alt="SIRIUS PRO"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    9H Ceramic
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">SIRIUS PRO</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Ultra-hydrophobic 9H coating delivering extreme gloss and protection.
-                                </p>
-                                <motion.button
-                                    className="w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
-                                    whileHover={hoverScale}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    View Details
-                                    <ArrowRight size={18} />
-                                </motion.button>
-                            </div>
-                        </motion.div>
-
-                        {/* Product 2 */}
-                        <motion.div variants={fadeInUp} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1550529126-7243c3d3dd5c?q=80&w=600&auto=format&fit=crop"
-                                    alt="SIRIUS ULTRA"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    10H Graphene
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">SIRIUS ULTRA</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Hybrid graphene-ceramic formula for superior thermal stability.
-                                </p>
-                                <motion.button
-                                    className="w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
-                                    whileHover={hoverScale}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    View Details
-                                    <ArrowRight size={18} />
-                                </motion.button>
-                            </div>
-                        </motion.div>
-
-                        {/* Product 3 */}
-                        <motion.div variants={fadeInUp} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1632733711679-529326f6db12?q=80&w=600&auto=format&fit=crop"
-                                    alt="SIRIUS PPF"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    PPF
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">SIRIUS PPF</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Self-healing, high-clarity thermoplastic polyurethane film.
-                                </p>
-                                <motion.button
-                                    className="w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
-                                    whileHover={hoverScale}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    View Details
-                                    <ArrowRight size={18} />
-                                </motion.button>
-                            </div>
-                        </motion.div>
-
-                        {/* Product 4 */}
-                        <motion.div variants={fadeInUp} className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1549429406-8c704044debb?q=80&w=600&auto=format&fit=crop"
-                                    alt="SIRIUS INTERIOR"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    Interior
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">SIRIUS INTERIOR</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Breathable protective barrier that repels spills and stains.
-                                </p>
-                                <motion.button
-                                    className="w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2"
-                                    whileHover={hoverScale}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    View Details
-                                    <ArrowRight size={18} />
-                                </motion.button>
-                            </div>
-                        </motion.div>
-                    </motion.div>
-                </div>
-            </section>
         </div>
     );
 };

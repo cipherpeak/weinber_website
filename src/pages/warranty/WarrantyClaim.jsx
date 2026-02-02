@@ -4,17 +4,13 @@ import { motion } from "framer-motion";
 export default function WarrantyClaim() {
     const [formData, setFormData] = useState({
         // Claim Details
+        serialNumber: "",
         issueDate: "",
         issueDescription: "",
         claimImages: null,
         warrantyCard: null,
 
-        // Product Information
-        ppfProduct: "",
-        coatingProduct: "",
 
-        // Dealer Information
-        dealerName: "",
     });
 
     const [submitted, setSubmitted] = useState(false);
@@ -95,6 +91,20 @@ export default function WarrantyClaim() {
                         <h2 className="text-xl md:text-2xl font-bold text-black border-b pb-4 mb-6">DETAILS OF CLAIM</h2>
                         <div className="space-y-6">
                             <div>
+                                <label htmlFor="serialNumber" className={labelClasses}>Serial No. *</label>
+                                <input
+                                    type="text"
+                                    id="serialNumber"
+                                    name="serialNumber"
+                                    required
+                                    value={formData.serialNumber}
+                                    onChange={handleChange}
+                                    className={inputClasses}
+                                    placeholder="Enter Product Serial Number"
+                                />
+                            </div>
+
+                            <div>
                                 <label htmlFor="issueDate" className={labelClasses}>Which date was the issue first noticed? *</label>
                                 <input
                                     type="date"
@@ -174,74 +184,9 @@ export default function WarrantyClaim() {
                         </div>
                     </div>
 
-                    {/* PRODUCT INFORMATION */}
-                    <div>
-                        <h2 className="text-xl md:text-2xl font-bold text-black border-b pb-4 mb-6">PRODUCT INFORMATION</h2>
-                        <div className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className={labelClasses}>Application Type</label>
-                                    <div className="w-full px-4 py-3 bg-gray-200 text-gray-600 rounded-full border border-gray-300 cursor-not-allowed">
-                                        PAINT PROTECTION FILMS
-                                    </div>
-                                </div>
-                                <div>
-                                    <label htmlFor="ppfProduct" className={labelClasses}>Select</label>
-                                    <select
-                                        id="ppfProduct"
-                                        name="ppfProduct"
-                                        value={formData.ppfProduct}
-                                        onChange={handleChange}
-                                        className={`${inputClasses} appearance-none`}
-                                    >
-                                        <option value="">Select Product...</option>
-                                        <option value="PPF MAGNIFENCE">PPF MAGNIFENCE</option>
-                                        <option value="PPF MATTE">PPF MATTE</option>
-                                        <option value="PPF BLACK">PPF BLACK</option>
-                                    </select>
-                                </div>
-                            </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label className={labelClasses}>Application Type</label>
-                                    <div className="w-full px-4 py-3 bg-gray-200 text-gray-600 rounded-full border border-gray-300 cursor-not-allowed">
-                                        COATINGS
-                                    </div>
-                                </div>
-                                <div>
-                                    <label htmlFor="coatingProduct" className={labelClasses}>Select</label>
-                                    <select
-                                        id="coatingProduct"
-                                        name="coatingProduct"
-                                        value={formData.coatingProduct}
-                                        onChange={handleChange}
-                                        className={`${inputClasses} appearance-none`}
-                                    >
-                                        <option value="">Select Product...</option>
-                                        <option value="CERAMIC COATING">CERAMIC COATING</option>
-                                        <option value="GRAPHENE COATING">GRAPHENE COATING</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    {/* DEALER INFORMATION */}
-                    <div>
-                        <h2 className="text-xl md:text-2xl font-bold text-black border-b pb-4 mb-6">DEALER</h2>
-                        <div>
-                            <label htmlFor="dealerName" className={labelClasses}>Dealer Name</label>
-                            <input
-                                type="text"
-                                id="dealerName"
-                                name="dealerName"
-                                value={formData.dealerName}
-                                onChange={handleChange}
-                                className={inputClasses}
-                            />
-                        </div>
-                    </div>
+
 
                     <motion.button
                         whileHover={{ scale: 1.02 }}

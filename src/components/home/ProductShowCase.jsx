@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { staggerContainer, fadeInUp, hoverScale } from "../../utils/animations";
+import { API_ENDPOINTS } from "../../config";
 
 // Placeholder images
 const ceramicCoating =
@@ -14,61 +15,92 @@ const sprayDetailer =
 const accessories =
   "https://images.unsplash.com/photo-1632733711679-529326f6db12?q=80&w=600&auto=format&fit=crop";
 
+const FALLBACK_PRODUCTS = [
+  {
+    id: 1,
+    category: "Coating",
+    name: "Ceramic Coatings",
+    image: ceramicCoating,
+    description:
+      "Professional grade 9H ceramic coatings for ultimate paint protection and gloss.",
+    features: [
+      "9H Hardness Protection",
+      "Hydrophobic Effect",
+      "5+ Year Durability",
+    ],
+  },
+  {
+    id: 2,
+    category: "Wax",
+    name: "Premium Waxes",
+    image: carWax,
+    description:
+      "Handcrafted carnauba waxes and synthetic sealants for deep, wet-look shine.",
+    features: [
+      "High Carnauba Content",
+      "Deep Wet Shine",
+      "Easy Application",
+    ],
+  },
+  {
+    id: 3,
+    category: "Detailer",
+    name: "Detailing Sprays",
+    image: sprayDetailer,
+    description:
+      "Quick detailers and waterless wash solutions for maintaining that showroom glow.",
+    features: [
+      "Streak-Free Finish",
+      "Boosts Gloss",
+      "Safe on All Surfaces",
+    ],
+  },
+  {
+    id: 4,
+    category: "Tools",
+    name: "Accessories",
+    image: accessories,
+    description:
+      "Microfiber towels, applicators, and brushes designed for delicate automotive surfaces.",
+    features: [
+      "Scratch-Free Materials",
+      "Durable Construction",
+      "Professional Grade",
+    ],
+  },
+];
+
 function ProductShowCase() {
-  const productItems = [
-    {
-      id: 1,
-      category: "Coating",
-      name: "Ceramic Coatings",
-      image: ceramicCoating,
-      description:
-        "Professional grade 9H ceramic coatings for ultimate paint protection and gloss.",
-      features: [
-        "9H Hardness Protection",
-        "Hydrophobic Effect",
-        "5+ Year Durability",
-      ],
-    },
-    {
-      id: 2,
-      category: "Wax",
-      name: "Premium Waxes",
-      image: carWax,
-      description:
-        "Handcrafted carnauba waxes and synthetic sealants for deep, wet-look shine.",
-      features: [
-        "High Carnauba Content",
-        "Deep Wet Shine",
-        "Easy Application",
-      ],
-    },
-    {
-      id: 3,
-      category: "Detailer",
-      name: "Detailing Sprays",
-      image: sprayDetailer,
-      description:
-        "Quick detailers and waterless wash solutions for maintaining that showroom glow.",
-      features: [
-        "Streak-Free Finish",
-        "Boosts Gloss",
-        "Safe on All Surfaces",
-      ],
-    },
-    {
-      id: 4,
-      category: "Tools",
-      name: "Accessories",
-      image: accessories,
-      description:
-        "Microfiber towels, applicators, and brushes designed for delicate automotive surfaces.",
-      features: [
-        "Scratch-Free Materials",
-        "Durable Construction",
-        "Professional Grade",
-      ],
-    },
-  ];
+  const [productItems, setProductItems] = useState(FALLBACK_PRODUCTS);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchShowcaseProducts = async () => {
+      try {
+        const response = await fetch(API_ENDPOINTS.productsPage);
+        if (!response.ok) throw new Error("Failed to fetch");
+        const data = await response.json();
+
+        if (data && data.length > 0) {
+          const mapped = data.slice(0, 4).map(p => ({
+            id: p.id,
+            category: p.brand || "Product",
+            name: p.name,
+            image: p.images && p.images.length > 0 ? p.images[0].image : FALLBACK_PRODUCTS[0].image,
+            description: p.description,
+            features: p.features ? p.features.slice(0, 3).map(f => (typeof f === 'string' ? f : f.feature)) : ["Professional Grade", "High Performance"]
+          }));
+          setProductItems(mapped);
+        }
+      } catch (err) {
+        console.error("Error fetching showcase products:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchShowcaseProducts();
+  }, []);
 
   return (
     <section className="py-16 px-4 bg-white">

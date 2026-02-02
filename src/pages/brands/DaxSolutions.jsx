@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Fuel, Settings, TriangleAlert, FileText, Check, ArrowRight, Activity, Zap, Download, Sparkles } from "lucide-react";
 import { fadeInUp, fadeIn, fadeInLeft, staggerContainer, hoverScale } from "../../utils/animations";
+import BrandProductGrid from "../../components/products/BrandProductGrid";
 
 import daxSolutionsProducts from "../../assets/brand/dax-solutions-products.png";
 
@@ -159,120 +160,9 @@ const DaxSolutions = () => {
                 </div>
             </section>
 
-            {/* Products Section - Matching ProductShowCase.jsx */}
-            <section className="py-16 px-4 bg-white">
-                <div className="max-w-7xl mx-auto">
-                    <motion.div
-                        className="text-center mb-12"
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true }}
-                        variants={fadeInUp}
-                    >
-                        <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
-                            Performance <span className="text-[#0047AB]">Chemistry</span>
-                        </h2>
-                    </motion.div>
+            {/* Products Section */}
+            <BrandProductGrid brandName="Dax Solutions" title="Performance Chemistry" />
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {/* Product 1 */}
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1486262715619-72a604e3d7e9?q=80&w=2070&auto=format&fit=crop"
-                                    alt="Engine Components"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    ADDITIVES
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Engine Additives & Treatments</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Products such as engine oil system detergents, fuel system cleaners, and oil treatments that help clean, protect and optimize engine performance.
-                                </p>
-                                <button className="block w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2">
-                                    View Details
-                                    <ArrowRight size={18} />
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Product 2 */}
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1625902382753-48092a54a01c?q=80&w=600&auto=format&fit=crop"
-                                    alt="DIESEL"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    MECHANICAL
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Mechanical Support</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Formulations meant to reduce internal contamination, prevent leaks, maintain smooth operation, and extend component life.
-                                </p>
-                                <button className="block w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2">
-                                    View Details
-                                    <ArrowRight size={18} />
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Product 3 */}
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1552934440-5bb95cc9ad5a?q=80&w=600&auto=format&fit=crop"
-                                    alt="OIL ADDITIVE"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    OIL ADDITIVE
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Engine Oil Treatment</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Fortifies motor oil with anti-wear polymers and friction modifiers for older engines.
-                                </p>
-                                <button className="block w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2">
-                                    View Details
-                                    <ArrowRight size={18} />
-                                </button>
-                            </div>
-                        </div>
-
-                        {/* Product 4 */}
-                        <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group">
-                            <div className="relative h-48 overflow-hidden bg-gray-100">
-                                <img
-                                    src="https://images.unsplash.com/photo-1621905251189-08b95ddd71a6?q=80&w=600&auto=format&fit=crop"
-                                    alt="SERVICE"
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                />
-                                <div className="absolute top-2 left-2 bg-[#0047AB] text-white text-[10px] font-bold px-2 py-1 rounded">
-                                    SERVICE
-                                </div>
-                            </div>
-                            <div className="p-4">
-                                <h4 className="font-bold text-gray-900 mb-1 truncate">Engine Flush</h4>
-                                <p className="text-gray-500 text-xs line-clamp-2 mb-3 h-8">
-                                    Powerful solvent blend to dissolve sludge before oil change.
-                                </p>
-                                <button className="block w-full text-center bg-[#0047AB] text-white font-medium py-3 rounded-full hover:bg-blue-700 transition-all duration-300 hover:shadow-lg flex items-center justify-center gap-2">
-                                    View Details
-                                    <ArrowRight size={18} />
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
     );
 };
