@@ -7,147 +7,7 @@ import ProductFaq from "./ProductFaq";
 import { motion } from "framer-motion";
 import ProductBanner from "./ProductBanner";
 import { Link, useLocation } from "react-router-dom";
-
-// Categories - Updated for Car Detailing
-// Categories - Updated for Car Detailing
-const categories = [
-  "All",
-  "Sirius",
-  "Dax Detailing",
-  "Dax Solutions",
-  "Advantage",
-];
-
-// Products - Automotive Detailing
-// Products - Automotive Detailing
-export const products = [
-  {
-    id: 1,
-    name: "Ceramic Coating Kit",
-    description: "Professional grade 9H ceramic coating for 5+ years of protection.",
-    category: "Sirius",
-    sizes: ["50ml", "100ml"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1625902382753-48092a54a01c?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 2,
-    name: "Ultra-Gloss Wax",
-    description: "Carnauba-infused liquid wax for a deep, wet-look shine.",
-    category: "Dax Detailing",
-    sizes: ["16oz", "1 Gallon"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 3,
-    name: "Interior Detailer",
-    description: "Cleans and protects plastic, vinyl, and leather surfaces.",
-    category: "Dax Detailing",
-    sizes: ["16oz", "1 Gallon"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1605218427360-3638d6899a61?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 4,
-    name: "PH Neutral Shampoo",
-    description: "Safe for coatings, high-foam formula for scratch-free washing.",
-    category: "Dax Detailing",
-    sizes: ["16oz", "1 Gallon"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1601362840136-e0c1df5c468e?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 5,
-    name: "Iron Remover",
-    description: "Dissolves embedded iron particles and brake dust instantly.",
-    category: "Dax Detailing",
-    sizes: ["16oz", "1 Gallon"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1616423666945-8c7c10b7f082?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 6,
-    name: "Leather Conditioner",
-    description: "Restores soft feel and protects leather from UV damage.",
-    category: "Dax Detailing",
-    sizes: ["16oz"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1594968940801-b3716d7a468e?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 7,
-    name: "Microfiber Towel Set",
-    description: "Premium edgeless 500 GSM towels for buffing and drying.",
-    category: "Dax Detailing",
-    sizes: ["6-Pack", "12-Pack"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1606752393282-3d8b5845c470?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 8,
-    name: "Tire Shine Gel",
-    description: "No-sling formula for high-gloss, long-lasting black tires.",
-    category: "Dax Detailing",
-    sizes: ["16oz"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1550961812-706d87178303?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 9,
-    name: "Fuel Injector Cleaner",
-    description: "Restores lost power and improves fuel economy.",
-    category: "Dax Solutions",
-    sizes: ["12oz"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1635773124508-8e622b7d59c9?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 10,
-    name: "Oil System Cleaner",
-    description: "Dissolves sludge and deposits for a cleaner engine.",
-    category: "Dax Solutions",
-    sizes: ["12oz"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1486262715619-72a604e3d7e9?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 11,
-    name: "5W-30 Full Synthetic Oil",
-    description: "Advanced protection for modern turbocharged engines.",
-    category: "Advantage",
-    sizes: ["1 Quart", "5 Gallons"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1504222490245-4f67dd74ae48?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 12,
-    name: "Transmission Fluid",
-    description: "High-performance fluid for smooth shifting and wear protection.",
-    category: "Advantage",
-    sizes: ["1 Quart"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1594968940801-b3716d7a468e?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 13,
-    name: "Octane Booster",
-    description: "Maximizes engine performance and reduces engine knock.",
-    category: "Dax Solutions",
-    sizes: ["12oz"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1635773124508-8e622b7d59c9?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 14,
-    name: "Engine Flush",
-    description: "Removes carbon deposits and neutralizes harmful acids.",
-    category: "Dax Solutions",
-    sizes: ["12oz"],
-    cta: ["Know More"],
-    image: "https://images.unsplash.com/photo-1486262715619-72a604e3d7e9?q=80&w=600&auto=format&fit=crop",
-  },
-];
+import { API_ENDPOINTS } from "../../config";
 
 // Features (Car Detailing Focus)
 const features = [
@@ -201,8 +61,12 @@ const faqs = [
 ];
 
 export default function ProductsPage() {
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState(["All"]);
   const [activeCategory, setActiveCategory] = useState("All");
   const [openFAQ, setOpenFAQ] = useState(null);
+  const [loading, setLoading] = useState(true);
+  
   const sectionRefs = {
     products: useRef(null),
     features: useRef(null),
@@ -211,6 +75,43 @@ export default function ProductsPage() {
   };
 
   const location = useLocation();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(API_ENDPOINTS.productsPage);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        // Map API data to the structure expected by ProductGrid
+        const mappedProducts = data.map(item => ({
+          id: item.id,
+          name: item.name,
+          description: item.description,
+          category: item.brand, // Map brand to category for filtering
+          brand: item.brand,
+          sizes: [], // API doesn't provide sizes suitable for grid chips currently
+          cta: ["Know More"],
+          image: item.images && item.images.length > 0 ? item.images[0].image : "",
+          features: item.features // Pass features just in case
+        }));
+
+        setProducts(mappedProducts);
+
+        // Extract unique brands for categories
+        const brands = ["All", ...new Set(data.map(item => item.brand))].filter(Boolean);
+        setCategories(brands);
+        
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   const filteredProducts =
     activeCategory === "All"
@@ -225,7 +126,7 @@ export default function ProductsPage() {
         setActiveCategory(category);
       }
     }
-  }, [location]);
+  }, [location, categories]);
 
   // Animation variants for left-to-right entrance and exit
   const slideInVariants = {

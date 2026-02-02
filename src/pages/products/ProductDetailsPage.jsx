@@ -1,50 +1,93 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { ArrowLeft, Check, Star, Info, Download, MessageCircle, ArrowRight } from "lucide-react";
-import { products } from '../../components/products/Products';
-
-// Dummy data for the product - in real app this would come from backend based on ID
-const dummyProduct = {
-    id: 1,
-    name: "Ceramic Coating Pro",
-    category: "Sirius",
-    // price: "$89.99",
-    rating: 4.8,
-    reviews: 124,
-    description: "Experience the ultimate protection for your vehicle with our Ceramic Coating Pro. Engineered using advanced nanotechnology, this coating bonds permanently to your car's paint, creating a hydrophobic layer that repels water, dirt, and contaminants while providing a brilliant, mirror-like shine.",
-    features: [
-        "9H Hardness Protection",
-        "Ultra-Hydrophobic Effect",
-        "UV & Oxidation Resistant",
-        "High Gloss Finish",
-        "Lasts up to 5 Years",
-        "Professional Grade Formulation"
-    ],
-    images: [
-        "https://placehold.co/600x600/0047AB/FFFFFF/png?text=Product+Image+1",
-        "https://placehold.co/600x600/003380/FFFFFF/png?text=Detail+Shot",
-        "https://placehold.co/600x600/0055CC/FFFFFF/png?text=Application"
-    ],
-    // sizes: ["50ml", "100ml", "Kit"],
-    sku: "WBR-PRO-001"
-};
+import { API_ENDPOINTS } from "../../config";
 
 const ProductDetailsPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [activeImage, setActiveImage] = useState(0);
+    const [product, setProduct] = useState(null);
+    const [relatedProducts, setRelatedProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-    // Find related products (same category, excluding current)
-    const relatedProducts = products
-        .filter(p => p.category === dummyProduct.category && p.id !== dummyProduct.id)
-        .slice(0, 4);
+    useEffect(() => {
+        const fetchProductData = async () => {
+            try {
+                const response = await fetch(API_ENDPOINTS.productsPage);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
 
-    // If not enough related, fill with others
-    if (relatedProducts.length < 4) {
-        const remaining = products
-            .filter(p => p.category !== dummyProduct.category && p.id !== dummyProduct.id)
-            .slice(0, 4 - relatedProducts.length);
-        relatedProducts.push(...remaining);
+                // Find current product
+                const currentProductRaw = data.find(p => p.id === parseInt(id));
+
+                if (currentProductRaw) {
+                    // Map API data structure to UI requirements
+                    const mappedProduct = {
+                        id: currentProductRaw.id,
+                        name: currentProductRaw.name,
+                        category: currentProductRaw.brand, // Map brand to category
+                        rating: 4.8, // Hardcoded as API doesn't provide rating
+                        reviews: 124, // Hardcoded
+                        description: currentProductRaw.description,
+                        features: currentProductRaw.features ? currentProductRaw.features.map(f => f.feature) : [],
+                        images: currentProductRaw.images && currentProductRaw.images.length > 0 
+                            ? currentProductRaw.images.map(img => img.image) 
+                            : ["https://placehold.co/600x600?text=No+Image"],
+                        sku: `WBR-${currentProductRaw.id}`,
+                        brand: currentProductRaw.brand
+                    };
+                    setProduct(mappedProduct);
+
+                    // Find related products (same brand, excluding current)
+                    const related = data
+                        .filter(p => p.brand === currentProductRaw.brand && p.id !== currentProductRaw.id)
+                        .slice(0, 4)
+                        .map(p => ({
+                            id: p.id,
+                            name: p.name,
+                            category: p.brand,
+                            description: p.description,
+                            image: p.images && p.images.length > 0 ? p.images[0].image : "https://placehold.co/600x600?text=No+Image"
+                        }));
+                    
+                    // Fill with others if unrelated are not enough (optional, based on previous logic)
+                    if (related.length < 4) {
+                         const remaining = data
+                            .filter(p => p.brand !== currentProductRaw.brand && p.id !== currentProductRaw.id)
+                            .slice(0, 4 - related.length)
+                            .map(p => ({
+                                id: p.id,
+                                name: p.name,
+                                category: p.brand,
+                                description: p.description,
+                                image: p.images && p.images.length > 0 ? p.images[0].image : "https://placehold.co/600x600?text=No+Image"
+                            }));
+                        related.push(...remaining);
+                    }
+
+                    setRelatedProducts(related);
+                }
+                setLoading(false);
+            } catch (error) {
+                console.error("Error fetching product details:", error);
+                setLoading(false);
+            }
+        };
+
+        fetchProductData();
+        // Reset active image when id changes
+        setActiveImage(0);
+    }, [id]);
+
+    if (loading) {
+        return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+    }
+
+    if (!product) {
+        return <div className="min-h-screen flex items-center justify-center">Product not found</div>;
     }
 
     return (
@@ -66,43 +109,45 @@ const ProductDetailsPage = () => {
                             {/* ... (existing image gallery code) */}
                             <div className="relative w-full aspect-square max-w-[500px] mb-6 overflow-hidden rounded-xl shadow-lg bg-white">
                                 <img
-                                    src={dummyProduct.images[activeImage]}
-                                    alt={dummyProduct.name}
+                                    src={product.images[activeImage]}
+                                    alt={product.name}
                                     className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
                                 />
 
                             </div>
-                            <div className="flex gap-4 overflow-x-auto pb-2 w-full max-w-[500px] justify-center">
-                                {dummyProduct.images.map((img, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setActiveImage(index)}
-                                        className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${activeImage === index
-                                            ? 'border-[#0047AB] shadow-md scale-105'
-                                            : 'border-transparent opacity-70 hover:opacity-100'
-                                            }`}
-                                    >
-                                        <img src={img} alt={`View ${index + 1}`} className="w-full h-full object-cover" />
-                                    </button>
-                                ))}
-                            </div>
+                            {product.images.length > 1 && (
+                                <div className="flex gap-4 overflow-x-auto pb-2 w-full max-w-[500px] justify-center">
+                                    {product.images.map((img, index) => (
+                                        <button
+                                            key={index}
+                                            onClick={() => setActiveImage(index)}
+                                            className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all ${activeImage === index
+                                                ? 'border-[#0047AB] shadow-md scale-105'
+                                                : 'border-transparent opacity-70 hover:opacity-100'
+                                                }`}
+                                        >
+                                            <img src={img} alt={`View ${index + 1}`} className="w-full h-full object-cover" />
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
                         </div>
 
                         {/* Right Column - Product Info */}
                         <div className="p-8 lg:p-12 flex flex-col h-full">
                             <div className="mb-2 flex items-center gap-2">
-                                <span className="text-[#0047AB] font-semibold text-sm tracking-widest uppercase">{dummyProduct.category}</span>
+                                <span className="text-[#0047AB] font-semibold text-sm tracking-widest uppercase">{product.category}</span>
                                 <span className="text-gray-300">|</span>
                                 <div className="flex items-center text-yellow-400">
                                     <Star size={14} fill="currentColor" />
-                                    <span className="text-gray-500 text-xs ml-1 font-medium">{dummyProduct.rating} ({dummyProduct.reviews} reviews)</span>
+                                    <span className="text-gray-500 text-xs ml-1 font-medium">{product.rating} ({product.reviews} reviews)</span>
                                 </div>
                             </div>
 
-                            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{dummyProduct.name}</h1>
+                            <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">{product.name}</h1>
 
                             <p className="text-gray-600 leading-relaxed mb-8 text-lg">
-                                {dummyProduct.description}
+                                {product.description}
                             </p>
 
                             {/* REMOVED Key Features Grid from here */}
@@ -137,7 +182,7 @@ const ProductDetailsPage = () => {
                             <div className="bg-white p-6 rounded-xl shadow-sm">
                                 <h4 className="font-bold text-gray-800 mb-4">Key Features</h4>
                                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    {dummyProduct.features.map((feature, idx) => (
+                                    {product.features.map((feature, idx) => (
                                         <li key={idx} className="flex items-start gap-3 text-gray-700">
                                             <div className="bg-blue-50 p-1 rounded-full text-[#0047AB] mt-0.5">
                                                 <Check size={14} strokeWidth={3} />
