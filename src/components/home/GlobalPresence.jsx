@@ -104,13 +104,14 @@ function GlobalPresence() {
   ];
 
   // Corrected dot positions for the map (responsive)
+  // Positions calibrated to match the dotted world map image
   const mapDots = [
-    { left: "20%", top: "36%", country: "USA" },
-    { left: "63%", top: "43%", country: "UAE" },
-    { left: "49%", top: "21%", country: "UK" },
-    { left: "71%", top: "46%", country: "India" },
-    { left: "61%", top: "42%", country: "Qatar" },
-    { left: "59%", top: "46%", country: "KSA" },
+    { left: "18%", top: "38%", country: "USA" },        // Central USA
+    { left: "60%", top: "45%", country: "UAE" },        // UAE (eastern Arabian Peninsula)
+    { left: "46%", top: "28%", country: "UK" },         // United Kingdom
+    { left: "70%", top: "42%", country: "India" },      // India (central)
+    { left: "58%", top: "43%", country: "Qatar" },      // Qatar (Persian Gulf)
+    { left: "56%", top: "42%", country: "KSA" },        // Saudi Arabia (western Arabian Peninsula)
   ];
 
   return (
@@ -150,7 +151,15 @@ function GlobalPresence() {
               <img
                 src="https://res.cloudinary.com/dkzvu1c4j/image/upload/v1758356912/OJO4YQ0_ksimat.jpg"
                 alt="World map showing Avees export destinations"
-                className="w-full h-auto object-contain opacity-90 rounded-lg"
+                className="w-full h-auto object-contain opacity-90 rounded-lg cursor-crosshair"
+                onClick={(e) => {
+                  const rect = e.target.getBoundingClientRect();
+                  const x = e.clientX - rect.left;
+                  const y = e.clientY - rect.top;
+                  const left = Math.round((x / rect.width) * 100) + "%";
+                  const top = Math.round((y / rect.height) * 100) + "%";
+                  console.log(`Clicked at: left: "${left}", top: "${top}"`);
+                }}
               />
 
               {/* Animated dots on map */}
