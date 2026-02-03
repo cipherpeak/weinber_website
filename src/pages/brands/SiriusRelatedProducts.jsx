@@ -118,20 +118,20 @@ function SiriusRelatedProducts() {
           viewport={{ once: true, amount: 0.2 }}
           variants={fadeInUp}
         >
-          {/* <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
-            <span className="text-[#0047AB]">Related</span> Products
+          <h2 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4">
+            <span className="text-[#0047AB]">Our</span> Products
           </h2>
           <p className="text-black text-sm sm:text-base mx-auto">
             Engineered for perfection. Crafted for enthusiasts.
-          </p> */}
+          </p>
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+            variants={staggerContainer}
         >
           {productItems.map((item) => (
             <motion.div
@@ -152,10 +152,14 @@ function SiriusRelatedProducts() {
                 </div>
 
                 <div className="p-5 flex flex-col flex-grow">
-                  <h3 className="text-xl font-bold text-black mb-2">
+                  <h3 className="text-xl font-bold text-[#0047AB] mb-2">
                     {item.name}
                   </h3>
-                  <p className="text-black mb-4 text-sm flex-grow">{item.description}</p>
+                  <p className="text-black mb-4 text-sm flex-grow">
+                    {item.description && item.description.length > 100
+                      ? `${item.description.slice(0, 100)}...`
+                      : item.description}
+                  </p>
 
                   {/* <div className="hidden md:block border-t border-gray-100 pt-4 mb-4">
                     <ul className="space-y-2">
