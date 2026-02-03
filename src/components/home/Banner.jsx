@@ -52,20 +52,23 @@ export default function Banner() {
   useEffect(() => {
     const fetchBannerData = async () => {
       try {
-        const response = await fetch(API_ENDPOINTS.productsPage)
+        const response = await fetch(API_ENDPOINTS.home)
         if (!response.ok) throw new Error("Failed to fetch")
         const data = await response.json()
-
-        if (data && data.length > 0) {
-          // Map products to banner slides structure
-          const dynamicSlides = data.slice(0, 5).map((product, index) => ({
-            id: product.id || index,
-            image: product.images && product.images.length > 0 ? product.images[0].image : FALLBACK_SLIDES[0].image,
-            title1: product.name,
-            title2: product.brand || "Premium Quality",
-            description: product.description || "Leading the way in automotive care and surface protection."
-          }))
-          setSlides(dynamicSlides)
+       console.log(data);
+        if (data && (data.slides || Array.isArray(data))) {
+          const bannerData = data.slides || data
+          if (bannerData.length > 0) {
+            // Map products to banner slides structure
+            const dynamicSlides = bannerData.map((banner, index) => ({
+              id: banner.id || index,
+              image: banner.image || banner.image_url || FALLBACK_SLIDES[0].image,
+              title1: banner.title1 || "Premium Quality",
+              title2: banner.title2 || "Automotive Care",
+              description: banner.description || "Leading the way in automotive care and surface protection."
+            }))
+            setSlides(dynamicSlides)
+          }
         }
       } catch (error) {
         console.error("Error fetching banner data:", error)

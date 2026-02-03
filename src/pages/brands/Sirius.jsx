@@ -1,16 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Shield, Sparkles, Droplets, Zap, CheckCircle, ArrowRight, Download, FlaskConical, FileText } from "lucide-react";
 import { fadeInUp, fadeIn, fadeInLeft, fadeInRight, staggerContainer, hoverScale } from "../../utils/animations";
 import BrandProductGrid from "../../components/products/BrandProductGrid";
+import SiriusRelatedProducts from "./SiriusRelatedProducts";
+import { API_ENDPOINTS } from "../../config";
 
 const Sirius = () => {
+    const [bannerData, setBannerData] = useState(null);
+
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        const fetchBanner = async () => {
+            try {
+                const response = await fetch(API_ENDPOINTS.siriusBanner);
+                if (!response.ok) throw new Error("Failed to fetch");
+                const json = await response.json();
+                if (json.success && json.data) {
+                    setBannerData(json.data);
+                }
+            } catch (error) {
+                console.error("Error fetching sirius banner:", error);
+            }
+        };
+
+        fetchBanner();
     }, []);
 
+    const defaultImage = "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769767266/C2767.00_00_12_15.Still006_auto_x2.jpg_copy_snu1hz.jpg";
+    const defaultDescription = "SIRIUS delivers premium protection solutions that both preserve the vehicle’s finish and elevate its visual quality through advanced nano-ceramic and graphene technologies.";
 
+    const image = bannerData?.image_url || defaultImage;
+    const description = bannerData?.description || defaultDescription;
+    const title = bannerData?.title || "Sirius";
 
     return (
         <div className="bg-white text-gray-900">
@@ -29,7 +53,7 @@ const Sirius = () => {
                         variants={fadeInUp}
                     >
                         <img
-                            src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769767266/C2767.00_00_12_15.Still006_auto_x2.jpg_copy_snu1hz.jpg"
+                            src={image}
                             alt="Sirius Hero"
                             className="w-full h-full object-cover"
                         />
@@ -44,7 +68,7 @@ const Sirius = () => {
                                     animate="visible"
                                 >
                                     <span className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent block mt-2">
-                                        Sirius
+                                        {title}
                                     </span>
                                 </motion.h1>
 
@@ -55,7 +79,7 @@ const Sirius = () => {
                                     animate="visible"
                                     transition={{ delay: 0.2 }}
                                 >
-                                    SIRIUS delivers premium protection solutions that both preserve the vehicle’s finish and elevate its visual quality through advanced nano-ceramic and graphene technologies.
+                                    {description}
                                 </motion.p>
 
                                 <motion.div
@@ -174,7 +198,9 @@ const Sirius = () => {
             </section>
 
             {/* Products Section */}
-            <BrandProductGrid brandName="Sirius" title="The SIRIUS Collection" />
+            {/* <BrandProductGrid brandName="Sirius" title="The SIRIUS Collection" /> */}
+
+            <SiriusRelatedProducts />
 
         </div>
     );

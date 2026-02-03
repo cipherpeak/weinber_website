@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiPlus, FiTrash2 } from "react-icons/fi";
+import { FiPlus, FiTrash2, FiLoader } from "react-icons/fi"; // Added FiLoader
+import { API_ENDPOINTS } from "../../config"; // Import API_ENDPOINTS
 
 const APPLICATION_OPTIONS = {
     "PAINT PROTECTION FILMS": ["PPF MAGNIFENCE", "PPF MATTE", "PPF BLACK"],
@@ -38,6 +39,8 @@ export default function WarrantyRegistration() {
     });
 
     const [submitted, setSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false); // Add Loading State
+    const [error, setError] = useState(null); // Add Error State
 
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
@@ -72,13 +75,76 @@ export default function WarrantyRegistration() {
         setFormData(prev => ({ ...prev, products: newProducts }));
     };
 
-    const handleSubmit = (e) => {
+    // Helper to convert file to Base64
+    const convertFileToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = (error) => reject(error);
+        });
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Simulate API call
-        console.log("Form Data Submitted:", formData);
-        setTimeout(() => {
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            let base64File = "";
+            if (formData.invoiceFile) {
+                base64File = await convertFileToBase64(formData.invoiceFile);
+            }
+
+            // Transform data to match backend expectation
+            const payload = {
+                serialNumber: formData.serialNumber,
+                products: formData.products.map(p => ({
+                    application_type: p.applicationType,
+                    product: p.productName
+                })),
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                email: formData.email,
+                phone: formData.phone,
+                installationDate: formData.installationDate,
+                chassisNo: formData.chassisNo,
+                vehicleModel: formData.vehicleModel,
+                invoiceFile: base64File,
+                companyName: formData.companyName,
+                dealerName: formData.dealerName,
+                dealerEmail: formData.dealerEmail,
+                dealerPhone: formData.dealerPhone,
+                dealerAddress: formData.dealerAddress,
+                dealerCity: formData.dealerCity,
+                dealerState: formData.dealerState,
+                dealerZip: formData.dealerZip,
+                dealerCountry: formData.dealerCountry
+            };
+            
+            console.log("Submitting payload:", payload);
+
+            const response = await fetch(API_ENDPOINTS.warrantyRegistration, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || "Something went wrong. Please try again.");
+            }
+
             setSubmitted(true);
-        }, 1000);
+        } catch (err) {
+            console.error("Submission Error:", err);
+            setError(err.message);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     if (submitted) {
@@ -98,7 +164,30 @@ export default function WarrantyRegistration() {
                     Your warranty has been successfully registered. A confirmation email has been sent to {formData.email}.
                 </p>
                 <button
-                    onClick={() => setSubmitted(false)}
+                    onClick={() => {
+                        setSubmitted(false);
+                        setFormData({
+                            serialNumber: "",
+                            products: [{ applicationType: "", productName: "" }],
+                            firstName: "",
+                            lastName: "",
+                            email: "",
+                            phone: "",
+                            installationDate: "",
+                            chassisNo: "",
+                            vehicleModel: "",
+                            invoiceFile: null,
+                            companyName: "",
+                            dealerName: "",
+                            dealerEmail: "",
+                            dealerPhone: "",
+                            dealerAddress: "",
+                            dealerCity: "",
+                            dealerState: "",
+                            dealerZip: "",
+                            dealerCountry: "",
+                        });
+                    }}
                     className="mt-8 text-[#0047AB] hover:underline"
                 >
                     Register another product
@@ -491,13 +580,27 @@ export default function WarrantyRegistration() {
                         </div>
                     </div>
 
+                    {error && (
+                        <div className="p-4 bg-red-50 text-red-600 rounded-xl text-center">
+                            {error}
+                        </div>
+                    )}
+
                     <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
+                        whileHover={{ scale: isLoading ? 1 : 1.02 }}
+                        whileTap={{ scale: isLoading ? 1 : 0.98 }}
                         type="submit"
-                        className="w-full bg-[#0047AB] text-white font-bold py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 mt-8"
+                        disabled={isLoading}
+                        className={`w-full bg-[#0047AB] text-white font-bold py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 mt-8 flex items-center justify-center gap-2 ${isLoading ? 'opacity-75 cursor-not-allowed' : ''}`}
                     >
-                        Submit
+                        {isLoading ? (
+                            <>
+                                <FiLoader className="animate-spin" size={20} />
+                                Submitting...
+                            </>
+                        ) : (
+                            "Submit"
+                        )}
                     </motion.button>
                 </form>
             </motion.div>

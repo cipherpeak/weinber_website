@@ -4,8 +4,13 @@ export const API_BASE_URL = 'https://admin.weinberinc.com';
 
 // API Endpoints
 export const API_ENDPOINTS = {
-  home: `${API_BASE_URL}/dashboard/api/home/`,
+  home: `${API_BASE_URL}/api/home/banner/`,
+  productBanner: `${API_BASE_URL}/api/products/banner/`,
+  aboutBanner: `${API_BASE_URL}/api/about/banner/`,
+  siriusBanner: `${API_BASE_URL}/api/sirius/banner/`,
+  daxDetailingBanner: `${API_BASE_URL}/api/daxdetailing/banner/`,
+  daxSolutionBanner: `${API_BASE_URL}/api/daxsolutions/banner/`,
+  advantageBanner: `${API_BASE_URL}/api/advantage/banner/`,
   productsPage: `${API_BASE_URL}/api/products/`,
-
-  // Add other endpoints here as needed
+  warrantyRegistration: `${API_BASE_URL}/api/warranty-registration/`,
 };

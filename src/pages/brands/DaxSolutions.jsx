@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Fuel, Settings, TriangleAlert, FileText, Check, ArrowRight, Activity, Zap, Download, Sparkles } from "lucide-react";
@@ -6,13 +6,37 @@ import { fadeInUp, fadeIn, fadeInLeft, staggerContainer, hoverScale } from "../.
 import BrandProductGrid from "../../components/products/BrandProductGrid";
 
 import daxSolutionsProducts from "../../assets/brand/dax-solutions-products.png";
+import DaxSolutionRelatedProducts from "./DaxSolutionRelatedProducts"; 
+import { API_ENDPOINTS } from "../../config";
 
 const DaxSolutions = () => {
+    const [bannerData, setBannerData] = useState(null);
+
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        const fetchBanner = async () => {
+            try {
+                const response = await fetch(API_ENDPOINTS.daxSolutionBanner);
+                if (!response.ok) throw new Error("Failed to fetch");
+                const json = await response.json();
+                if (json.success && json.data) {
+                    setBannerData(json.data);
+                }
+            } catch (error) {
+                console.error("Error fetching dax solution banner:", error);
+            }
+        };
+
+        fetchBanner();
     }, []);
 
+    const defaultImage = "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765567/WhatsApp_Image_2026-01-29_at_21.45.54_hkwyqg.jpg";
+    const defaultDescription = "DAX Solutions complements exterior detailing with internal care essentials that improve vehicle reliability and efficiency.";
 
+    const image = bannerData?.image_url || defaultImage;
+    const description = bannerData?.description || defaultDescription;
+    const title = bannerData?.title || "Dax Solutions";
 
     return (
         <div className="bg-white text-gray-900">
@@ -26,7 +50,7 @@ const DaxSolutions = () => {
                 <div className="relative w-full h-[28rem] lg:h-[50rem] rounded-3xl overflow-hidden group">
                     <div className="absolute inset-0">
                         <img
-                            src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765567/WhatsApp_Image_2026-01-29_at_21.45.54_hkwyqg.jpg"
+                            src={image}
                             alt="Dax Solutions Hero"
                             className="w-full h-full object-cover"
                         />
@@ -41,7 +65,7 @@ const DaxSolutions = () => {
                                     animate="visible"
                                 >
                                     <span className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent block mt-2">
-                                        Dax Solutions
+                                        {title}
                                     </span>
                                 </motion.h1>
 
@@ -52,7 +76,7 @@ const DaxSolutions = () => {
                                     animate="visible"
                                     transition={{ delay: 0.2 }}
                                 >
-                                    DAX Solutions complements exterior detailing with internal care essentials that improve vehicle reliability and efficiency.
+                                    {description}
                                 </motion.p>
 
                                 <motion.div
@@ -161,7 +185,8 @@ const DaxSolutions = () => {
             </section>
 
             {/* Products Section */}
-            <BrandProductGrid brandName="Dax Solutions" title="Performance Chemistry" />
+            {/* <BrandProductGrid brandName="Dax Solutions" title="Performance Chemistry" /> */}
+            <DaxSolutionRelatedProducts />
 
         </div>
     );

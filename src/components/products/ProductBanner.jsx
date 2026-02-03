@@ -1,9 +1,42 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { API_ENDPOINTS } from "../../config";
 
 function ProductBanner() {
-  // Image URLs for different devices - Placeholders for Car Detailing
-  const desktopImage = "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765572/car-service-worker-polishes-car-details-with-orbital-polisher_ugapqp.jpg";
-  const mobileImage = "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765572/car-service-worker-polishes-car-details-with-orbital-polisher_ugapqp.jpg";
+  // Default values
+  const defaultImage = "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765572/car-service-worker-polishes-car-details-with-orbital-polisher_ugapqp.jpg";
+  const defaultTitle = "Engineered for Perfection";
+  const defaultDescription = "Discover our premium range of ceramic coatings, waxes, and detailers designed for the ultimate showroom shine.";
+
+  const [bannerData, setBannerData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBanner = async () => {
+      try {
+        const response = await fetch(API_ENDPOINTS.productBanner);
+        if (!response.ok) throw new Error("Failed to fetch");
+        const json = await response.json();
+        
+        if (json.success && json.data) {
+          setBannerData(json.data);
+        }
+      } catch (error) {
+        console.error("Error fetching product banner:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBanner();
+  }, []);
+
+  const image = bannerData?.image_url || defaultImage;
+  const title = bannerData?.title || defaultTitle;
+  const description = bannerData?.description || defaultDescription;
+  
+  // Split title for formatting if it's the default one, otherwise show as is
+  const isDefaultTitle = title === defaultTitle;
 
   // Animation variants
   const textVariants = {
@@ -30,14 +63,14 @@ function ProductBanner() {
     <section className="relative h-[28rem] sm:h-[36rem] md:h-[33rem] lg:h-[50rem] flex items-center justify-center overflow-hidden md:m-5 m-2">
       {/* Desktop Image */}
       <img
-        src={desktopImage}
+        src={image}
         alt="Product Banner"
         className="hidden md:block w-full h-full lg:object-cover md:object-contain rounded-3xl"
       />
 
       {/* Mobile Image */}
       <img
-        src={mobileImage}
+        src={image}
         alt="Product Banner"
         className="md:hidden w-full h-full object-cover rounded-3xl"
       />
@@ -60,11 +93,17 @@ function ProductBanner() {
             variants={floatingVariants}
             animate="animate"
           >
-            <h1 className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent">
-              Engineered for <span className="bg-gradient-to-r from-white via-white to-white bg-clip-text text-transparent">
-                <br />Perfection
-              </span>
-            </h1>
+            {isDefaultTitle ? (
+              <h1 className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent">
+                Engineered for <span className="bg-gradient-to-r from-white via-white to-white bg-clip-text text-transparent">
+                  <br />Perfection
+                </span>
+              </h1>
+            ) : (
+               <h1 className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent">
+                {title}
+              </h1>
+            )}
           </motion.div>
 
           <motion.p
@@ -73,7 +112,7 @@ function ProductBanner() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.8 }}
           >
-            Discover our premium range of ceramic coatings, waxes, and detailers designed for the ultimate showroom shine.
+            {description}
           </motion.p>
 
           <motion.div

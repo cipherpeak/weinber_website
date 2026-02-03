@@ -1,11 +1,29 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Award, Users, Globe, Target, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { API_ENDPOINTS } from "../../config";
 
 export default function AboutUs() {
+  const [bannerData, setBannerData] = useState(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    const fetchBanner = async () => {
+      try {
+        const response = await fetch(API_ENDPOINTS.aboutBanner);
+        if (!response.ok) throw new Error("Failed to fetch");
+        const json = await response.json();
+        if (json.success && json.data) {
+          setBannerData(json.data);
+        }
+      } catch (error) {
+        console.error("Error fetching about banner:", error);
+      }
+    };
+
+    fetchBanner();
   }, []);
 
   const stats = [
@@ -15,6 +33,16 @@ export default function AboutUs() {
     { label: "Partners", value: "100+" },
   ];
 
+  const defaultImage = "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765773/luxury-electric-car-driving-through-neon-cityscape_gufbpk.jpg";
+  const defaultDescription = "Since 1992, Weinber Inc. has been at the forefront of automotive surface protection, blending American innovation with global manufacturing excellence.";
+
+  const image = bannerData?.image_url || defaultImage;
+  const description = bannerData?.description || defaultDescription;
+  const title = bannerData?.title || "Redefining Perfection";
+  
+  // Helper to split title if it's the default one
+  const isDefaultTitle = title === "Redefining Perfection";
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
@@ -23,7 +51,7 @@ export default function AboutUs() {
         <div className="relative w-full h-[28rem] lg:h-[50rem] rounded-3xl overflow-hidden group">
           <div className="absolute inset-0">
             <img
-              src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765773/luxury-electric-car-driving-through-neon-cityscape_gufbpk.jpg"
+              src={image}
               alt="Weinber Lab"
               className="w-full h-full object-cover"
             />
@@ -39,12 +67,20 @@ export default function AboutUs() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                 >
-                  <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent block">
-                    Redefining
-                  </span>
-                  <span className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent block mt-2">
-                    Perfection
-                  </span>
+                  {isDefaultTitle ? (
+                    <>
+                      <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent block">
+                        Redefining
+                      </span>
+                      <span className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent block mt-2">
+                        Perfection
+                      </span>
+                    </>
+                  ) : (
+                    <span className="bg-gradient-to-r from-white via-white to-white bg-clip-text text-transparent block">
+                      {title}
+                    </span>
+                  )}
                 </motion.h1>
 
                 <motion.p
@@ -53,7 +89,7 @@ export default function AboutUs() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
                 >
-                  Since 1992, Weinber Inc. has been at the forefront of automotive surface protection, blending American innovation with global manufacturing excellence.
+                  {description}
                 </motion.p>
                 <motion.div
                   className="mt-6 sm:mt-8 flex gap-3"

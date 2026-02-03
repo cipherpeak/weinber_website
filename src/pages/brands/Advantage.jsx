@@ -1,16 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Wrench, Shield, Truck, Package, Download, ArrowRight } from "lucide-react";
 import { fadeInUp, fadeIn, fadeInLeft, staggerContainer, hoverScale } from "../../utils/animations";
 import BrandProductGrid from "../../components/products/BrandProductGrid";
+import AdvantageRelatedProducts from "./AdvantageRelatedProducts";
+import { API_ENDPOINTS } from "../../config";
 
 const Advantage = () => {
+    const [bannerData, setBannerData] = useState(null);
+
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        const fetchBanner = async () => {
+            try {
+                const response = await fetch(API_ENDPOINTS.advantageBanner);
+                if (!response.ok) throw new Error("Failed to fetch");
+                const json = await response.json();
+                if (json.success && json.data) {
+                    setBannerData(json.data);
+                }
+            } catch (error) {
+                console.error("Error fetching advantage banner:", error);
+            }
+        };
+
+        fetchBanner();
     }, []);
 
+    const defaultImage = "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765567/WhatsApp_Image_2026-01-29_at_21.46.14_bvdira.jpg";
+    const defaultDescription = "Over 20 Years of Expertise in delivering products developed with long-standing experience in coatings, detailing chemistry and automotive care.";
 
+    const image = bannerData?.image_url || defaultImage;
+    const description = bannerData?.description || defaultDescription;
+    const title = bannerData?.title || "Advantage Solutions";
+    
+    // Check if title is default to preserve specific formatting
+    const isDefaultTitle = title === "Advantage Solutions";
 
     return (
         <div className="bg-white text-gray-900">
@@ -24,7 +51,7 @@ const Advantage = () => {
                 <div className="relative w-full h-[28rem] lg:h-[50rem] rounded-3xl overflow-hidden group">
                     <div className="absolute inset-0">
                         <img
-                            src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769765567/WhatsApp_Image_2026-01-29_at_21.46.14_bvdira.jpg"
+                            src={image}
                             alt="Advantage Hero"
                             className="w-full h-full object-cover"
                         />
@@ -38,12 +65,20 @@ const Advantage = () => {
                                     animate="visible"
                                     variants={fadeInUp}
                                 >
-                                    <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent block">
-                                        Advantage
-                                    </span>
-                                    <span className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent block mt-2">
-                                        Solutions
-                                    </span>
+                                    {isDefaultTitle ? (
+                                        <>
+                                            <span className="bg-gradient-to-r from-white via-white to-gray-200 bg-clip-text text-transparent block">
+                                                Advantage
+                                            </span>
+                                            <span className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent block mt-2">
+                                                Solutions
+                                            </span>
+                                        </>
+                                    ) : (
+                                        <span className="bg-gradient-to-r from-white via-white to-white bg-clip-text text-transparent block">
+                                            {title}
+                                        </span>
+                                    )}
                                 </motion.h1>
 
                                 <motion.p
@@ -53,7 +88,7 @@ const Advantage = () => {
                                     variants={fadeInUp}
                                     transition={{ delay: 0.2 }}
                                 >
-                                    Over 20 Years of Expertise in delivering products developed with long-standing experience in coatings, detailing chemistry and automotive care.
+                                    {description}
                                 </motion.p>
 
                                 <motion.div
@@ -160,7 +195,9 @@ const Advantage = () => {
             </section>
 
             {/* Products Section */}
-            <BrandProductGrid brandName="Advantage" title="Our Products" />
+            {/* <BrandProductGrid brandName="Advantage" title="Our Products" /> */}
+
+            <AdvantageRelatedProducts />
 
         </div >
     );

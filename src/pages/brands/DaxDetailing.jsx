@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Sparkles, Layers, PenTool, Droplet, ArrowRight, Star, Download, CirclePlay, Diamond } from "lucide-react";
@@ -6,13 +6,37 @@ import { fadeInUp, fadeIn, fadeInLeft, fadeInRight, staggerContainer, hoverScale
 import BrandProductGrid from "../../components/products/BrandProductGrid";
 
 import daxDetailingProducts from "../../assets/brand/dax-detailing-products.png";
+import DaxDetailingRelatedProducts from "./DaxDetailingRelatedProducts";
+import { API_ENDPOINTS } from "../../config";
 
 const DaxDetailing = () => {
+    const [bannerData, setBannerData] = useState(null);
+
     useEffect(() => {
         window.scrollTo(0, 0);
+
+        const fetchBanner = async () => {
+            try {
+                const response = await fetch(API_ENDPOINTS.daxDetailingBanner);
+                if (!response.ok) throw new Error("Failed to fetch");
+                const json = await response.json();
+                if (json.success && json.data) {
+                    setBannerData(json.data);
+                }
+            } catch (error) {
+                console.error("Error fetching dax detailing banner:", error);
+            }
+        };
+
+        fetchBanner();
     }, []);
 
+    const defaultImage = "https://res.cloudinary.com/dtutjoxdz/image/upload/v1769777164/2149193628_bse3uo.jpg";
+    const defaultDescription = "DAX Detailing stands as a broad professional-grade portfolio for achieving showroom-quality detailing results across all vehicle surfaces.";
 
+    const image = bannerData?.image_url || defaultImage;
+    const description = bannerData?.description || defaultDescription;
+    const title = bannerData?.title || "Dax Detailing";
 
     return (
         <div className="bg-white text-gray-900">
@@ -31,7 +55,7 @@ const DaxDetailing = () => {
                         variants={fadeInUp}
                     >
                         <img
-                            src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1769777164/2149193628_bse3uo.jpg"
+                            src={image}
                             alt="Dax Hero"
                             className="w-full h-full object-cover"
                         />
@@ -46,7 +70,7 @@ const DaxDetailing = () => {
                                     variants={fadeInUp}
                                 >
                                     <span className="bg-gradient-to-r from-[#0047AB] via-white to-white bg-clip-text text-transparent block mt-2">
-                                        Dax Detailing
+                                        {title}
                                     </span>
                                 </motion.h1>
 
@@ -57,7 +81,7 @@ const DaxDetailing = () => {
                                     variants={fadeInUp}
                                     transition={{ delay: 0.2 }}
                                 >
-                                    DAX Detailing stands as a broad professional-grade portfolio for achieving showroom-quality detailing results across all vehicle surfaces.
+                                    {description}
                                 </motion.p>
 
                                 <motion.div
@@ -181,7 +205,8 @@ const DaxDetailing = () => {
             </section>
 
             {/* Products Section */}
-            <BrandProductGrid brandName="Dax Detailing" title="Essential Kits" />
+            {/* <BrandProductGrid brandName="Dax Detailing" title="Essential Kits" /> */}
+            <DaxDetailingRelatedProducts />
 
         </div>
     );
