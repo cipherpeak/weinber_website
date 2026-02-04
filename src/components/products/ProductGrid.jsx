@@ -109,7 +109,7 @@ function ProductGrid({
             </div>
 
             <div className="p-5">
-              <h3 className="text-xl font-bold text-gray-800 mb-2">
+              <h3 className="text-xl font-bold text-[#0047AB] mb-2">
                 {product.name}
               </h3>
               <p

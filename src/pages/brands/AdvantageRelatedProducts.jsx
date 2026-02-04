@@ -82,7 +82,7 @@ function AdvantageRelatedProducts() {
         const data = await response.json();
 
         if (data && data.length > 0) {
-          const advantageProducts = data.filter((p) => p.brand === "Advantage");
+          const advantageProducts = data.filter((p) => p.brand === "Advantages");
           const mapped = advantageProducts.slice(0, 4).map(p => ({
             id: p.id,
             category: p.brand || "Product",

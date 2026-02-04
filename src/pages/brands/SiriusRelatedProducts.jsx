@@ -83,7 +83,7 @@ function SiriusRelatedProducts() {
 
         if (data && data.length > 0) {
           const siriusProducts = data.filter((p) => p.brand === "Sirius");
-          const mapped = siriusProducts.slice(0, 4).map((p) => ({
+          let mapped = siriusProducts.map((p) => ({
             id: p.id,
             category: p.brand || "Product",
             name: p.name,
@@ -96,7 +96,26 @@ function SiriusRelatedProducts() {
               ? p.features.slice(0, 3).map((f) => (typeof f === "string" ? f : f.feature))
               : ["Professional Grade", "High Performance"],
           }));
-          setProductItems(mapped);
+
+          if (mapped.length < 4) {
+             const otherProducts = data.filter((p) => p.brand !== "Sirius");
+             const filledProducts = otherProducts.slice(0, 4 - mapped.length).map((p) => ({
+                id: p.id,
+                category: p.brand || "Product",
+                name: p.name,
+                image:
+                  p.images && p.images.length > 0
+                    ? p.images[0].image
+                    : FALLBACK_PRODUCTS[0].image,
+                description: p.description,
+                features: p.features
+                  ? p.features.slice(0, 3).map((f) => (typeof f === "string" ? f : f.feature))
+                  : ["Professional Grade", "High Performance"],
+             }));
+             mapped = [...mapped, ...filledProducts];
+          }
+          
+          setProductItems(mapped.slice(0, 4));
         }
       } catch (err) {
         console.error("Error fetching showcase products:", err);
@@ -107,6 +126,7 @@ function SiriusRelatedProducts() {
 
     fetchShowcaseProducts();
   }, []);
+
 
   return (
     <section className="py-16 px-4 bg-white">
