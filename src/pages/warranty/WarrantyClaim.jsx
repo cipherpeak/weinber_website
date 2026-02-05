@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { API_ENDPOINTS } from "../../config";
 
 export default function WarrantyClaim() {
     const [formData, setFormData] = useState({
@@ -14,6 +15,8 @@ export default function WarrantyClaim() {
     });
 
     const [submitted, setSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
@@ -23,11 +26,48 @@ export default function WarrantyClaim() {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Simulate API call
-        console.log("Claim Submitted:", formData);
-        setSubmitted(true);
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            const data = new FormData();
+            data.append("serial_number", formData.serialNumber);
+            data.append("issue_date", formData.issueDate);
+            data.append("issue_description", formData.issueDescription);
+
+            if (formData.warrantyCard) {
+                data.append("warranty_card_image", formData.warrantyCard);
+            }
+
+            if (formData.claimImages) {
+                if (formData.claimImages instanceof FileList) {
+                    Array.from(formData.claimImages).forEach((file) => {
+                        data.append("images", file);
+                    });
+                } else {
+                    data.append("images", formData.claimImages);
+                }
+            }
+
+            const response = await fetch(API_ENDPOINTS.warrantyClaim, {
+                method: "POST",
+                body: data,
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Failed to submit claim");
+            }
+
+            setSubmitted(true);
+        } catch (err) {
+            console.error("Error submitting claim:", err);
+            setError(err.message || "An unexpected error occurred.");
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     if (submitted) {
@@ -44,8 +84,8 @@ export default function WarrantyClaim() {
                 </motion.div>
                 <h2 className="text-3xl font-bold bg-[#0047AB] bg-clip-text text-transparent mb-4">Claim Submitted</h2>
                 <p className="text-gray-600 max-w-md mb-8">
-                    Your claim reference ID is <span className="font-mono font-bold text-black">CLM-2024-8392</span>.
-                    Our team will review your request and contact you within 24-48 hours.
+                    Your claim has been successfully submitted.
+                    Our team will review your request and contact you shortly.
                 </p>
                 <div className="flex gap-4">
                     <button
@@ -55,7 +95,16 @@ export default function WarrantyClaim() {
                         Return to Home
                     </button>
                     <button
-                        onClick={() => setSubmitted(false)}
+                        onClick={() => {
+                            setSubmitted(false);
+                            setFormData({
+                                serialNumber: "",
+                                issueDate: "",
+                                issueDescription: "",
+                                claimImages: null,
+                                warrantyCard: null,
+                            });
+                        }}
                         className="px-8 py-3 text-[#0047AB] hover:underline"
                     >
                         Submit another claim
@@ -188,13 +237,20 @@ export default function WarrantyClaim() {
 
 
 
+                    {error && (
+                        <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-6">
+                            {error}
+                        </div>
+                    )}
+
                     <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         type="submit"
-                        className="w-full bg-[#0047AB] text-white font-bold py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 mt-8"
+                        disabled={isLoading}
+                        className={`w-full bg-[#0047AB] text-white font-bold py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 mt-8 flex items-center justify-center gap-2 ${isLoading ? 'opacity-70 cursor-not-allowed' : ''}`}
                     >
-                        Submit
+                        {isLoading ? "Submitting..." : "Submit"}
                     </motion.button>
                 </form>
             </motion.div>
