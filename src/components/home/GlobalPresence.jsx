@@ -149,7 +149,7 @@ function GlobalPresence() {
           >
             <div className="relative w-full">
               <img
-                src="../src/assets/images/global reach map.jpg"
+                src="https://res.cloudinary.com/dtutjoxdz/image/upload/v1770380207/global_reach_map_zqc3j8.jpg"
                 alt="World map showing Avees export destinations"
                 className="w-full h-auto object-contain opacity-90 rounded-lg cursor-crosshair"
                 onClick={(e) => {
