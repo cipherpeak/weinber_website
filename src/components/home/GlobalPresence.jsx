@@ -149,7 +149,7 @@ function GlobalPresence() {
           >
             <div className="relative w-full">
               <img
-                src="https://res.cloudinary.com/dkzvu1c4j/image/upload/v1758356912/OJO4YQ0_ksimat.jpg"
+                src="../src/assets/images/global reach map.jpg"
                 alt="World map showing Avees export destinations"
                 className="w-full h-auto object-contain opacity-90 rounded-lg cursor-crosshair"
                 onClick={(e) => {
@@ -163,7 +163,7 @@ function GlobalPresence() {
               />
 
               {/* Animated dots on map */}
-              {mapDots.map((dot, index) => (
+              {/* {mapDots.map((dot, index) => (
                 <motion.div
                   key={index}
                   className="absolute w-2 h-2 sm:w-3 sm:h-3 bg-[#0047AB] rounded-full border border-white"
@@ -183,7 +183,7 @@ function GlobalPresence() {
                 >
                   <div className="absolute inset-0 rounded-full bg-[#0047AB] animate-ping opacity-40"></div>
                 </motion.div>
-              ))}
+              ))} */}
             </div>
           </motion.div>
 
